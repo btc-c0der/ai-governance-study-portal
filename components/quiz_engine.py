@@ -177,19 +177,40 @@ class QuizEngine:
                             time_limit: Optional[int] = None) -> Dict[str, Any]:
         """Generate a new quiz session with specified parameters"""
         
-        # Get exam settings based on mode
-        if mode == "exam_simulation":
-            settings = self.quiz_data["exam_simulation_settings"]["standard_exam"]
-            num_questions = min(num_questions, settings["total_questions"])
-            time_limit = time_limit or settings["time_limit_minutes"]
-        else:
-            practice_settings = self.quiz_data["exam_simulation_settings"]["practice_modes"]
-            if mode in practice_settings:
-                settings = practice_settings[mode]
-                num_questions = settings["questions"]
-                time_limit = time_limit or settings["time_limit_minutes"]
+        print(f"🎯 Generating quiz session:")
+        print(f"   Mode: {mode}")
+        print(f"   Questions: {num_questions}")
+        print(f"   Difficulty: {difficulty}")
+        print(f"   Domain: {domain}")
+        print(f"   Time Limit: {time_limit}")
         
-        # Generate questions
+        # Apply mode-specific constraints while respecting user choices
+        if mode == "exam_simulation":
+            # For exam simulation, respect user choice but cap at official exam limits
+            settings = self.quiz_data["exam_simulation_settings"]["standard_exam"]
+            max_exam_questions = settings["total_questions"]
+            if num_questions > max_exam_questions:
+                print(f"⚠️ Capping questions at exam maximum: {max_exam_questions}")
+                num_questions = max_exam_questions
+            
+            # Use default exam time limit if user didn't specify one
+            if time_limit is None:
+                time_limit = settings["time_limit_minutes"]
+                print(f"📅 Using default exam time limit: {time_limit} minutes")
+        else:
+            # For practice modes, respect all user choices
+            # Only set default time limit if user didn't specify one
+            if time_limit is None:
+                practice_settings = self.quiz_data["exam_simulation_settings"]["practice_modes"]
+                if mode in practice_settings:
+                    time_limit = practice_settings[mode]["time_limit_minutes"]
+                    print(f"📅 Using default practice time limit: {time_limit} minutes")
+                else:
+                    time_limit = 15  # Default fallback
+                    print(f"📅 Using fallback time limit: {time_limit} minutes")
+        
+        # Generate questions based on user criteria
+        print(f"🔍 Searching for questions with criteria: domain={domain}, difficulty={difficulty}, limit={num_questions}")
         questions = self.get_questions_by_criteria(
             domain=domain if domain != "Mixed" else None,
             difficulty=difficulty if difficulty != "Mixed" else None,
@@ -197,7 +218,10 @@ class QuizEngine:
         )
         
         if not questions:
+            print("❌ No questions found for specified criteria")
             return {"error": "No questions available for the specified criteria"}
+        
+        print(f"✅ Found {len(questions)} questions")
         
         # Create session
         session_id = f"quiz_{int(time.time())}"
@@ -213,6 +237,11 @@ class QuizEngine:
             "difficulty": difficulty,
             "total_questions": len(questions)
         }
+        
+        print(f"🎉 Quiz session created successfully!")
+        print(f"   Session ID: {session_id}")
+        print(f"   Actual Questions: {len(questions)}")
+        print(f"   Time Limit: {time_limit} minutes")
         
         return self.current_quiz_session
     
@@ -622,8 +651,8 @@ class QuizEngine:
                         quiz_mode = gr.Radio(
                             choices=["quick_practice", "domain_focus", "exam_simulation"],
                             value="quick_practice",
-                            label="Quiz Mode",
-                            info="Choose your practice mode"
+                            label="🎯 Quiz Mode",
+                            info="• Quick Practice: Fast review sessions\n• Domain Focus: Target specific areas\n• Exam Simulation: Full AIGP exam experience"
                         )
                         
                         num_questions = gr.Slider(
@@ -631,33 +660,39 @@ class QuizEngine:
                             maximum=50,
                             value=10,
                             step=1,
-                            label="Number of Questions"
+                            label="📊 Number of Questions",
+                            info="Your selected count will be respected (exam simulation capped at 50)"
                         )
                         
                         difficulty_level = gr.Dropdown(
                             choices=["Mixed"] + self.get_available_difficulties(),
                             value="Mixed",
-                            label="Difficulty Level"
+                            label="⚡ Difficulty Level",
+                            info="Mixed = Random difficulty for varied practice"
                         )
                         
                         domain_focus = gr.Dropdown(
                             choices=["Mixed"] + self.get_available_domains(),
                             value="Mixed",
-                            label="Domain Focus"
+                            label="🎯 Domain Focus",
+                            info="Mixed = Questions from all AIGP domains"
                         )
                         
                         time_limit = gr.Slider(
-                            minimum=5,
+                            minimum=0,
                             maximum=120,
                             value=15,
                             step=5,
-                            label="Time Limit (minutes)",
-                            info="Set to 0 for no time limit"
+                            label="⏱️ Time Limit (minutes)",
+                            info="Set to 0 for unlimited time • Your choice will be respected"
                         )
                         
                         start_quiz_btn = gr.Button("🚀 Start Quiz", variant="primary", size="lg")
                     
                     with gr.Column():
+                        gr.Markdown("### 🎯 Quiz Preview")
+                        quiz_preview = gr.HTML(self._generate_quiz_preview())
+                        
                         gr.Markdown("### 📊 Your Performance Statistics")
                         stats_display = gr.HTML(self._generate_stats_html())
                         refresh_stats_btn = gr.Button("🔄 Refresh Stats", size="sm")
@@ -809,7 +844,89 @@ class QuizEngine:
                     detailed_feedback, recommendations_display, domain_chart, progress_chart]
         )
         
+        # Dynamic preview updates
+        def update_preview(mode, num_q, difficulty, domain, time_limit_min):
+            """Update quiz preview when parameters change"""
+            return self._generate_quiz_preview(mode, num_q, difficulty, domain, time_limit_min)
+        
+        # Wire up preview updates to all parameter changes
+        for component in [quiz_mode, num_questions, difficulty_level, domain_focus, time_limit]:
+            component.change(
+                fn=update_preview,
+                inputs=[quiz_mode, num_questions, difficulty_level, domain_focus, time_limit],
+                outputs=[quiz_preview]
+            )
+        
         return quiz_container, results_container
+    
+    def _generate_quiz_preview(self, mode="quick_practice", num_q=10, difficulty="Mixed", domain="Mixed", time_limit=15) -> str:
+        """Generate preview HTML showing what quiz will be created"""
+        
+        # Count available questions for criteria
+        available_questions = len(self.get_questions_by_criteria(
+            domain=domain if domain != "Mixed" else None,
+            difficulty=difficulty if difficulty != "Mixed" else None,
+            limit=None  # Get all to count
+        ))
+        
+        # Calculate actual parameters that will be used
+        actual_questions = min(num_q, available_questions) if available_questions > 0 else 0
+        actual_time = time_limit if time_limit > 0 else "Unlimited"
+        
+        # Mode-specific adjustments
+        mode_info = ""
+        if mode == "exam_simulation":
+            exam_max = self.quiz_data["exam_simulation_settings"]["standard_exam"]["total_questions"]
+            if num_q > exam_max:
+                actual_questions = exam_max
+                mode_info = f"<br>⚠️ Capped at {exam_max} for exam simulation"
+        
+        # Status indicators
+        questions_status = "✅" if actual_questions > 0 else "❌"
+        time_status = "⏱️" if actual_time != "Unlimited" else "♾️"
+        
+        return f"""
+        <div style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%); 
+                    padding: 1.5rem; border-radius: 12px; border: 2px solid #3b82f6; color: white;">
+            <h4 style="color: #60a5fa; margin-top: 0; margin-bottom: 1rem;">🎯 Your Quiz Configuration</h4>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                <div style="background: rgba(59, 130, 246, 0.1); padding: 0.8rem; border-radius: 8px; border: 1px solid #3b82f6;">
+                    <div style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.3rem;">Mode</div>
+                    <div style="font-weight: bold; color: #e2e8f0;">{mode.replace('_', ' ').title()}</div>
+                </div>
+                
+                <div style="background: rgba(16, 185, 129, 0.1); padding: 0.8rem; border-radius: 8px; border: 1px solid #10b981;">
+                    <div style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.3rem;">Questions</div>
+                    <div style="font-weight: bold; color: #e2e8f0;">{questions_status} {actual_questions} / {available_questions} available</div>
+                </div>
+                
+                <div style="background: rgba(245, 158, 11, 0.1); padding: 0.8rem; border-radius: 8px; border: 1px solid #f59e0b;">
+                    <div style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.3rem;">Difficulty</div>
+                    <div style="font-weight: bold; color: #e2e8f0;">{difficulty}</div>
+                </div>
+                
+                <div style="background: rgba(139, 92, 246, 0.1); padding: 0.8rem; border-radius: 8px; border: 1px solid #8b5cf6;">
+                    <div style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.3rem;">Domain</div>
+                    <div style="font-weight: bold; color: #e2e8f0;">{domain}</div>
+                </div>
+                
+                <div style="background: rgba(236, 72, 153, 0.1); padding: 0.8rem; border-radius: 8px; border: 1px solid #ec4899; grid-column: span 2;">
+                    <div style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.3rem;">Time Limit</div>
+                    <div style="font-weight: bold; color: #e2e8f0;">{time_status} {actual_time} {'minutes' if actual_time != 'Unlimited' else ''}</div>
+                </div>
+            </div>
+            
+            {mode_info}
+            
+            <div style="margin-top: 1rem; padding: 0.8rem; background: rgba(34, 197, 94, 0.1); 
+                        border-radius: 8px; border-left: 4px solid #22c55e;">
+                <div style="font-size: 0.9rem; color: #86efac;">
+                    ✨ <strong>Ready to start!</strong> Your parameters will be respected exactly as configured.
+                </div>
+            </div>
+        </div>
+        """
     
     def _generate_stats_html(self) -> str:
         """Generate HTML for performance statistics"""
