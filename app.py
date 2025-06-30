@@ -145,10 +145,118 @@ def create_main_interface():
         
         # Footer
         gr.HTML("""
-        <div style="text-align: center; margin-top: 2rem; padding: 1rem; 
-                    background: #f8fafc; border-radius: 10px;">
-            <p>🚀 Built with Gradio 4.x • FastAPI • Transformers • Chart.js</p>
-            <p><small>EU LAW WILL BE LAWFUL AND AI WILL BE GBU2 LICENSED 🤖⚖️</small></p>
+        <div style="
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: #f1f5f9;
+            padding: 3rem 2rem 2rem 2rem;
+            margin-top: 3rem;
+            border-radius: 20px;
+            border: 2px solid #475569;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            text-align: center;
+            font-family: 'Inter', 'Lexend', sans-serif;
+        ">
+            <!-- KAOMOJI Header -->
+            <div style="font-size: 2rem; margin-bottom: 1.5rem; line-height: 1;">
+                ヽ(•‿•)ノ ♡(˃͈ દ ˂͈ ༶ ) (◕‿◕)♡ ＼(^o^)／ (´∀｀)♡
+            </div>
+            
+            <!-- Main Title -->
+            <h2 style="
+                color: #60a5fa; 
+                margin: 0 0 1rem 0; 
+                font-size: 1.5rem; 
+                font-weight: 700;
+                text-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+            ">
+                🧠⚖️ AI Governance Architect's Codex
+            </h2>
+            
+            <!-- Tech Stack -->
+            <div style="
+                background: rgba(59, 130, 246, 0.1);
+                border: 1px solid #3b82f6;
+                border-radius: 12px;
+                padding: 1rem;
+                margin: 1.5rem 0;
+                font-size: 1.1rem;
+            ">
+                <span style="color: #fbbf24; font-weight: 600;">Built with:</span>
+                <span style="color: #e5e7eb;">GRADIO • PYTHON • Cursor IDE</span>
+                <span style="color: #f87171;">and much love</span>
+                <span style="font-size: 1.2rem; margin-left: 0.5rem;">♡(˃͈ દ ˂͈ ༶ )</span>
+            </div>
+            
+            <!-- Contact & Attribution -->
+            <div style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                margin: 1.5rem 0;
+                flex-wrap: wrap;
+            ">
+                <div style="
+                    background: rgba(34, 197, 94, 0.1);
+                    border: 1px solid #22c55e;
+                    border-radius: 10px;
+                    padding: 0.8rem 1.2rem;
+                    font-size: 0.95rem;
+                ">
+                    <span style="color: #fbbf24;">📧 Contact:</span>
+                    <a href="mailto:0m3g4_k1ng@proton.me" style="
+                        color: #60a5fa; 
+                        text-decoration: none; 
+                        font-weight: 600;
+                        margin-left: 0.5rem;
+                    ">0m3g4_k1ng@proton.me</a>
+                </div>
+                
+                <div style="
+                    background: rgba(168, 85, 247, 0.1);
+                    border: 1px solid #a855f7;
+                    border-radius: 10px;
+                    padding: 0.8rem 1.2rem;
+                    font-size: 0.95rem;
+                ">
+                    <span style="color: #fbbf24;">👨‍💻 Lead Dev/QA:</span>
+                    <span style="color: #e5e7eb; font-weight: 600; margin-left: 0.5rem;">Fausto Siqueira</span>
+                </div>
+            </div>
+            
+            <!-- KAOMOJI Separator -->
+            <div style="
+                font-size: 1.2rem; 
+                margin: 1.5rem 0 1rem 0; 
+                color: #94a3b8;
+                letter-spacing: 0.2rem;
+            ">
+                ◆ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◆
+            </div>
+            
+            <!-- Licensing & Legal -->
+            <div style="margin: 1rem 0; font-size: 0.9rem; color: #cbd5e1;">
+                <div style="margin-bottom: 0.5rem;">
+                    <span style="color: #f59e0b;">🏛️</span>
+                    <strong style="color: #fbbf24;">EU AI ACT COMPLIANT</strong>
+                    <span style="color: #f59e0b;">🏛️</span>
+                </div>
+                <div>
+                    <span style="color: #22c55e;">License:</span>
+                    <span style="color: #e5e7eb; font-weight: 600;">GBU2 (Good, Bad, Ugly 2.0)</span>
+                    <span style="font-size: 1.1rem; margin-left: 0.5rem;">(｡◕‿◕｡)</span>
+                </div>
+            </div>
+            
+            <!-- Bottom KAOMOJI -->
+            <div style="
+                font-size: 1.5rem; 
+                margin-top: 1.5rem; 
+                color: #60a5fa;
+                text-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
+            ">
+                ♪(´▽｀) ～♪ (◡ ‿ ◡) ♡ ヾ(＾-＾)ノ
+            </div>
         </div>
         """)
     
