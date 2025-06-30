@@ -166,139 +166,318 @@ def create_placeholder_interface(name, icon):
     """)
 
 def create_annex_builder():
-    """Create Annex IV compliance document builder interface"""
-    gr.Markdown("## 💼 EU AI Act Annex IV Compliance Builder")
-    gr.Markdown("Interactive wizard to create compliance documentation for high-risk AI systems.")
+    """Create comprehensive Annex IV compliance document builder based on official EU AI Act requirements"""
+    gr.Markdown("## 💼 EU AI Act Annex IV Technical Documentation Builder")
+    gr.Markdown("*Generate official technical documentation for high-risk AI systems according to Regulation (EU) 2024/1689*")
+    
+    # Display official requirements notice
+    gr.HTML("""
+    <div style="background: #1a1a1a; border: 2px solid #3b82f6; border-radius: 12px; padding: 1.5rem; color: #ffffff; margin: 1rem 0;">
+        <h3 style="color: #3b82f6; margin-top: 0;">📋 Official Annex IV Requirements</h3>
+        <p style="color: #d1d5db; margin: 0.5rem 0;"><strong>Article 18(1):</strong> Technical documentation must demonstrate high-risk AI system compliance with EU AI Act requirements</p>
+        <p style="color: #d1d5db; margin: 0.5rem 0;"><strong>Mandatory Sections:</strong> 6 comprehensive documentation sections covering all aspects of the AI system</p>
+        <p style="color: #fbbf24; margin: 0.5rem 0; font-style: italic;">Complete all sections below to ensure full compliance with official EU AI Act requirements.</p>
+    </div>
+    """)
     
     with gr.Row():
         with gr.Column():
-            gr.Markdown("### 📋 System Information")
+            gr.Markdown("### 📝 **Section 1: General Description of AI System**")
+            
             system_name = gr.Textbox(
-                label="AI System Name", 
-                placeholder="e.g., Legal Document Classifier"
-            )
-            system_purpose = gr.Textbox(
-                label="System Purpose", 
-                lines=3,
-                placeholder="Describe the intended use of your AI system..."
-            )
-            risk_category = gr.Dropdown(
-                ["High-risk", "Limited risk", "Minimal risk", "Unacceptable risk"],
-                label="Risk Category",
-                value="High-risk"
+                label="AI System Name",
+                placeholder="Enter the commercial name/identifier of your AI system..."
             )
             
-            gr.Markdown("### 🏗️ Technical Details")
-            architecture = gr.Textbox(
-                label="System Architecture",
-                lines=3,
-                placeholder="Describe the technical architecture..."
-            )
-            data_sources = gr.Textbox(
-                label="Training Data Sources", 
-                lines=3,
-                placeholder="Describe your training data sources..."
-            )
-            performance_metrics = gr.Textbox(
-                label="Performance Metrics", 
-                lines=3,
-                placeholder="List key performance indicators..."
-            )
-        
-        with gr.Column():
-            gr.Markdown("### 🛡️ Risk Management")
-            risk_assessment = gr.Textbox(
-                label="Risk Assessment Summary",
+            intended_purpose = gr.Textbox(
+                label="Intended Purpose & Users", 
                 lines=4,
-                placeholder="Summarize identified risks and mitigation measures..."
+                placeholder="Describe: intended purpose, target users/groups/entities, specific use contexts, deployment scenarios..."
             )
             
-            human_oversight = gr.Textbox(
-                label="Human Oversight Measures",
+            accuracy_level = gr.Textbox(
+                label="Expected Accuracy Level & Metrics",
                 lines=3,
-                placeholder="Describe human oversight implementation..."
+                placeholder="Define expected accuracy levels, specific metrics used (precision, recall, F1-score, etc.), basis for accuracy expectations..."
             )
             
-            testing_validation = gr.Textbox(
-                label="Testing & Validation",
+            risk_category = gr.Dropdown(
+                choices=[
+                    "Biometric identification and categorisation",
+                    "Management and operation of critical infrastructure", 
+                    "Education and vocational training",
+                    "Employment, workers management and access to self-employment", 
+                    "Access to and enjoyment of essential private and public services",
+                    "Law enforcement",
+                    "Migration, asylum and border control management",
+                    "Administration of justice and democratic processes"
+                ],
+                label="High-Risk Category (Annex III)",
+                value="Access to and enjoyment of essential private and public services"
+            )
+            
+            unintended_outcomes = gr.Textbox(
+                label="Reasonably Foreseeable Unintended Outcomes",
+                lines=4,
+                placeholder="Identify potential unintended outcomes, sources of risks to health/safety/fundamental rights, discrimination risks..."
+            )
+            
+            misuse_risks = gr.Textbox(
+                label="Foreseeable Misuse Circumstances",
                 lines=3,
-                placeholder="Describe testing and validation procedures..."
+                placeholder="Describe known/foreseeable circumstances of misuse that may lead to health, safety, or fundamental rights risks..."
             )
             
-            generate_btn = gr.Button("🔧 Generate Compliance Document", variant="primary")
+            human_oversight_measures = gr.Textbox(
+                label="Human Oversight Measures Required",
+                lines=4,
+                placeholder="Detail human oversight measures needed, technical measures for output interpretation, human-machine interface requirements..."
+            )
+            
+        with gr.Column():
+            gr.Markdown("### 📊 **Section 2: Data and Data Governance**")
+            
+            training_data = gr.Textbox(
+                label="Training, Validation & Testing Data Sets",
+                lines=5,
+                placeholder="Describe: data provenance, scope and main characteristics, how data was obtained and selected, labelling procedures (e.g. supervised learning), data cleaning methodologies (e.g. outliers detection)..."
+            )
+            
+            data_availability = gr.Textbox(
+                label="Data Availability, Quantity & Suitability Assessment", 
+                lines=3,
+                placeholder="Assess availability, quantity and suitability of training/validation/testing datasets..."
+            )
+            
+            data_governance = gr.Textbox(
+                label="Data Governance & Management Practices",
+                lines=4,
+                placeholder="Describe data governance practices, data analysis procedures, pre-processing steps, formulation of assumptions, information used by and inferred by the system..."
+            )
+            
+            bias_assessment = gr.Textbox(
+                label="Bias Assessment & Mitigation",
+                lines=4,
+                placeholder="Assess measures to examine data for bias presence, conclusions drawn from bias examination, measures taking into account intended purpose..."
+            )
     
+    with gr.Row():
+        with gr.Column():
+            gr.Markdown("### 🔧 **Section 3: Monitoring, Functioning & Control**")
+            
+            capabilities_limitations = gr.Textbox(
+                label="System Capabilities & Limitations",
+                lines=4,
+                placeholder="Describe system capabilities and limitations, circumstances impacting performance, accuracy degrees for specific persons/groups, overall expected accuracy..."
+            )
+            
+            evaluation_procedures = gr.Textbox(
+                label="Evaluation Procedures & Benchmarks",
+                lines=3,
+                placeholder="Describe evaluation procedures, applied evaluation criteria, evaluation protocols and benchmarks used..."
+            )
+            
+            risk_mitigation = gr.Textbox(
+                label="Risk Prevention & Mitigation Measures",
+                lines=4,
+                placeholder="Detail measures to prevent and mitigate reasonably foreseeable risks, issues and limitations..."
+            )
+            
+        with gr.Column():
+            gr.Markdown("### ⚠️ **Section 4: Risk Management System**")
+            
+            risk_management_system = gr.Textbox(
+                label="Risk Management System Description (Article 23)",
+                lines=4,
+                placeholder="Describe the established risk management system per Article 23 requirements, continuous iterative process, risk identification and analysis procedures..."
+            )
+            
+            gr.Markdown("### 🔄 **Section 5: Changes Through Lifecycle**")
+            
+            lifecycle_changes = gr.Textbox(
+                label="System Changes Description",
+                lines=3,
+                placeholder="Describe any changes made to the system throughout its lifecycle, version history, update procedures..."
+            )
+            
+            gr.Markdown("### 🏢 **Section 6: Quality Management System**")
+            
+            quality_management = gr.Textbox(
+                label="Quality Management System (Article 17)",
+                lines=4,
+                placeholder="Describe quality management system per Article 17, including AI system objectives and achievement measurement and monitoring procedures..."
+            )
+    
+    with gr.Row():
+        generate_btn = gr.Button("🔧 Generate Official Annex IV Documentation", variant="primary", size="lg")
+        
     with gr.Row():
         compliance_output = gr.Textbox(
-            label="Generated Compliance Document", 
-            lines=15,
-            placeholder="Generated document will appear here..."
+            label="Generated Annex IV Technical Documentation", 
+            lines=20,
+            placeholder="Your complete Annex IV technical documentation will appear here..."
         )
     
-    def generate_compliance_doc(name, purpose, category, arch, data, metrics, risks, oversight, testing):
-        """Generate Annex IV compliance document"""
+    def generate_annex_iv_documentation(name, purpose, accuracy, category, unintended, misuse, oversight, 
+                                       training, availability, governance, bias, capabilities, 
+                                       evaluation, mitigation, risk_mgmt, changes, quality):
+        """Generate comprehensive Annex IV technical documentation"""
         if not name or not purpose:
-            return "Please provide at least system name and purpose to generate document."
+            return "❌ Error: Please provide at minimum the AI system name and intended purpose to generate documentation."
+        
+        current_date = datetime.now().strftime('%Y-%m-%d')
         
         doc = f"""
-# EU AI Act Annex IV Technical Documentation
-## {name}
+# EU AI ACT ANNEX IV TECHNICAL DOCUMENTATION
+## HIGH-RISK AI SYSTEM: {name.upper()}
 
-### 1. General Description
-**System Name:** {name}
-**Risk Category:** {category}
-**Intended Purpose:** {purpose}
-**Date:** {datetime.now().strftime('%Y-%m-%d')}
-
-### 2. System Architecture & Design
-{arch if arch else 'To be completed...'}
-
-### 3. Data Governance
-**Training Data Sources:**
-{data if data else 'To be completed...'}
-
-**Data Quality Measures:**
-- Representative datasets reflecting intended use
-- Bias detection and mitigation procedures
-- Data validation and error correction processes
-
-### 4. Risk Management System
-**Risk Assessment:**
-{risks if risks else 'To be completed...'}
-
-**Risk Mitigation Measures:**
-- Continuous monitoring throughout lifecycle
-- Regular assessment and review procedures
-- Incident response and corrective action plans
-
-### 5. Performance Metrics
-{metrics if metrics else 'To be completed...'}
-
-### 6. Human Oversight
-{oversight if oversight else 'To be completed...'}
-
-### 7. Testing and Validation
-{testing if testing else 'To be completed...'}
-
-### 8. Conformity Assessment
-This system requires conformity assessment before market placement according to Article 16 of the EU AI Act.
-
-### 9. Documentation Control
-- Version: 1.0
-- Approved by: [To be completed]
-- Review date: [To be completed]
-- Next review: {datetime.now().strftime('%Y-%m-%d')}
+**Document Reference:** ANNEX-IV-{name.replace(' ', '-').upper()}-{current_date}
+**Regulation:** (EU) 2024/1689 - Artificial Intelligence Act
+**Article Reference:** Article 18(1) - Technical Documentation Requirements
+**Date of Preparation:** {current_date}
+**Document Version:** 1.0
 
 ---
-*This document template is for guidance purposes. Consult legal experts for compliance verification.*
+
+## COMPLIANCE STATEMENT
+
+This technical documentation is prepared in accordance with Annex IV of Regulation (EU) 2024/1689 (AI Act) and demonstrates compliance with requirements set out in Chapter 2 for high-risk AI systems before market placement or service deployment.
+
+---
+
+## SECTION 1: GENERAL DESCRIPTION OF THE AI SYSTEM
+
+### 1.1 System Identification
+**AI System Name:** {name}
+**Risk Classification:** High-Risk AI System
+**Annex III Category:** {category}
+**Provider:** [PROVIDER NAME TO BE COMPLETED]
+
+### 1.2 Intended Purpose and Users
+{purpose if purpose else '[TO BE COMPLETED - Describe intended purpose, target users/groups/entities for system use]'}
+
+### 1.3 Expected Accuracy Level and Metrics
+{accuracy if accuracy else '[TO BE COMPLETED - Define expected accuracy levels and specific metrics on which system has been designed and developed]'}
+
+### 1.4 Reasonably Foreseeable Unintended Outcomes
+{unintended if unintended else '[TO BE COMPLETED - Identify reasonably foreseeable unintended outcomes and sources of risks to health, safety, fundamental rights and discrimination]'}
+
+### 1.5 Known or Foreseeable Misuse Circumstances
+{misuse if misuse else '[TO BE COMPLETED - Describe circumstances related to intended use or reasonably foreseeable misuse that may lead to health, safety or fundamental rights risks]'}
+
+### 1.6 Human Oversight Measures
+{oversight if oversight else '[TO BE COMPLETED - Detail human oversight measures needed for the AI system, including technical measures for output interpretation]'}
+
+---
+
+## SECTION 2: DATA AND DATA GOVERNANCE
+
+### 2.1 Training, Validation and Testing Data Sets
+{training if training else '[TO BE COMPLETED - Describe training, validation and testing data sets including provenance, scope, characteristics, selection methodology, labelling procedures, and data cleaning methodologies]'}
+
+### 2.2 Data Availability, Quantity and Suitability Assessment
+{availability if availability else '[TO BE COMPLETED - Assess availability, quantity and suitability of data sets used for training, validation and testing]'}
+
+### 2.3 Data Governance and Management Practices
+{governance if governance else '[TO BE COMPLETED - Describe data governance and management practices, data analysis procedures, pre-processing steps, and assumption formulation]'}
+
+### 2.4 Bias Assessment and Mitigation Measures
+{bias if bias else '[TO BE COMPLETED - Assess measures to examine data for bias presence and conclusions drawn, considering the intended purpose of the AI system]'}
+
+---
+
+## SECTION 3: MONITORING, FUNCTIONING AND CONTROL OF THE AI SYSTEM
+
+### 3.1 System Capabilities and Limitations
+{capabilities if capabilities else '[TO BE COMPLETED - Describe capabilities and limitations, circumstances impacting performance, accuracy degrees for specific persons/groups, and overall expected accuracy]'}
+
+### 3.2 Evaluation Procedures and Benchmarks
+{evaluation if evaluation else '[TO BE COMPLETED - Describe evaluation procedures, applied criteria, evaluation protocols and benchmarks]'}
+
+### 3.3 Risk Prevention and Mitigation Measures
+{mitigation if mitigation else '[TO BE COMPLETED - Detail measures to prevent and mitigate reasonably foreseeable risks, issues and limitations]'}
+
+---
+
+## SECTION 4: RISK MANAGEMENT SYSTEM
+
+### 4.1 Risk Management System Description (Article 23 Compliance)
+{risk_mgmt if risk_mgmt else '[TO BE COMPLETED - Describe risk management system in accordance with Article 23 requirements, including continuous iterative process for risk identification, analysis, estimation and evaluation]'}
+
+---
+
+## SECTION 5: CHANGES MADE TO THE SYSTEM THROUGH ITS LIFECYCLE
+
+### 5.1 System Lifecycle Changes Documentation
+{changes if changes else '[TO BE COMPLETED - Describe any changes made to the system throughout its lifecycle, including updates, modifications, and version control]'}
+
+---
+
+## SECTION 6: QUALITY MANAGEMENT SYSTEM AND PROCESSES
+
+### 6.1 Quality Management System Description (Article 17 Compliance)
+{quality if quality else '[TO BE COMPLETED - Describe quality management system per Article 17, including AI system objectives and achievement measurement and monitoring procedures]'}
+
+---
+
+## REGULATORY COMPLIANCE CHECKLIST
+
+### Pre-Market Requirements (Article 16)
+□ Quality management system established (Article 17)
+□ Technical documentation complete (Article 18 - this document)
+□ Automatic logging system implemented (Article 19)
+□ Transparency requirements met (Article 20)
+□ Human oversight designed and implemented (Article 21)
+□ Accuracy, robustness and cybersecurity ensured (Article 22)
+□ Risk management system established (Article 23)
+
+### Conformity Assessment Requirements
+□ Conformity assessment procedure completed
+□ CE marking affixed
+□ EU declaration of conformity drawn up
+□ Registration in EU database completed
+
+---
+
+## DOCUMENT CONTROL
+
+**Document Status:** Draft / Under Review / Approved
+**Prepared By:** [NAME, TITLE]
+**Reviewed By:** [NAME, TITLE]
+**Approved By:** [NAME, TITLE]
+**Next Review Date:** {(datetime.now() + timedelta(days=365)).strftime('%Y-%m-%d')}
+
+---
+
+## LEGAL DISCLAIMER
+
+This technical documentation is prepared as a template for compliance with EU AI Act Annex IV requirements. Organizations must:
+
+1. Complete all sections marked "[TO BE COMPLETED]"
+2. Ensure technical accuracy of all statements
+3. Obtain legal review before market placement
+4. Maintain documentation throughout system lifecycle
+5. Update documentation for any system changes
+
+**IMPORTANT:** This documentation alone does not guarantee regulatory compliance. Consult qualified legal and technical experts for comprehensive compliance verification.
+
+---
+
+**END OF ANNEX IV TECHNICAL DOCUMENTATION**
+
+*Document generated on {current_date} using AI Governance Study Portal*
+*For questions regarding this documentation, contact: [PROVIDER CONTACT INFORMATION]*
         """
         
         return doc
     
     generate_btn.click(
-        fn=generate_compliance_doc,
-        inputs=[system_name, system_purpose, risk_category, architecture, 
-               data_sources, performance_metrics, risk_assessment, 
-               human_oversight, testing_validation],
+        fn=generate_annex_iv_documentation,
+        inputs=[system_name, intended_purpose, accuracy_level, risk_category, unintended_outcomes, 
+               misuse_risks, human_oversight_measures, training_data, data_availability, 
+               data_governance, bias_assessment, capabilities_limitations, 
+               evaluation_procedures, risk_mitigation, risk_management_system,
+               lifecycle_changes, quality_management],
         outputs=[compliance_output]
     )
 
