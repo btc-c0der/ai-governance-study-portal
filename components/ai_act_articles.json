@@ -1,0 +1,19 @@
+{
+  "title": "Regulation (EU) 2024/1689 - EU AI Act",
+  "effective_date": "2024-08-01",
+  "articles": [
+    {
+      "number": "Article 5",
+      "title": "Prohibited artificial intelligence practices",
+      "category": "Prohibited Practices",
+      "content": "AI systems that deploy subliminal techniques, exploit vulnerabilities, or engage in social scoring are prohibited.",
+      "key_points": [
+        "Subliminal techniques beyond consciousness",
+        "Exploitation of vulnerabilities",
+        "Social scoring by public authorities"
+      ],
+      "compliance_impact": "Absolute prohibition",
+      "relevant_stakeholders": ["All AI providers"]
+    }
+  ]
+} 
