@@ -15,6 +15,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
 import os
+import sys
 from pathlib import Path
 
 # Import our custom modules
@@ -25,6 +26,7 @@ try:
     from components.ai_tutor import AITutor
     from components.performance_tracker import PerformanceTracker
     from components.quiz_engine import QuizEngine
+    from components.auth_manager import AuthManager
 except ImportError as e:
     print(f"Warning: Could not import some components: {e}")
     print("Some features may not be available.")
@@ -32,23 +34,63 @@ except ImportError as e:
 def create_main_interface():
     """Create the main Gradio interface with all tabs"""
     
-    # Initialize managers (with error handling)
+    print("🚀 Starting AI Governance Architect's Codex...")
+    print("=" * 60)
+    
+    # Initialize managers (with verbose error handling)
+    components = {}
+    
     try:
-        curriculum_mgr = CurriculumManager()
+        print("🔐 Initializing Authentication Manager...")
+        auth_manager = AuthManager()
+        components['auth_manager'] = auth_manager
+        print("✅ AuthManager initialized successfully")
+        
+        print("📖 Initializing Curriculum Manager...")
+        curriculum_mgr = CurriculumManager(auth_manager)
+        components['curriculum_mgr'] = curriculum_mgr
+        print("✅ CurriculumManager initialized successfully")
+        
+        print("⚖️ Initializing EU AI Act Explorer...")
         ai_act_explorer = AIActExplorer()
+        components['ai_act_explorer'] = ai_act_explorer
+        print("✅ AIActExplorer initialized successfully")
+        
+        print("🤖 Initializing Model Demos...")
         model_demos = ModelDemos()
+        components['model_demos'] = model_demos
+        print("✅ ModelDemos initialized successfully")
+        
+        print("🧠 Initializing AI Tutor...")
         ai_tutor = AITutor()
+        components['ai_tutor'] = ai_tutor
+        print("✅ AITutor initialized successfully")
+        
+        print("📊 Initializing Performance Tracker...")
         performance_tracker = PerformanceTracker()
-        quiz_engine = QuizEngine()
+        components['performance_tracker'] = performance_tracker
+        print("✅ PerformanceTracker initialized successfully")
+        
+        print("🧪 Initializing Quiz Engine...")
+        quiz_engine = QuizEngine(auth_manager)
+        components['quiz_engine'] = quiz_engine
+        print("✅ QuizEngine initialized successfully")
+        
+        print("=" * 60)
+        print(f"🎉 All {len(components)} components initialized successfully!")
+        print("=" * 60)
+        
     except Exception as e:
-        print(f"Error initializing components: {e}")
+        print(f"❌ Error initializing components: {e}")
+        print(f"💔 Failed component will use placeholder interface")
+        
         # Create placeholder managers if components fail
-        curriculum_mgr = None
-        ai_act_explorer = None
-        model_demos = None
-        ai_tutor = None
-        performance_tracker = None
-        quiz_engine = None
+        curriculum_mgr = components.get('curriculum_mgr', None)
+        ai_act_explorer = components.get('ai_act_explorer', None) 
+        model_demos = components.get('model_demos', None)
+        ai_tutor = components.get('ai_tutor', None)
+        performance_tracker = components.get('performance_tracker', None)
+        quiz_engine = components.get('quiz_engine', None)
     
     with gr.Blocks(
         theme=gr.themes.Soft(
@@ -95,53 +137,75 @@ def create_main_interface():
             
             # 📖 Curriculum Explorer Tab
             with gr.Tab("📖 Curriculum Explorer", elem_id="curriculum-tab"):
+                print("🏗️ Creating Curriculum Explorer interface...")
                 if curriculum_mgr:
                     curriculum_mgr.create_interface()
+                    print("✅ Curriculum Explorer interface created")
                 else:
                     create_placeholder_interface("Curriculum Explorer", "📖")
+                    print("⚠️ Curriculum Explorer placeholder created")
             
             # ⚖️ EU AI Act Explorer Tab
             with gr.Tab("⚖️ EU AI Act Explorer", elem_id="ai-act-tab"):
+                print("🏗️ Creating EU AI Act Explorer interface...")
                 if ai_act_explorer:
                     ai_act_explorer.create_interface()
+                    print("✅ EU AI Act Explorer interface created")
                 else:
                     create_placeholder_interface("EU AI Act Explorer", "⚖️")
+                    print("⚠️ EU AI Act Explorer placeholder created")
             
             # 🤖 Model Demos Tab
             with gr.Tab("🤖 Model Demos", elem_id="models-tab"):
+                print("🏗️ Creating Model Demos interface...")
                 if model_demos:
                     model_demos.create_interface()
+                    print("✅ Model Demos interface created")
                 else:
                     create_placeholder_interface("Model Demos", "🤖")
+                    print("⚠️ Model Demos placeholder created")
             
             # 🧠 AI Tutor Chat Tab
             with gr.Tab("🧠 AI Tutor Chat", elem_id="tutor-tab"):
+                print("🏗️ Creating AI Tutor interface...")
                 if ai_tutor:
                     ai_tutor.create_interface()
+                    print("✅ AI Tutor interface created")
                 else:
                     create_placeholder_interface("AI Tutor", "🧠")
+                    print("⚠️ AI Tutor placeholder created")
             
             # 📊 Performance Tracker Tab
             with gr.Tab("📊 Performance Tracker", elem_id="performance-tab"):
+                print("🏗️ Creating Performance Tracker interface...")
                 if performance_tracker:
                     performance_tracker.create_interface()
+                    print("✅ Performance Tracker interface created")
                 else:
                     create_placeholder_interface("Performance Tracker", "📊")
+                    print("⚠️ Performance Tracker placeholder created")
             
             # 💼 Annex IV Builder Tab
             with gr.Tab("💼 Annex IV Builder", elem_id="annex-tab"):
+                print("🏗️ Creating Annex IV Builder interface...")
                 create_annex_builder()
+                print("✅ Annex IV Builder interface created")
             
             # 🧪 Mock AIGP Quiz Tab
             with gr.Tab("🧪 Mock AIGP Quiz", elem_id="quiz-tab"):
+                print("🏗️ Creating Quiz Engine interface...")
                 if quiz_engine:
                     quiz_engine.create_interface()
+                    print("✅ Quiz Engine interface created")
                 else:
                     create_placeholder_interface("Mock Quiz", "🧪")
+                    print("⚠️ Quiz Engine placeholder created")
             
             # 🔗 Notion Sync & Export Tab
             with gr.Tab("🔗 Sync & Export", elem_id="sync-tab"):
+                print("🏗️ Creating Sync & Export interface...")
                 create_sync_interface()
+                print("✅ Sync & Export interface created")
         
         # Footer
         gr.HTML("""
@@ -259,6 +323,11 @@ def create_main_interface():
             </div>
         </div>
         """)
+    
+    print("=" * 60)
+    print("🎯 Interface construction completed successfully!")
+    print("📱 All tabs and components are ready")
+    print("=" * 60)
     
     return app
 
@@ -686,8 +755,33 @@ def create_sync_interface():
     )
 
 if __name__ == "__main__":
+    print("\n" + "=" * 80)
+    print("🎯 AI GOVERNANCE ARCHITECT'S CODEX - STARTUP SEQUENCE")
+    print("=" * 80)
+    print("📅 Startup time:", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    print("🐍 Python version:", sys.version.split()[0])
+    print("📂 Working directory:", os.getcwd())
+    print("=" * 80)
+    
     # Create the app
+    print("🏗️ Building main interface...")
     app = create_main_interface()
+    print("✅ Main interface built successfully!")
+    
+    print("=" * 80)
+    print("🚀 Launching Gradio application...")
+    print("🌐 Server: 0.0.0.0:7860")
+    print("🔗 Share: Enabled")
+    print("🐛 Debug: Enabled")
+    print("⚠️ Show Errors: Enabled") 
+    
+    # Check for favicon
+    favicon_exists = os.path.exists("static/images/favicon.ico")
+    print(f"🎯 Favicon: {'Found' if favicon_exists else 'Not found'}")
+    
+    print("=" * 80)
+    print("🎉 Ready to serve! Application launching...")
+    print("=" * 80 + "\n")
     
     # Launch with custom settings
     app.launch(
@@ -696,5 +790,5 @@ if __name__ == "__main__":
         share=True,
         debug=True,
         show_error=True,
-        favicon_path="static/images/favicon.ico" if os.path.exists("static/images/favicon.ico") else None
+        favicon_path="static/images/favicon.ico" if favicon_exists else None
     ) 

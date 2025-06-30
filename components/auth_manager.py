@@ -20,6 +20,8 @@ import json
 import os
 from pathlib import Path
 
+from .database_manager import DatabaseManager
+
 class AuthManager:
     def __init__(self, db_path="data/users.db"):
         self.db_path = db_path
@@ -27,8 +29,8 @@ class AuthManager:
         self.active_sessions = {}  # In-memory session storage
         self.current_user = None  # Track current logged-in user
         
-        # Ensure data directory exists
-        Path(db_path).parent.mkdir(exist_ok=True)
+        # Initialize shared database manager
+        self.db_manager = DatabaseManager(db_path)
         
         # Initialize database
         self.init_database()
@@ -37,51 +39,46 @@ class AuthManager:
         self.create_default_admin()
     
     def init_database(self):
-        """Initialize the user database with required tables"""
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        
+        """Initialize the user database with required tables using shared database manager"""
         # Users table
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS users (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                email TEXT UNIQUE NOT NULL,
-                password_hash TEXT NOT NULL,
-                salt TEXT NOT NULL,
-                role TEXT DEFAULT 'student',
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                last_login TIMESTAMP,
-                is_active BOOLEAN DEFAULT 1,
-                profile_data TEXT DEFAULT '{}'
-            )
-        """)
+        users_schema = """
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL,
+            salt TEXT NOT NULL,
+            role TEXT DEFAULT 'student',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            last_login TIMESTAMP,
+            is_active BOOLEAN DEFAULT 1,
+            profile_data TEXT DEFAULT '{}'
+        """
         
         # Sessions table (for persistent sessions if needed)
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS sessions (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id INTEGER,
-                session_token TEXT UNIQUE,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                expires_at TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES users (id)
-            )
-        """)
+        sessions_schema = """
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            session_token TEXT UNIQUE,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            expires_at TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users (id)
+        """
         
         # User progress tracking
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS user_progress (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id INTEGER,
-                module_id TEXT,
-                progress_data TEXT,
-                last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES users (id)
-            )
-        """)
+        progress_schema = """
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            module_id TEXT,
+            progress_data TEXT,
+            last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users (id)
+        """
         
-        conn.commit()
-        conn.close()
+        # Create tables using shared database manager
+        self.db_manager.create_table_if_not_exists("users", users_schema)
+        self.db_manager.create_table_if_not_exists("sessions", sessions_schema)
+        self.db_manager.create_table_if_not_exists("user_progress", progress_schema)
+        
+        print("✅ Auth database tables initialized")
     
     def create_default_admin(self):
         """Create default admin user if not exists"""
@@ -95,56 +92,35 @@ class AuthManager:
             print("⚠️  Please change this password after first login!")
     
     def hash_password(self, password, salt=None):
-        """Hash password with salt"""
-        if salt is None:
-            salt = secrets.token_hex(32)
-        
-        password_hash = hashlib.pbkdf2_hmac(
-            'sha256',
-            password.encode('utf-8'),
-            salt.encode('utf-8'),
-            100000  # 100k iterations
-        )
-        
-        return password_hash.hex(), salt
+        """Hash password with salt using shared database manager utility"""
+        return self.db_manager.hash_password(password, salt)
     
     def user_exists(self, email):
-        """Check if user exists"""
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        
-        cursor.execute("SELECT id FROM users WHERE email = ?", (email,))
-        result = cursor.fetchone()
-        
-        conn.close()
-        return result is not None
+        """Check if user exists using shared database manager"""
+        return self.db_manager.record_exists("users", "email = ?", (email,))
     
     def create_user(self, email, password, role="student", profile_data=None):
-        """Create new user"""
+        """Create new user using shared database manager"""
         if self.user_exists(email):
             return False, "User already exists"
         
         password_hash, salt = self.hash_password(password)
         
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        
         profile_json = json.dumps(profile_data or {})
         
         try:
-            cursor.execute("""
-                INSERT INTO users (email, password_hash, salt, role, profile_data)
-                VALUES (?, ?, ?, ?, ?)
-            """, (email, password_hash, salt, role, profile_json))
+            user_data = {
+                "email": email,
+                "password_hash": password_hash,
+                "salt": salt,
+                "role": role,
+                "profile_data": profile_json
+            }
             
-            conn.commit()
-            user_id = cursor.lastrowid
-            conn.close()
-            
+            user_id = self.db_manager.insert_record("users", user_data)
             return True, f"User created successfully with ID: {user_id}"
         
         except Exception as e:
-            conn.close()
             return False, f"Error creating user: {str(e)}"
     
     def authenticate_user(self, email, password):
