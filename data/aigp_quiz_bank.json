@@ -1,8 +1,8 @@
 {
   "quiz_metadata": {
     "title": "AIGP Certification Mock Exam Question Bank",
-    "version": "1.0",
-    "total_questions": 100,
+    "version": "1.1",
+    "total_questions": 35,
     "domains": [
       "AI Governance Fundamentals",
       "EU AI Act & Regulatory Compliance", 
@@ -555,6 +555,96 @@
       "correct": 2,
       "explanation": "Article 16 requires conformity assessment before market placement and after any substantial modifications that could affect compliance with requirements.",
       "legal_reference": "EU AI Act Article 16",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 31,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "General Principles",
+      "difficulty": "Easy",
+      "type": "Multiple Choice",
+      "question": "What is the primary goal of the EU AI Act?",
+      "options": [
+        "To ban all AI applications within the EU",
+        "To stimulate competition in AI development globally",
+        "To ensure AI systems used in the EU are safe and respect fundamental rights",
+        "To mandate the use of open-source AI in all EU countries"
+      ],
+      "correct": 2,
+      "explanation": "The EU AI Act aims to create a legal framework that ensures AI systems placed on the EU market are safe, transparent, and aligned with EU values and fundamental rights.",
+      "legal_reference": "EU AI Act Recital 1",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 32,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Prohibited Practices",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "Which AI systems are classified as 'unacceptable risk' under the EU AI Act?",
+      "options": [
+        "AI chatbots",
+        "AI used in biometric categorization based on sensitive attributes",
+        "Spam detection systems",
+        "AI used in predictive text suggestions"
+      ],
+      "correct": 1,
+      "explanation": "Unacceptable risk AI systems include those that violate fundamental rights, such as real-time biometric surveillance or categorization based on race, religion, political opinion, or other sensitive attributes.",
+      "legal_reference": "EU AI Act Article 5",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 33,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "High-Risk Systems",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "Under the EU AI Act, which category would a facial recognition system used by law enforcement likely fall under?",
+      "options": [
+        "Low-risk",
+        "Minimal risk",
+        "High-risk",
+        "Unacceptable risk"
+      ],
+      "correct": 2,
+      "explanation": "AI used in law enforcement, especially facial recognition, is classified as high-risk due to potential impacts on privacy and fundamental rights. Such systems are listed in Annex III of the EU AI Act.",
+      "legal_reference": "EU AI Act Annex III",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 34,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "High-Risk Systems",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "Which of the following is a requirement for providers of high-risk AI systems under the EU AI Act?",
+      "options": [
+        "They must host their data in the EU",
+        "They must submit their code to public repositories",
+        "They must implement risk management and ensure human oversight",
+        "They must open source the entire AI system"
+      ],
+      "correct": 2,
+      "explanation": "High-risk systems must follow strict obligations, including implementing comprehensive risk management systems, ensuring appropriate human oversight, maintaining documentation, and ensuring traceability and transparency.",
+      "legal_reference": "EU AI Act Articles 9-15",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 35,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Penalties",
+      "difficulty": "Easy",
+      "type": "Multiple Choice",
+      "question": "What is the penalty for non-compliance with the EU AI Act?",
+      "options": [
+        "No penalty, only a warning",
+        "A fine of up to €10 million or 2% of annual turnover",
+        "A fine of up to €30 million or 6% of annual turnover",
+        "Temporary product ban only"
+      ],
+      "correct": 2,
+      "explanation": "The EU AI Act imposes significant penalties to ensure compliance. The highest fines are up to €30 million or 6% of total worldwide annual turnover for breaches involving prohibited practices, whichever is higher.",
+      "legal_reference": "EU AI Act Article 71",
       "domain_weight": 0.20
     }
   ],
