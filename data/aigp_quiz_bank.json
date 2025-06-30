@@ -1,8 +1,8 @@
 {
   "quiz_metadata": {
     "title": "AIGP Certification Mock Exam Question Bank",
-    "version": "1.1",
-    "total_questions": 35,
+    "version": "1.2",
+    "total_questions": 45,
     "domains": [
       "AI Governance Fundamentals",
       "EU AI Act & Regulatory Compliance", 
@@ -645,6 +645,186 @@
       "correct": 2,
       "explanation": "The EU AI Act imposes significant penalties to ensure compliance. The highest fines are up to €30 million or 6% of total worldwide annual turnover for breaches involving prohibited practices, whichever is higher.",
       "legal_reference": "EU AI Act Article 71",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 36,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Technical Documentation",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "Under the EU AI Act, what documentation must be included in the technical file for a high-risk AI system?",
+      "options": [
+        "Only the data used to train the model",
+        "Risk assessment summary and end-user license agreement",
+        "Detailed system design, data governance practices, risk management measures, and post-market monitoring plan",
+        "Source code and business model"
+      ],
+      "correct": 2,
+      "explanation": "The technical documentation must enable authorities to assess compliance and includes comprehensive system design, risk management measures, data governance practices, and post-market monitoring plans as specified in Annex IV.",
+      "legal_reference": "EU AI Act Annex IV",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 37,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Governance Structure",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "Which governance body is established by the EU AI Act to facilitate consistent enforcement across Member States?",
+      "options": [
+        "The AI Transparency Council",
+        "The European Data Protection Board (EDPB)",
+        "The European Artificial Intelligence Board (EAIB)",
+        "The AI Safety Oversight Network"
+      ],
+      "correct": 2,
+      "explanation": "The European Artificial Intelligence Board (EAIB) is established under Article 56 to ensure coordination and consistency in applying the EU AI Act across Member States.",
+      "legal_reference": "EU AI Act Article 56",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 38,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Deployer Obligations",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "What is the main obligation of deployers (users) of high-risk AI systems under the EU AI Act?",
+      "options": [
+        "To publish AI models online",
+        "To monitor the system and ensure human oversight in actual use",
+        "To re-train the system periodically",
+        "To register all AI uses with the European Commission"
+      ],
+      "correct": 1,
+      "explanation": "Deployers must ensure the system is used safely and consistently with its intended design, including implementing appropriate human oversight measures and monitoring system performance in real-world use.",
+      "legal_reference": "EU AI Act Article 26",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 39,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "General Purpose AI",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "How does the EU AI Act define 'general-purpose AI systems' (GPAI), and what obligations apply?",
+      "options": [
+        "GPAIs are exempt from regulation",
+        "They refer only to open-source models and require no oversight",
+        "They are AI systems usable across multiple contexts and must meet transparency and traceability requirements",
+        "They include only entertainment-related AI and are low-risk"
+      ],
+      "correct": 2,
+      "explanation": "General-purpose AI systems, including foundation models, are defined as AI systems that can be used for multiple purposes across different contexts and must meet specific transparency, documentation, and traceability requirements due to their wide applicability.",
+      "legal_reference": "EU AI Act Article 3(63), Articles 51-55",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 40,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Conformity Assessment",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "Which conformity assessment procedure must be followed for most high-risk AI systems under the EU AI Act?",
+      "options": [
+        "Internal control based on self-declaration",
+        "Assessment by a notified body (third-party conformity assessment)",
+        "Peer review by open-source community",
+        "GDPR data protection impact assessment"
+      ],
+      "correct": 1,
+      "explanation": "Most high-risk AI systems require third-party conformity assessment by a notified body to ensure compliance with the requirements set out in Annex IV, providing independent verification of compliance.",
+      "legal_reference": "EU AI Act Article 43, Annex VII",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 41,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "CE Marking",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "What role does the CE marking play under the EU AI Act?",
+      "options": [
+        "It denotes AI systems created in Central Europe",
+        "It confirms that the AI system meets copyright standards",
+        "It indicates conformity with EU AI Act requirements and allows the system to be placed on the EU market",
+        "It's a voluntary label with no legal impact"
+      ],
+      "correct": 2,
+      "explanation": "CE marking is a mandatory conformity marking that indicates the AI system complies with all applicable EU regulations, including the AI Act requirements, and is required before placing the system on the EU market.",
+      "legal_reference": "EU AI Act Article 49",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 42,
+      "domain": "Risk Management & Assessment",
+      "category": "Risk-Based Approach",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "What is the implication of the AI Act's risk-based approach for AI system categorization?",
+      "options": [
+        "All AI systems are treated equally to avoid discrimination",
+        "It allows companies to self-categorize risk levels without guidance",
+        "It tailors obligations based on potential harm to health, safety, or fundamental rights",
+        "It bans systems not developed in Europe"
+      ],
+      "correct": 2,
+      "explanation": "The risk-based approach ensures proportionate regulation by tailoring obligations based on the level of risk the AI system poses to health, safety, or fundamental rights, with stricter requirements for higher-risk systems.",
+      "legal_reference": "EU AI Act Recital 15",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 43,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Sector Integration",
+      "difficulty": "Hard",
+      "type": "Scenario-Based",
+      "question": "How does the EU AI Act interact with sector-specific regulations like the MDR (Medical Device Regulation)?",
+      "options": [
+        "The AI Act supersedes all other sectoral laws",
+        "It is entirely independent from other regulatory frameworks",
+        "It complements existing laws, and AI components of medical devices must meet both MDR and AI Act requirements",
+        "It nullifies the MDR when AI is involved"
+      ],
+      "correct": 2,
+      "explanation": "The AI Act complements and integrates with existing EU legislation. AI systems used as safety components in medical devices must comply with both the Medical Device Regulation and the AI Act requirements, ensuring comprehensive oversight.",
+      "legal_reference": "EU AI Act Article 2(7), Recital 12",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 44,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Post-Market Monitoring",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "Under the AI Act, when is a post-market monitoring plan required?",
+      "options": [
+        "Only for biometric-based AI systems",
+        "For all AI systems that are not high-risk",
+        "For all high-risk AI systems to ensure ongoing compliance and risk detection",
+        "Never, post-market monitoring is not addressed"
+      ],
+      "correct": 2,
+      "explanation": "Providers of high-risk AI systems must implement a post-market monitoring system to continuously track performance, detect unforeseen risks, and ensure ongoing compliance throughout the system's lifecycle.",
+      "legal_reference": "EU AI Act Article 72",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 45,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Transparency",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "What transparency obligation applies to AI systems that interact with humans under the EU AI Act?",
+      "options": [
+        "They must disclose their training parameters",
+        "They must inform humans that they are interacting with an AI system",
+        "They must hide their AI nature to maintain realism",
+        "They are exempt from disclosure requirements"
+      ],
+      "correct": 1,
+      "explanation": "AI systems intended to interact with natural persons must clearly and unambiguously inform users that they are interacting with an AI system, unless this is obvious from the point of view of a person who is reasonably well-informed.",
+      "legal_reference": "EU AI Act Article 52(1)",
       "domain_weight": 0.20
     }
   ],
