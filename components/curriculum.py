@@ -369,24 +369,41 @@ class CurriculumManager:
                 module = self.curriculum_data['modules'][week_num - 1]
                 
                 html_content = f"""
-                <div style="padding: 1rem; background: #f8fafc; border-radius: 10px;">
-                    <h3>{module['title']}</h3>
-                    <p><strong>Difficulty:</strong> {module['difficulty']} | 
-                       <strong>Est. Hours:</strong> {module['estimated_hours']}</p>
+                <div style="padding: 1.5rem; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); 
+                            color: white; border-radius: 15px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <h3 style="color: #fbbf24; margin-top: 0; font-size: 1.4rem; font-weight: bold;">
+                        {module['title']}
+                    </h3>
+                    <p style="color: #e5e7eb; margin: 1rem 0; font-size: 1.1rem;">
+                        <strong style="color: #fbbf24;">Difficulty:</strong> 
+                        <span style="background: rgba(251, 191, 36, 0.2); padding: 0.2rem 0.5rem; border-radius: 5px;">
+                            {module['difficulty']}
+                        </span> | 
+                        <strong style="color: #fbbf24;">Est. Hours:</strong> 
+                        <span style="background: rgba(251, 191, 36, 0.2); padding: 0.2rem 0.5rem; border-radius: 5px;">
+                            {module['estimated_hours']}h
+                        </span>
+                    </p>
                     
-                    <h4>🎯 Learning Objectives:</h4>
-                    <ul>
-                        {''.join([f'<li>{obj}</li>' for obj in module['objectives']])}
+                    <h4 style="color: #fbbf24; margin: 1.5rem 0 0.5rem 0; font-size: 1.2rem;">
+                        🎯 Learning Objectives:
+                    </h4>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        {''.join([f'<li style="color: #f3f4f6; margin: 0.3rem 0; line-height: 1.4;">{obj}</li>' for obj in module['objectives']])}
                     </ul>
                     
-                    <h4>📋 Topics Covered:</h4>
-                    <ul>
-                        {''.join([f'<li>{topic}</li>' for topic in module['topics']])}
+                    <h4 style="color: #fbbf24; margin: 1.5rem 0 0.5rem 0; font-size: 1.2rem;">
+                        📋 Topics Covered:
+                    </h4>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        {''.join([f'<li style="color: #f3f4f6; margin: 0.3rem 0; line-height: 1.4;">{topic}</li>' for topic in module['topics']])}
                     </ul>
                     
-                    <h4>📄 Deliverables:</h4>
-                    <ul>
-                        {''.join([f'<li>{deliv}</li>' for deliv in module['deliverables']])}
+                    <h4 style="color: #fbbf24; margin: 1.5rem 0 0.5rem 0; font-size: 1.2rem;">
+                        📄 Deliverables:
+                    </h4>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        {''.join([f'<li style="color: #f3f4f6; margin: 0.3rem 0; line-height: 1.4; font-weight: 500;">{deliv}</li>' for deliv in module['deliverables']])}
                     </ul>
                 </div>
                 """

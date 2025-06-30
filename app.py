@@ -322,13 +322,23 @@ def create_sync_interface():
             
             gr.Markdown("### 📊 Study Data")
             gr.HTML("""
-            <div style="background: #f0f9ff; padding: 1rem; border-radius: 10px;">
-                <h4>📈 Current Study Status</h4>
-                <ul>
-                    <li>Weeks completed: 7/12</li>
-                    <li>Quiz average: 87%</li>
-                    <li>Study hours: 128</li>
-                    <li>Last sync: Never</li>
+            <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); 
+                        color: white; padding: 1.5rem; border-radius: 12px;
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                <h4 style="color: #fbbf24; margin-top: 0; font-size: 1.3rem;">📈 Current Study Status</h4>
+                <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                        Weeks completed: <strong style="color: #fbbf24;">7/12</strong>
+                    </li>
+                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                        Quiz average: <strong style="color: #fbbf24;">87%</strong>
+                    </li>
+                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                        Study hours: <strong style="color: #fbbf24;">128</strong>
+                    </li>
+                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                        Last sync: <strong style="color: #fbbf24;">Never</strong>
+                    </li>
                 </ul>
             </div>
             """)

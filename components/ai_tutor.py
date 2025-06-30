@@ -468,11 +468,19 @@ class AITutor:
                 # Progress tracking
                 gr.Markdown("### 📈 Study Progress")
                 progress_display = gr.HTML("""
-                <div style="background: #f0f9ff; padding: 1rem; border-radius: 8px;">
-                    <h4>🎯 Your Progress</h4>
-                    <p>Questions asked: <strong>0</strong></p>
-                    <p>Topics covered: <strong>0</strong></p>
-                    <p>Quiz questions: <strong>0</strong></p>
+                <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); 
+                            color: white; padding: 1.5rem; border-radius: 12px;
+                            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <h4 style="color: #fbbf24; margin-top: 0; font-size: 1.3rem;">🎯 Your Progress</h4>
+                    <p style="color: #f3f4f6; margin: 0.5rem 0;">
+                        Questions asked: <strong style="color: #fbbf24;">0</strong>
+                    </p>
+                    <p style="color: #f3f4f6; margin: 0.5rem 0;">
+                        Topics covered: <strong style="color: #fbbf24;">0</strong>
+                    </p>
+                    <p style="color: #f3f4f6; margin: 0.5rem 0;">
+                        Quiz questions: <strong style="color: #fbbf24;">0</strong>
+                    </p>
                 </div>
                 """)
         

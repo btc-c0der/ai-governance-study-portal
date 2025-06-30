@@ -98,25 +98,32 @@ class PerformanceTracker:
                 
                 # Progress summary
                 progress_summary = gr.HTML("""
-                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                            color: white; padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
-                    <h3>📈 Progress Summary</h3>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold;">87%</div>
-                            <div>Overall Progress</div>
+                <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); 
+                            color: white; padding: 2rem; border-radius: 15px; margin: 1rem 0;
+                            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <h3 style="color: #fbbf24; margin-top: 0; font-size: 1.6rem; text-align: center;">
+                        📈 Progress Summary
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem;">
+                        <div style="text-align: center; background: rgba(255, 255, 255, 0.1); 
+                                    padding: 1rem; border-radius: 10px;">
+                            <div style="font-size: 2.5rem; font-weight: bold; color: #fbbf24;">87%</div>
+                            <div style="color: #f3f4f6; font-weight: 500;">Overall Progress</div>
                         </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold;">89%</div>
-                            <div>Quiz Average</div>
+                        <div style="text-align: center; background: rgba(255, 255, 255, 0.1); 
+                                    padding: 1rem; border-radius: 10px;">
+                            <div style="font-size: 2.5rem; font-weight: bold; color: #fbbf24;">89%</div>
+                            <div style="color: #f3f4f6; font-weight: 500;">Quiz Average</div>
                         </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold;">128</div>
-                            <div>Study Hours</div>
+                        <div style="text-align: center; background: rgba(255, 255, 255, 0.1); 
+                                    padding: 1rem; border-radius: 10px;">
+                            <div style="font-size: 2.5rem; font-weight: bold; color: #fbbf24;">128</div>
+                            <div style="color: #f3f4f6; font-weight: 500;">Study Hours</div>
                         </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold;">7/12</div>
-                            <div>Topics Mastered</div>
+                        <div style="text-align: center; background: rgba(255, 255, 255, 0.1); 
+                                    padding: 1rem; border-radius: 10px;">
+                            <div style="font-size: 2.5rem; font-weight: bold; color: #fbbf24;">7/12</div>
+                            <div style="color: #f3f4f6; font-weight: 500;">Topics Mastered</div>
                         </div>
                     </div>
                 </div>
