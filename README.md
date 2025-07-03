@@ -1,3 +1,9 @@
+---
+title: ai-eu-law-newest-stack
+app_file: app.py
+sdk: gradio
+sdk_version: 4.44.1
+---
 # 🧠⚖️ AI Governance Study Portal
 ## Professional AI Governance Education Platform with Complete EU AI Act Integration
 

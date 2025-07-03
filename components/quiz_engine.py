@@ -60,15 +60,18 @@ class QuizEngine:
                 user_id INTEGER,
                 user_type TEXT NOT NULL DEFAULT 'anonymous',
                 quiz_mode TEXT NOT NULL,
-                domain TEXT,
-                difficulty TEXT,
+                domain_focus TEXT,
+                difficulty_level TEXT,
                 total_questions INTEGER NOT NULL,
                 correct_answers INTEGER NOT NULL,
+                answered_questions INTEGER NOT NULL DEFAULT 0,
+                completion_rate REAL NOT NULL DEFAULT 0,
                 score REAL NOT NULL,
                 passed BOOLEAN NOT NULL,
                 time_taken_minutes REAL,
                 performance_data TEXT,
                 recommendations TEXT,
+                detailed_answers TEXT,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             """
             
@@ -396,10 +399,12 @@ class QuizEngine:
                 "user_id": user_id,
                 "user_type": user_type,
                 "quiz_mode": session.get("mode", "practice"),
-                "domain": session.get("domain", "Mixed"),
-                "difficulty": session.get("difficulty", "Mixed"),
+                "domain_focus": session.get("domain", "Mixed"),
+                "difficulty_level": session.get("difficulty", "Mixed"),
                 "total_questions": results["total_questions"],
                 "correct_answers": results["correct_answers"],
+                "answered_questions": results.get("answered_questions", results["total_questions"]),
+                "completion_rate": results.get("completion_rate", 100.0),
                 "score": results["score"],
                 "passed": results["passed"],
                 "time_taken_minutes": results.get("time_taken_minutes", 0),
@@ -408,7 +413,8 @@ class QuizEngine:
                     "difficulty_performance": results.get("difficulty_performance", {}),
                     "completion_rate": results.get("completion_rate", 0)
                 }),
-                "recommendations": json.dumps(results.get("recommendations", []))
+                "recommendations": json.dumps(results.get("recommendations", [])),
+                "detailed_answers": json.dumps(results.get("detailed_results", []))
             }
             
             # Save main quiz results
@@ -508,10 +514,57 @@ class QuizEngine:
             
             # Calculate statistics
             total_quizzes = len(records)
-            scores = [record[8] for record in records]  # score column
-            total_questions = [record[6] for record in records]  # total_questions column
-            correct_answers = [record[7] for record in records]  # correct_answers column
-            passed_flags = [record[9] for record in records]  # passed column
+            
+            # Safe conversion with error handling
+            scores = []
+            total_questions = []
+            correct_answers = []
+            passed_flags = []
+            time_data = []
+            
+            for record in records:
+                try:
+                    # Score (column 11)
+                    score_val = record[11]
+                    if score_val is not None and str(score_val).replace('.', '').replace('-', '').isdigit():
+                        scores.append(float(score_val))
+                    else:
+                        scores.append(0.0)
+                    
+                    # Total questions (column 7)
+                    total_q = record[7]
+                    if total_q is not None and str(total_q).isdigit():
+                        total_questions.append(int(total_q))
+                    else:
+                        total_questions.append(0)
+                    
+                    # Correct answers (column 8)
+                    correct_a = record[8]
+                    if correct_a is not None and str(correct_a).isdigit():
+                        correct_answers.append(int(correct_a))
+                    else:
+                        correct_answers.append(0)
+                    
+                    # Passed flag (column 12)
+                    passed_val = record[12]
+                    if passed_val is not None:
+                        if isinstance(passed_val, bool):
+                            passed_flags.append(passed_val)
+                        elif str(passed_val).lower() in ['true', '1', 'yes']:
+                            passed_flags.append(True)
+                        else:
+                            passed_flags.append(False)
+                    else:
+                        passed_flags.append(False)
+                    
+                    # Time data (column 13)
+                    time_val = record[13]
+                    if time_val is not None and str(time_val).replace('.', '').replace('-', '').isdigit():
+                        time_data.append(float(time_val))
+                        
+                except (ValueError, IndexError, TypeError) as e:
+                    print(f"⚠️ Warning: Error processing quiz record: {e}")
+                    continue
             
             # Calculate aggregated stats
             average_score = sum(scores) / len(scores) if scores else 0
@@ -522,8 +575,7 @@ class QuizEngine:
             passed_count = sum(1 for p in passed_flags if p)
             pass_rate = (passed_count / total_quizzes * 100) if total_quizzes > 0 else 0
             
-            # Get time data (column 10 is time_taken_minutes)
-            time_data = [record[10] for record in records if record[10] is not None]
+            # Average time calculation
             average_time = sum(time_data) / len(time_data) if time_data else 0
             
             return {

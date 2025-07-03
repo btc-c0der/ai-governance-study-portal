@@ -27,6 +27,7 @@ try:
     from components.performance_tracker import PerformanceTracker
     from components.quiz_engine import QuizEngine
     from components.auth_manager import AuthManager
+    from components.istqb_ai_tester import ISTQBAITester
 except ImportError as e:
     print(f"Warning: Could not import some components: {e}")
     print("Some features may not be available.")
@@ -76,6 +77,11 @@ def create_main_interface():
         components['quiz_engine'] = quiz_engine
         print("✅ QuizEngine initialized successfully")
         
+        print("🎯 Initializing ISTQB AI Tester...")
+        istqb_ai_tester = ISTQBAITester(auth_manager)
+        components['istqb_ai_tester'] = istqb_ai_tester
+        print("✅ ISTQBAITester initialized successfully")
+        
         print("=" * 60)
         print(f"🎉 All {len(components)} components initialized successfully!")
         print("=" * 60)
@@ -91,6 +97,7 @@ def create_main_interface():
         ai_tutor = components.get('ai_tutor', None)
         performance_tracker = components.get('performance_tracker', None)
         quiz_engine = components.get('quiz_engine', None)
+        istqb_ai_tester = components.get('istqb_ai_tester', None)
     
     with gr.Blocks(
         theme=gr.themes.Soft(
@@ -200,6 +207,16 @@ def create_main_interface():
                 else:
                     create_placeholder_interface("Mock Quiz", "🧪")
                     print("⚠️ Quiz Engine placeholder created")
+            
+            # 🎯 ISTQB AI Tester Tab
+            with gr.Tab("🎯 ISTQB AI Tester", elem_id="istqb-tab"):
+                print("🏗️ Creating ISTQB AI Tester interface...")
+                if istqb_ai_tester:
+                    istqb_ai_tester.create_interface()
+                    print("✅ ISTQB AI Tester interface created")
+                else:
+                    create_placeholder_interface("ISTQB AI Tester", "🎯")
+                    print("⚠️ ISTQB AI Tester placeholder created")
             
             # 🔗 Notion Sync & Export Tab
             with gr.Tab("🔗 Sync & Export", elem_id="sync-tab"):
