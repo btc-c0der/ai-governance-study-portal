@@ -788,7 +788,7 @@ if __name__ == "__main__":
     print("=" * 80)
     print("🚀 Launching Gradio application...")
     print("🌐 Server: 0.0.0.0:7860")
-    print("🔗 Share: Enabled")
+    print("🔗 Share: Disabled")
     print("🐛 Debug: Enabled")
     print("⚠️ Show Errors: Enabled") 
     
@@ -804,7 +804,6 @@ if __name__ == "__main__":
     app.launch(
         server_name="0.0.0.0",
         server_port=7860,
-        share=True,
         debug=True,
         show_error=True,
         favicon_path="static/images/favicon.ico" if favicon_exists else None

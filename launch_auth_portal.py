@@ -111,7 +111,6 @@ def main():
         app.launch(
             server_name="0.0.0.0",
             server_port=7860,
-            share=True,
             show_error=True,
             debug=False  # Set to False for production
         )
