@@ -73,4 +73,12 @@ progress.db
 *.sqlite
 
 # Notion integration
-notion_cache/ 
+notion_cache/
+
+# Keep Hugging Face Space files
+!README.md
+!requirements.txt
+!app.py
+!.gitignore
+!static/
+!components/ 
