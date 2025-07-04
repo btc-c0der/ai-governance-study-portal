@@ -702,6 +702,1075 @@ class CurriculumManager:
             if week_num and 1 <= week_num <= 12:
                 module = self.curriculum_data['modules'][week_num - 1]
                 
+                # Special expanded content for Weeks 1-6
+                expanded_content = ""
+                if week_num == 1:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. What is AI Governance?</h5>
+                            <ul style="margin: 0; padding-left: 1.5rem;">
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Definition and scope of AI governance</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Key principles and objectives</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Relationship to corporate governance</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Importance in modern organizations</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Governance vs. compliance distinction</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. Stakeholder Ecosystem</h5>
+                            <div style="display: flex; gap: 2rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0 0 0.3rem 0;">Internal Stakeholders:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Board of Directors</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Executive leadership</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">AI development teams</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Risk and compliance teams</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">End users</li>
+                                    </ul>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0 0 0.3rem 0;">External Stakeholders:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Regulators</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Customers</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Business partners</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Industry groups</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Public interest groups</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. Risk-based Approaches</h5>
+                            <ul style="margin: 0; padding-left: 1.5rem;">
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk assessment methodologies</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk categorization frameworks:
+                                    <ul style="margin: 0.2rem 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6;">EU AI Act risk pyramid</li>
+                                        <li style="color: #f3f4f6;">NIST AI RMF approach</li>
+                                        <li style="color: #f3f4f6;">ISO/IEC 23053 guidelines</li>
+                                    </ul>
+                                </li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk mitigation strategies</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Continuous monitoring requirements</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. Global Regulatory Comparison</h5>
+                            <ul style="margin: 0; padding-left: 1.5rem;">
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Major regulatory frameworks:
+                                    <ul style="margin: 0.2rem 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6;">EU AI Act (Regulation 2024/1689)</li>
+                                        <li style="color: #f3f4f6;">US AI Executive Order 14110</li>
+                                        <li style="color: #f3f4f6;">China's AI regulations</li>
+                                        <li style="color: #f3f4f6;">UK's pro-innovation approach</li>
+                                    </ul>
+                                </li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Regional variations:
+                                    <ul style="margin: 0.2rem 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6;">Singapore Model AI Governance</li>
+                                        <li style="color: #f3f4f6;">Canada's AIDA</li>
+                                        <li style="color: #f3f4f6;">Japan's Guidelines</li>
+                                        <li style="color: #f3f4f6;">Australia's Ethics Framework</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">📚 Key Resources</h5>
+                            <div style="display: flex; gap: 2rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0 0 0.3rem 0;">Official Standards:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">ISO/IEC 23053:2022 (AI Risk Management)</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">ISO/IEC 23894:2023 (Risk Management Processes)</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">IEEE 2858 (AI System Transparency)</li>
+                                    </ul>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0 0 0.3rem 0;">Government Documents:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">EU AI Act Official Text</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">US NIST AI Risk Management Framework</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">UK AI White Paper</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    """
+                elif week_num == 2:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. EU AI Act Overview and Timeline</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                The EU AI Act represents the world's first comprehensive legal framework for artificial intelligence. Adopted in 2024, it establishes a unified regulatory approach across all EU member states. The Act follows a risk-based approach, categorizing AI systems based on their potential impact on fundamental rights and safety. Implementation will occur in phases over 24 months, giving organizations time to adapt their AI systems and processes to the new requirements.
+                            </p>
+                            <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Key milestones and deadlines</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Scope of application (territorial and material)</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Core definitions and concepts</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Implementation phases</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. Risk Pyramid Structure</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                The Act introduces a four-tier risk classification system that determines the obligations and requirements for AI systems. This pyramid approach ensures proportionate regulation, with stricter requirements for higher-risk applications. Understanding this classification is crucial for organizations to determine their compliance obligations and necessary controls.
+                            </p>
+                            <div style="display: flex; gap: 2rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Unacceptable Risk:</h6>
+                                    <p style="color: #f3f4f6; margin: 0.3rem 0; font-size: 0.9rem;">
+                                        AI systems that pose unacceptable risks to fundamental rights are completely prohibited. These include social scoring systems, manipulative AI, and most real-time biometric identification systems in public spaces.
+                                    </p>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">High Risk:</h6>
+                                    <p style="color: #f3f4f6; margin: 0.3rem 0; font-size: 0.9rem;">
+                                        Systems used in critical infrastructure, education, employment, essential services, and law enforcement require strict oversight, documentation, and human supervision.
+                                    </p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 2rem; margin-top: 1rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Limited Risk:</h6>
+                                    <p style="color: #f3f4f6; margin: 0.3rem 0; font-size: 0.9rem;">
+                                        Systems like chatbots and emotion recognition require transparency measures, ensuring users know they're interacting with AI and can make informed decisions.
+                                    </p>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Minimal Risk:</h6>
+                                    <p style="color: #f3f4f6; margin: 0.3rem 0; font-size: 0.9rem;">
+                                        Basic AI applications like spam filters and AI-enabled video games have minimal requirements, though voluntary codes of conduct are encouraged.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. Prohibited AI Systems (Article 5)</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Article 5 of the EU AI Act explicitly prohibits AI systems that pose unacceptable risks to society and fundamental rights. These prohibitions reflect the EU's commitment to ethical AI development and human-centric artificial intelligence.
+                            </p>
+                            <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                    <strong>Subliminal Manipulation:</strong> Systems designed to manipulate human behavior in ways that cause physical or psychological harm
+                                </li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                    <strong>Vulnerability Exploitation:</strong> AI that exploits age, disability, or social/economic situations to materially distort behavior
+                                </li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                    <strong>Social Scoring:</strong> Government social scoring systems that lead to detrimental treatment of individuals
+                                </li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                    <strong>Real-time Biometric ID:</strong> Limited exceptions for law enforcement in specific circumstances
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. High-risk AI Systems Classification</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                High-risk AI systems are subject to extensive requirements due to their significant impact on safety and fundamental rights. The classification process involves both standalone high-risk AI systems and those integrated into products covered by existing EU safety legislation.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Classification Criteria:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Intended purpose of the AI system</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Sector of deployment</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Potential impact on fundamental rights</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Level of autonomy in decision-making</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Requirements:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk assessment and management system</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Data governance and quality measures</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Technical documentation and record-keeping</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Human oversight mechanisms</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Accuracy, robustness, and cybersecurity</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">📚 Essential Resources</h5>
+                            <div style="display: flex; gap: 2rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0 0 0.3rem 0;">Primary Sources:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">EU AI Act Full Text (2024/1689)</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">European Commission Guidelines</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">ENISA Technical Guidance</li>
+                                    </ul>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0 0 0.3rem 0;">Implementation Tools:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Risk Assessment Templates</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Compliance Checklists</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Documentation Guidelines</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    """
+                elif week_num == 3:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. High-Risk AI Requirements Deep Dive</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                The EU AI Act establishes comprehensive requirements for high-risk AI systems to ensure their safety, transparency, and accountability. These requirements form the backbone of the regulatory framework and demand careful attention from organizations developing or deploying high-risk AI systems.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Requirements Breakdown:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Risk Management System:</strong> A systematic approach to identifying, assessing, and mitigating risks throughout the AI system's lifecycle
+                                    </li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Data Quality:</strong> Rigorous standards for training, validation, and testing datasets to ensure representativeness and minimize biases
+                                    </li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Technical Documentation:</strong> Comprehensive documentation covering system architecture, development processes, and validation methods
+                                    </li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Record Keeping:</strong> Automated logging of system operations to ensure traceability and accountability
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. Transparency and Information Requirements</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Transparency is a cornerstone of the EU AI Act, requiring clear communication about AI systems' capabilities, limitations, and intended use. This ensures users can make informed decisions and understand when they are interacting with AI systems.
+                            </p>
+                            <div style="display: flex; gap: 2rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">User Information:</h6>
+                                    <p style="color: #f3f4f6; margin: 0.3rem 0; font-size: 0.9rem;">
+                                        Organizations must provide clear information about AI system capabilities, limitations, and intended purpose. This includes performance characteristics, expected outputs, and potential risks.
+                                    </p>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Documentation Requirements:</h6>
+                                    <p style="color: #f3f4f6; margin: 0.3rem 0; font-size: 0.9rem;">
+                                        Detailed technical documentation must be maintained, including system architecture, development methodologies, and validation procedures. This ensures accountability and facilitates compliance assessments.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. Human Oversight Measures</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Human oversight is mandatory for high-risk AI systems to ensure meaningful human control and intervention capability. This requirement balances automation benefits with human judgment and accountability.
+                            </p>
+                            <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                    <strong>Oversight Mechanisms:</strong> Implementation of technical tools and procedures that enable human monitoring and intervention in AI system operations
+                                </li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                    <strong>Training Requirements:</strong> Comprehensive training programs for human overseers to understand system capabilities and limitations
+                                </li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                    <strong>Intervention Protocols:</strong> Clear procedures for when and how human operators should intervene in AI system decisions
+                                </li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                    <strong>Documentation of Oversight:</strong> Detailed records of human oversight activities and interventions for accountability
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. Accuracy and Cybersecurity Requirements</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                High-risk AI systems must maintain appropriate levels of accuracy and cybersecurity throughout their lifecycle. This ensures reliable performance and protection against unauthorized manipulation.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Accuracy Measures:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Performance metrics and thresholds</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Regular accuracy assessments</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Error handling procedures</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Continuous monitoring systems</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Cybersecurity Requirements:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Resilience against attacks</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Data protection measures</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Access control systems</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Incident response plans</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">📚 Implementation Resources</h5>
+                            <div style="display: flex; gap: 2rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0 0 0.3rem 0;">Technical Guidelines:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Risk Assessment Frameworks</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Documentation Templates</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Oversight Protocols</li>
+                                    </ul>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0 0 0.3rem 0;">Best Practices:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Industry Standards</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Case Studies</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Implementation Examples</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    """
+                elif week_num == 4:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. Risk Identification Frameworks</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Understanding risk identification frameworks is crucial for effective risk management. Organizations must identify potential risks associated with their AI systems and develop strategies to mitigate them.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Frameworks:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">ISO 27001:2013</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">NIST SP 800-30:2016</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">ISO/IEC 27005:2018</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. Impact Assessment Methods</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Impact assessment methods help organizations understand the potential consequences of AI system failures and develop strategies to mitigate them.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Methods:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Scenario Analysis</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Failure Mode and Effects Analysis (FMEA)</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Hazard and Operability Studies (HAZOP)</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk-Based Inspection (RBI)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. Mitigation and Controls</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Developing and implementing effective mitigation strategies is essential for maintaining compliant AI systems. These strategies should address both technical and operational risks.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Strategies:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Technical Controls:</strong> Implementation of security measures, monitoring systems, and fail-safes
+                                    </li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Operational Controls:</strong> Procedures, policies, and guidelines for system operation
+                                    </li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Management Controls:</strong> Oversight mechanisms and decision-making frameworks
+                                    </li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Documentation Controls:</strong> Record-keeping and evidence maintenance procedures
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. Continuous Monitoring</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Ongoing monitoring ensures that AI systems maintain compliance and safety throughout their operational lifecycle. This includes regular assessments and updates to risk management strategies.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Monitoring Activities:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Performance tracking</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk indicator monitoring</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Incident detection</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Trend analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    """
+                elif week_num == 5:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. Documentation Best Practices</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Effective documentation is crucial for demonstrating compliance with the EU AI Act. Organizations must maintain comprehensive, clear, and accessible documentation that covers all aspects of their AI systems' development, deployment, and operation.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Documentation Areas:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">System architecture and design decisions</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Data governance and quality measures</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk assessment and mitigation strategies</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Testing and validation procedures</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. Compliance Record-Keeping</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Organizations must maintain detailed records of their compliance efforts, including all assessments, tests, and modifications made to ensure conformity with the EU AI Act requirements.
+                            </p>
+                            <div style="display: flex; gap: 2rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Required Records:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Conformity assessments</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk management measures</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Post-market monitoring data</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Incident reports and resolutions</li>
+                                    </ul>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Storage Requirements:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Secure and accessible storage</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Version control systems</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Retention period compliance</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Access control measures</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. Compliance Monitoring Tools</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Implementing effective compliance monitoring tools helps organizations track, measure, and maintain their adherence to EU AI Act requirements throughout their AI systems' lifecycle.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Essential Tools:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Automated compliance checkers</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk assessment platforms</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Documentation management systems</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Audit trail generators</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. Audit Preparation</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Organizations must be prepared for potential audits by maintaining organized, comprehensive documentation and establishing clear procedures for demonstrating compliance.
+                            </p>
+                            <div style="display: flex; gap: 2rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Audit Readiness:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Documentation organization</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Staff training and preparation</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Process documentation</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Evidence collection procedures</li>
+                                    </ul>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Common Audit Areas:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk management systems</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Data governance practices</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Human oversight measures</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Technical documentation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    """
+                elif week_num == 6:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. Risk Assessment Methodologies</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Effective risk assessment is fundamental to AI governance under the EU AI Act. Organizations must implement systematic approaches to identify, evaluate, and mitigate risks associated with their AI systems.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Components:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk identification techniques</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Impact assessment methods</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Probability evaluation tools</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk prioritization frameworks</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. Risk Management Frameworks</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Organizations need robust frameworks to manage identified risks throughout the AI system lifecycle. These frameworks should align with EU AI Act requirements and industry best practices.
+                            </p>
+                            <div style="display: flex; gap: 2rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Framework Elements:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk governance structure</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Control implementation</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Monitoring mechanisms</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Review procedures</li>
+                                    </ul>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Implementation Steps:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Framework selection</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Customization process</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Staff training</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Effectiveness evaluation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. Risk Mitigation Strategies</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Developing and implementing effective risk mitigation strategies is essential for maintaining compliant AI systems. These strategies should address both technical and operational risks.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Mitigation Approaches:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Technical Controls:</strong> Implementation of security measures, monitoring systems, and fail-safes
+                                    </li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Operational Controls:</strong> Procedures, policies, and guidelines for system operation
+                                    </li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Management Controls:</strong> Oversight mechanisms and decision-making frameworks
+                                    </li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">
+                                        <strong>Documentation Controls:</strong> Record-keeping and evidence maintenance procedures
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. Continuous Risk Monitoring</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Ongoing risk monitoring ensures that AI systems maintain compliance and safety throughout their operational lifecycle. This includes regular assessments and updates to risk management strategies.
+                            </p>
+                            <div style="display: flex; gap: 2rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Monitoring Activities:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Performance tracking</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk indicator monitoring</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Incident detection</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Trend analysis</li>
+                                    </ul>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0.5rem 0;">Response Procedures:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Incident response plans</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Escalation procedures</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Corrective actions</li>
+                                        <li style="color: #f3f4f6; margin: 0.3rem 0;">Stakeholder communication</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">📚 Risk Management Tools</h5>
+                            <div style="display: flex; gap: 2rem;">
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0 0 0.3rem 0;">Assessment Tools:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Risk assessment matrices</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Impact evaluation tools</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Probability calculators</li>
+                                    </ul>
+                                </div>
+                                <div style="flex: 1;">
+                                    <h6 style="color: #fbbf24; margin: 0 0 0.3rem 0;">Management Resources:</h6>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Control frameworks</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Monitoring templates</li>
+                                        <li style="color: #f3f4f6; margin: 0.2rem 0;">Response playbooks</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    """
+                elif week_num == 7:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. US AI Executive Order 14110</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                The US AI Executive Order 14110 sets out a comprehensive approach to AI governance, emphasizing transparency, accountability, and international cooperation.
+                            </p>
+                            <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Key principles and requirements</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Guidelines for AI system development and deployment</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">International collaboration and standards</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. China's AI Regulations</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                China's AI regulations are designed to promote ethical AI development, protect personal data, and ensure national security.
+                            </p>
+                            <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Key regulations and guidelines</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Data privacy and security measures</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">AI ethics and governance frameworks</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. UK AI White Paper Approach</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                The UK AI white paper approach emphasizes the importance of AI governance frameworks, international cooperation, and ethical considerations.
+                            </p>
+                            <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Key principles and requirements</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">Guidelines for AI system development and deployment</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">International collaboration and standards</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. International Coordination Efforts</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                International coordination efforts are crucial for addressing cross-border AI governance challenges.
+                            </p>
+                            <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">UNAI's AI Governance Principles</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">OECD's AI Governance Guidelines</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">EU-US AI Dialogue</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">EU-China AI Cooperation</li>
+                                <li style="color: #f3f4f6; margin: 0.3rem 0;">EU-UK AI Cooperation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    """
+                elif week_num == 8:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. Governance Operating Models</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Designing effective governance operating models is crucial for aligning AI governance with organizational objectives and regulatory requirements.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Elements:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Roles and responsibilities</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">RACI matrices</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Change management strategies</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Training and awareness programs</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. Role Definitions and RACI Matrices</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Understanding role definitions and RACI matrices is essential for effective governance and decision-making.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Components:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Roles and responsibilities</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">RACI matrices</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Change management strategies</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Training and awareness programs</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. Change Management Strategies</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Implementing effective change management strategies is crucial for managing AI governance transitions and ensuring stakeholder buy-in.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Strategies:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Stakeholder engagement</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Communication strategies</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk assessment and mitigation</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Resource allocation and prioritization</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. Training and Awareness Programs</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Developing comprehensive training and awareness programs is essential for empowering stakeholders to understand and support AI governance initiatives.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Components:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI ethics training</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Regulatory compliance training</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Stakeholder communication training</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk management training</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    """
+                elif week_num == 9:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. Audit Planning and Execution</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Effective audit planning and execution is crucial for ensuring that AI governance initiatives are effectively implemented and compliant with regulatory requirements.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Elements:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Scope of audit</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk assessment</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Audit methodology</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Stakeholder engagement</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. Compliance Monitoring Systems</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Implementing effective compliance monitoring systems is crucial for maintaining compliance with regulatory requirements and identifying areas for improvement.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Components:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Key performance indicators (KPIs)</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Risk assessment frameworks</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Monitoring tools and techniques</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Data collection and analysis methods</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. Key Performance Indicators</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Establishing clear key performance indicators (KPIs) is essential for measuring the success of AI governance initiatives and identifying areas for improvement.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key KPIs:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI system safety and security</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Regulatory compliance</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Stakeholder satisfaction</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI system impact on society</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. Regulatory Reporting Requirements</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Understanding regulatory reporting requirements is crucial for ensuring that AI governance initiatives are effectively communicated and reported to stakeholders.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Areas:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI system safety and security</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Regulatory compliance</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Stakeholder satisfaction</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI system impact on society</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    """
+                elif week_num == 10:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. AI Incident Classification</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Understanding AI incident classification is crucial for developing effective incident response plans and crisis communication strategies.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Categories:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Safety-related incidents</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Security-related incidents</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Privacy-related incidents</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Ethical violations</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. Response Team Structures</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Establishing effective response team structures is crucial for managing AI incidents effectively and minimizing their impact on stakeholders.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Elements:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Roles and responsibilities</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Communication channels</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Stakeholder engagement</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Incident response protocols</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. Crisis Communication Strategies</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Developing effective crisis communication strategies is crucial for managing stakeholder expectations and minimizing the impact of AI incidents.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Elements:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Stakeholder identification</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Communication channels</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Message development</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Communication frequency and format</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. Regulatory Breach Reporting</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Understanding regulatory breach reporting requirements is crucial for ensuring that AI incidents are reported promptly and appropriately to regulatory authorities.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Areas:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Incident reporting procedures</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Breach notification requirements</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Stakeholder notification protocols</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Public reporting requirements</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    """
+                elif week_num == 11:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. Generative AI Governance</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Generative AI governance involves establishing clear guidelines and ethical standards for the development and deployment of generative AI systems.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Elements:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI ethics frameworks</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI risk assessment methodologies</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI system transparency</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI system accountability</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. Quantum Machine Learning Implications</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Quantum machine learning has the potential to revolutionize AI, but it also presents new challenges for AI governance.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Considerations:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Quantum computing's impact on AI</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Quantum machine learning algorithms</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Quantum machine learning applications</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Quantum machine learning ethics</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. Autonomous Systems Regulation</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Autonomous systems regulation involves establishing clear guidelines and ethical standards for the development and deployment of autonomous systems.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Elements:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Autonomy assessment methodologies</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Safety and security requirements</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Human oversight mechanisms</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Regulatory compliance</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. Future Regulatory Trends</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Emerging trends in AI governance, such as AI ethics frameworks, international cooperation, and regulatory harmonization, are shaping the future of AI regulation.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Trends:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI ethics frameworks</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">International cooperation</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Regulatory harmonization</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Cross-border AI regulation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    """
+                elif week_num == 12:
+                    expanded_content = """
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(30, 64, 175, 0.1); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin: 0 0 1rem 0; font-size: 1.2rem;">
+                            📚 Expanded Topic Content:
+                        </h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">1. AIGP Exam Structure and Format</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Understanding the AIGP exam structure and format is crucial for preparing effectively for the certification exam.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Components:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Exam structure</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Exam format</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Exam content</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Exam preparation strategies</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">2. Key Concept Review</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Reviewing key concepts from the AI governance curriculum is essential for consolidating learning outcomes and preparing for the exam.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Concepts:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI governance frameworks</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI risk management frameworks</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI system transparency</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI system accountability</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">3. Practice Questions and Scenarios</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Practicing with sample questions and scenarios is essential for developing problem-solving skills and preparing for the exam.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Areas:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI governance frameworks</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI risk management frameworks</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI system transparency</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">AI system accountability</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h5 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.1rem;">4. Final Project Presentation</h5>
+                            <p style="color: #f3f4f6; margin: 0.5rem 0; line-height: 1.6;">
+                                Preparing a final project presentation is essential for demonstrating your understanding of AI governance concepts and applying them to a real-world scenario.
+                            </p>
+                            <div style="background: rgba(30, 64, 175, 0.05); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <h6 style="color: #fbbf24; margin: 0 0 0.5rem 0;">Key Elements:</h6>
+                                <ul style="margin: 0; padding-left: 1.5rem;">
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Project proposal</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Project development</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Project presentation</li>
+                                    <li style="color: #f3f4f6; margin: 0.3rem 0;">Project evaluation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    """
+                
                 html_content = f"""
                 <div style="padding: 1.5rem; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); 
                             color: white; border-radius: 15px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
@@ -740,6 +1809,7 @@ class CurriculumManager:
                         {''.join([f'<li style="color: #f3f4f6; margin: 0.3rem 0; line-height: 1.4; font-weight: 500;">{deliv}</li>' for deliv in module['deliverables']])}
                     </ul>
                 </div>
+                {expanded_content}
                 """
                 return html_content
             return "Select a week to view content"
