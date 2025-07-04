@@ -419,15 +419,15 @@ class CurriculumManager:
                     "week": 7,
                     "title": "🌍 Global AI Regulations Landscape",
                     "objectives": [
-                        "Compare international AI regulations",
-                        "Understand cross-border compliance",
-                        "Learn harmonization challenges"
+                        "Compare international AI regulations - Develop a comprehensive understanding of how different jurisdictions approach AI regulation, including detailed analysis of regulatory frameworks in major economies and their implications for global AI deployment.",
+                        "Understand cross-border compliance - Master the complexities of operating AI systems across multiple jurisdictions, including data transfer requirements, local certification needs, and harmonization strategies.",
+                        "Learn harmonization challenges - Explore the practical challenges of reconciling different regulatory requirements, including conflicts between jurisdictions and strategies for building globally compliant AI systems."
                     ],
                     "topics": [
-                        "US AI Executive Order",
-                        "China AI regulations",
-                        "UK AI white paper approach",
-                        "International coordination efforts"
+                        "US AI Executive Order - Deep dive into the Biden Administration's Executive Order on AI, including key requirements, affected sectors, and implementation timelines.",
+                        "China AI regulations - Comprehensive analysis of China's AI governance framework, including the AI governance measures, ethical principles, and sector-specific requirements.",
+                        "UK AI white paper approach - Detailed examination of the UK's pro-innovation regulatory framework, including the five principles for AI regulation and sector-specific guidance.",
+                        "International coordination efforts - Study of international initiatives for AI governance coordination, including OECD principles, UNESCO recommendations, and G7 AI guidelines."
                     ],
                     "deliverables": ["Regulatory comparison matrix", "Compliance roadmap"],
                     "estimated_hours": 9,
@@ -440,118 +440,93 @@ class CurriculumManager:
                 },
                 {
                     "week": 8,
-                    "title": "🏢 Organizational Implementation",
+                    "title": "🏭 Sector-Specific Applications",
                     "objectives": [
-                        "Design governance operating models",
-                        "Establish roles and responsibilities",
-                        "Implement change management"
+                        "Understand industry-specific requirements - Master the unique AI governance requirements across different sectors, including regulatory obligations, industry standards, and sector-specific risk considerations.",
+                        "Learn sector compliance approaches - Develop expertise in implementing AI governance frameworks tailored to different industries, including compliance strategies, documentation requirements, and stakeholder management.",
+                        "Explore use case implementations - Analyze real-world examples of AI governance implementation across various sectors, including success stories, challenges faced, and lessons learned."
                     ],
                     "topics": [
-                        "Governance operating models",
-                        "Role definitions and RACI matrices",
-                        "Change management strategies",
-                        "Training and awareness programs"
+                        "Healthcare AI regulations - Comprehensive coverage of AI governance in healthcare, including patient data protection, medical device regulations, and clinical validation requirements.",
+                        "Financial services compliance - Detailed examination of AI governance in finance, including model risk management, algorithmic trading regulations, and customer protection requirements.",
+                        "Automotive and transport - Analysis of AI governance in autonomous vehicles and intelligent transport systems, including safety standards, liability frameworks, and testing requirements.",
+                        "Public sector AI use - Study of AI governance in government applications, including procurement guidelines, transparency requirements, and public accountability measures."
                     ],
-                    "deliverables": ["Operating model", "Training program"],
-                    "estimated_hours": 10,
-                    "difficulty": "Advanced",
-                    "resources": [
-                        "Organizational design guides",
-                        "Change management frameworks",
-                        "Training materials"
-                    ]
+                    "deliverables": ["Sector compliance guide", "Use case analysis"],
+                    "estimated_hours": 11,
+                    "difficulty": "Advanced"
                 },
                 {
                     "week": 9,
-                    "title": "🔍 Audit & Compliance Monitoring",
+                    "title": "📋 Compliance & Audit Processes",
                     "objectives": [
-                        "Design audit frameworks",
-                        "Implement continuous monitoring",
-                        "Learn compliance reporting"
+                        "Design compliance monitoring systems - Learn to create comprehensive monitoring frameworks that track AI system compliance across multiple dimensions, including technical, ethical, and regulatory requirements.",
+                        "Learn audit methodologies - Master various approaches to auditing AI systems, including technical audits, ethical assessments, and regulatory compliance reviews.",
+                        "Understand certification processes - Develop expertise in AI system certification requirements, including documentation preparation, testing procedures, and ongoing compliance maintenance."
                     ],
                     "topics": [
-                        "Audit planning and execution",
-                        "Compliance monitoring systems",
-                        "Key performance indicators",
-                        "Regulatory reporting requirements"
+                        "Compliance program design - Detailed guidance on creating effective AI compliance programs, including policy development, control frameworks, and monitoring mechanisms.",
+                        "Internal audit frameworks - Comprehensive coverage of internal audit methodologies for AI systems, including risk-based approaches, testing procedures, and reporting templates.",
+                        "External certification requirements - Analysis of various certification schemes for AI systems, including conformity assessment procedures, testing requirements, and documentation needs.",
+                        "Continuous compliance monitoring - Study of tools and techniques for ongoing compliance monitoring, including automated checks, periodic reviews, and reporting systems."
                     ],
-                    "deliverables": ["Audit framework", "KPI dashboard"],
-                    "estimated_hours": 9,
-                    "difficulty": "Advanced",
-                    "resources": [
-                        "Audit methodologies",
-                        "Monitoring tools",
-                        "Reporting templates"
-                    ]
+                    "deliverables": ["Audit program", "Compliance dashboard"],
+                    "estimated_hours": 10,
+                    "difficulty": "Advanced"
                 },
                 {
                     "week": 10,
-                    "title": "🚨 Incident Management & Response",
+                    "title": "⚡ Incident Response & Crisis Management",
                     "objectives": [
-                        "Develop incident response plans",
-                        "Learn crisis communication",
-                        "Understand regulatory reporting"
+                        "Develop incident response plans - Master the creation of comprehensive incident response plans specifically tailored for AI systems, including detection mechanisms, escalation procedures, and recovery processes.",
+                        "Learn crisis communication - Develop expertise in communicating AI-related incidents to various stakeholders, including regulatory bodies, affected users, and the general public.",
+                        "Understand regulatory reporting - Learn the requirements and procedures for reporting AI incidents to regulatory authorities, including timing requirements, documentation needs, and follow-up procedures."
                     ],
                     "topics": [
-                        "AI incident classification",
-                        "Response team structures",
-                        "Stakeholder communication",
-                        "Regulatory breach reporting"
+                        "AI incident classification - Detailed framework for categorizing AI incidents based on severity, impact, and regulatory implications, including response prioritization criteria.",
+                        "Response team structures - Comprehensive guidance on building and organizing AI incident response teams, including roles, responsibilities, and required expertise.",
+                        "Stakeholder communication - Detailed strategies for managing communications during AI incidents, including templates, channels, and timing considerations.",
+                        "Regulatory breach reporting - Analysis of reporting requirements across different jurisdictions, including mandatory notifications, documentation requirements, and timeline obligations."
                     ],
                     "deliverables": ["Incident response plan", "Communication templates"],
                     "estimated_hours": 8,
-                    "difficulty": "Intermediate",
-                    "resources": [
-                        "Incident response frameworks",
-                        "Crisis management guides",
-                        "Regulatory reporting requirements"
-                    ]
+                    "difficulty": "Intermediate"
                 },
                 {
                     "week": 11,
                     "title": "🚀 Emerging Technologies & Future Trends",
                     "objectives": [
-                        "Explore cutting-edge AI developments",
-                        "Understand regulatory evolution",
-                        "Prepare for future challenges"
+                        "Explore cutting-edge AI developments - Deep dive into emerging AI technologies and their governance implications, including large language models, autonomous systems, and edge AI applications.",
+                        "Understand regulatory evolution - Analysis of how AI regulations are evolving to address new technological capabilities, including proposed frameworks and industry standards.",
+                        "Prepare for future challenges - Develop strategies for anticipating and addressing future AI governance challenges, including ethical considerations and societal impacts."
                     ],
                     "topics": [
-                        "Generative AI governance",
-                        "Quantum ML implications",
-                        "Autonomous systems regulation",
-                        "Future regulatory trends"
+                        "Generative AI governance - Comprehensive examination of governance frameworks for generative AI systems, including content moderation, copyright implications, and safety measures.",
+                        "Quantum ML implications - Analysis of how quantum computing will impact AI governance, including security considerations, algorithmic accountability, and regulatory preparedness.",
+                        "Autonomous systems regulation - Study of regulatory approaches to autonomous systems, including safety standards, liability frameworks, and ethical guidelines.",
+                        "Future regulatory trends - Exploration of emerging regulatory trends and their implications for AI governance, including international coordination efforts and industry standards."
                     ],
                     "deliverables": ["Trend analysis report", "Future readiness plan"],
                     "estimated_hours": 9,
-                    "difficulty": "Advanced",
-                    "resources": [
-                        "Emerging tech reports",
-                        "Regulatory horizon scanning",
-                        "Expert predictions"
-                    ]
+                    "difficulty": "Advanced"
                 },
                 {
                     "week": 12,
                     "title": "🎓 AIGP Certification Preparation",
                     "objectives": [
-                        "Consolidate learning outcomes",
-                        "Practice exam questions",
-                        "Prepare final project"
+                        "Consolidate learning outcomes - Comprehensive review of key concepts and frameworks covered throughout the course, with emphasis on practical application and integration.",
+                        "Practice exam questions - Extensive practice with certification exam-style questions, including scenario-based problems and technical assessments.",
+                        "Prepare final project - Development of a comprehensive AI governance implementation project that demonstrates mastery of course concepts and practical application skills."
                     ],
                     "topics": [
-                        "AIGP exam structure and format",
-                        "Key concept review",
-                        "Practice questions and scenarios",
-                        "Final project presentation"
+                        "AIGP exam structure and format - Detailed breakdown of the certification exam format, including question types, scoring criteria, and time management strategies.",
+                        "Key concept review - Systematic review of critical concepts from all previous modules, with emphasis on their practical application in AI governance.",
+                        "Practice questions and scenarios - Extensive practice with real-world scenarios and example questions that mirror the certification exam format.",
+                        "Final project presentation - Guidance on preparing and presenting the final certification project, including documentation requirements and evaluation criteria."
                     ],
                     "deliverables": ["Final project", "Certification application"],
                     "estimated_hours": 15,
-                    "difficulty": "Expert",
-                    "resources": [
-                        "AIGP study guides",
-                        "Practice exams",
-                        "Certification requirements"
-                    ]
+                    "difficulty": "Expert"
                 }
             ]
         }
