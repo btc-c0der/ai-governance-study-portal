@@ -1,0 +1,222 @@
+{
+  "program_title": "AI Governance Professional (AIGP) Certification Path",
+  "total_weeks": 12,
+  "modules": [
+    {
+      "week": 1,
+      "title": "🎯 Foundations of AI Governance",
+      "objectives": [
+        "Understand AI governance frameworks",
+        "Learn key terminology and concepts",
+        "Explore regulatory landscape overview"
+      ],
+      "topics": [
+        "What is AI Governance?",
+        "Stakeholder ecosystem",
+        "Risk-based approaches",
+        "Global regulatory comparison"
+      ],
+      "deliverables": ["Concept map", "Stakeholder analysis"],
+      "estimated_hours": 8,
+      "difficulty": "Beginner"
+    },
+    {
+      "week": 2,
+      "title": "⚖️ EU AI Act Deep Dive - Part 1",
+      "objectives": [
+        "Master EU AI Act structure and scope",
+        "Understand risk categorization",
+        "Learn prohibited AI practices"
+      ],
+      "topics": [
+        "EU AI Act overview and timeline",
+        "Risk pyramid (unacceptable, high, limited, minimal)",
+        "Prohibited AI systems (Article 5)",
+        "High-risk AI systems classification"
+      ],
+      "deliverables": ["Risk assessment template", "Compliance checklist"],
+      "estimated_hours": 10,
+      "difficulty": "Intermediate"
+    },
+    {
+      "week": 3,
+      "title": "🤖 Technical Standards & Implementation",
+      "objectives": [
+        "Learn technical requirements for AI systems",
+        "Understand conformity assessment",
+        "Explore quality management systems"
+      ],
+      "topics": [
+        "Annex IV requirements",
+        "Data governance and quality",
+        "Documentation and record-keeping",
+        "Human oversight requirements"
+      ],
+      "deliverables": ["Technical documentation template", "QMS framework"],
+      "estimated_hours": 12,
+      "difficulty": "Advanced"
+    },
+    {
+      "week": 4,
+      "title": "📊 Risk Management & Assessment",
+      "objectives": [
+        "Master AI risk assessment methodologies",
+        "Learn mitigation strategies",
+        "Understand continuous monitoring"
+      ],
+      "topics": [
+        "Risk identification frameworks",
+        "Impact assessment methods",
+        "Mitigation and controls",
+        "Monitoring and review processes"
+      ],
+      "deliverables": ["Risk register", "Monitoring dashboard"],
+      "estimated_hours": 10,
+      "difficulty": "Intermediate"
+    },
+    {
+      "week": 5,
+      "title": "🏛️ Governance Structures & Oversight",
+      "objectives": [
+        "Design AI governance frameworks",
+        "Establish oversight mechanisms",
+        "Learn board-level reporting"
+      ],
+      "topics": [
+        "Governance committee structures",
+        "Roles and responsibilities",
+        "Escalation procedures",
+        "Board reporting and metrics"
+      ],
+      "deliverables": ["Governance charter", "Reporting template"],
+      "estimated_hours": 8,
+      "difficulty": "Intermediate"
+    },
+    {
+      "week": 6,
+      "title": "🔒 Data Privacy & AI Ethics",
+      "objectives": [
+        "Understand GDPR-AI intersections",
+        "Learn ethical AI principles",
+        "Explore bias detection and mitigation"
+      ],
+      "topics": [
+        "GDPR Article 22 and automated decision-making",
+        "Ethical AI frameworks",
+        "Bias and fairness in AI",
+        "Transparency and explainability"
+      ],
+      "deliverables": ["Ethics framework", "Bias testing protocol"],
+      "estimated_hours": 10,
+      "difficulty": "Advanced"
+    },
+    {
+      "week": 7,
+      "title": "🌍 Global AI Regulations Landscape",
+      "objectives": [
+        "Compare international AI regulations",
+        "Understand cross-border compliance",
+        "Learn harmonization challenges"
+      ],
+      "topics": [
+        "US AI Executive Order",
+        "China AI regulations",
+        "UK AI white paper approach",
+        "International coordination efforts"
+      ],
+      "deliverables": ["Regulatory comparison matrix", "Compliance roadmap"],
+      "estimated_hours": 9,
+      "difficulty": "Intermediate"
+    },
+    {
+      "week": 8,
+      "title": "🏭 Sector-Specific Applications",
+      "objectives": [
+        "Understand industry-specific requirements",
+        "Learn sector compliance approaches",
+        "Explore use case implementations"
+      ],
+      "topics": [
+        "Healthcare AI regulations",
+        "Financial services compliance",
+        "Automotive and transport",
+        "Public sector AI use"
+      ],
+      "deliverables": ["Sector compliance guide", "Use case analysis"],
+      "estimated_hours": 11,
+      "difficulty": "Advanced"
+    },
+    {
+      "week": 9,
+      "title": "📋 Compliance & Audit Processes",
+      "objectives": [
+        "Design compliance monitoring systems",
+        "Learn audit methodologies",
+        "Understand certification processes"
+      ],
+      "topics": [
+        "Compliance program design",
+        "Internal audit frameworks",
+        "External certification requirements",
+        "Continuous compliance monitoring"
+      ],
+      "deliverables": ["Audit program", "Compliance dashboard"],
+      "estimated_hours": 10,
+      "difficulty": "Advanced"
+    },
+    {
+      "week": 10,
+      "title": "⚡ Incident Response & Crisis Management",
+      "objectives": [
+        "Develop incident response plans",
+        "Learn crisis communication",
+        "Understand regulatory reporting"
+      ],
+      "topics": [
+        "AI incident classification",
+        "Response team structures",
+        "Stakeholder communication",
+        "Regulatory breach reporting"
+      ],
+      "deliverables": ["Incident response plan", "Communication templates"],
+      "estimated_hours": 8,
+      "difficulty": "Intermediate"
+    },
+    {
+      "week": 11,
+      "title": "🚀 Emerging Technologies & Future Trends",
+      "objectives": [
+        "Explore cutting-edge AI developments",
+        "Understand regulatory evolution",
+        "Prepare for future challenges"
+      ],
+      "topics": [
+        "Generative AI governance",
+        "Quantum ML implications",
+        "Autonomous systems regulation",
+        "Future regulatory trends"
+      ],
+      "deliverables": ["Trend analysis report", "Future readiness plan"],
+      "estimated_hours": 9,
+      "difficulty": "Advanced"
+    },
+    {
+      "week": 12,
+      "title": "🎓 AIGP Certification Preparation",
+      "objectives": [
+        "Consolidate learning outcomes",
+        "Practice exam questions",
+        "Prepare final project"
+      ],
+      "topics": [
+        "AIGP exam structure and format",
+        "Key concept review",
+        "Practice questions and scenarios",
+        "Final project presentation"
+      ],
+      "deliverables": ["Final project", "Certification application"],
+      "estimated_hours": 15,
+      "difficulty": "Expert"
+    }
+  ]
+} 

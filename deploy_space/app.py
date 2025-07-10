@@ -104,13 +104,6 @@ def create_main_interface():
             primary_hue="blue",
             secondary_hue="purple",
             neutral_hue="slate"
-        ).set(
-            body_text_color="*neutral-800",
-            block_title_text_weight="600",
-            button_primary_background_fill="*primary-500",
-            button_primary_text_color="white",
-            block_border_width="2px",
-            block_shadow="*shadow-md"
         ),
         title="🧠⚖️ AI Governance Architect's Codex",
         css="""

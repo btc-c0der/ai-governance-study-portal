@@ -1,0 +1,62 @@
+{
+  "server": true,
+  "health": true,
+  "components": [
+    [
+      "CurriculumManager",
+      true
+    ],
+    [
+      "AIActExplorer",
+      true
+    ],
+    [
+      "ModelDemos",
+      false
+    ],
+    [
+      "AITutor",
+      true
+    ],
+    [
+      "PerformanceTracker",
+      true
+    ],
+    [
+      "QuizEngine",
+      true
+    ],
+    [
+      "AuthManager",
+      true
+    ]
+  ],
+  "files": [
+    [
+      "app.py",
+      true
+    ],
+    [
+      "requirements.txt",
+      true
+    ],
+    [
+      "components/ai_act_articles.json",
+      true
+    ],
+    [
+      "components/curriculum.json",
+      true
+    ],
+    [
+      "static/images/favicon.ico",
+      true
+    ]
+  ],
+  "config": {
+    "no_share": true,
+    "valid_port": true,
+    "valid_host": true,
+    "debug_disabled": true
+  }
+}

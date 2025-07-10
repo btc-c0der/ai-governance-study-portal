@@ -8,6 +8,7 @@ import sys
 import subprocess
 import importlib
 import os
+import gradio as gr
 
 def check_python_version():
     """Check if Python version is compatible"""
@@ -78,21 +79,31 @@ def main():
     # Import and launch the app
     try:
         print("\n🚀 Launching AI Governance Study Portal...")
-        print("📍 Access the portal at: http://localhost:7860")
-        print("🔄 The app will open in your default browser")
+        print("📍 The app will be available at a public URL")
+        print("🔄 The URL will be displayed when ready")
         print("⏹️  Press Ctrl+C to stop the server")
         print("=" * 50)
         
         from app import create_main_interface
         app = create_main_interface()
-        app.launch(
-            server_name="0.0.0.0",
-            server_port=7860,
-            share=False,  # Set to True for public sharing
-            debug=False,
-            show_error=True,
-            inbrowser=True  # Automatically open browser
-        )
+        
+        # Launch configuration
+        launch_kwargs = {
+            "server_name": "0.0.0.0",
+            "server_port": 7862,
+            "share": True,  # Enable public sharing
+            "debug": False,
+            "show_error": False,  # Hide errors in production
+            "show_api": False,  # Hide API docs in production
+            "favicon_path": "static/images/favicon.ico"
+        }
+        
+        print("\n🚀 Launch Configuration:")
+        for key, value in launch_kwargs.items():
+            print(f"{key}: {value} ({type(value)})")
+        print("=" * 50)
+        
+        app.launch(**launch_kwargs)
         
     except KeyboardInterrupt:
         print("\n👋 Thank you for using AI Governance Codex!")
