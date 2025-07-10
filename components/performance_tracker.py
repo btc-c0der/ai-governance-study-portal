@@ -28,64 +28,129 @@ class PerformanceTracker:
     
     def create_progress_radar(self):
         """Create radar chart showing competency areas"""
-        categories = ['AI Governance', 'Risk Management', 'Regulatory Compliance', 
-                     'Ethics & Bias', 'Technical Implementation']
-        scores = [85, 92, 88, 75, 82]
-        
-        fig = go.Figure()
-        
-        fig.add_trace(go.Scatterpolar(
-            r=scores + [scores[0]],  # Close the polygon
-            theta=categories + [categories[0]],
-            fill='toself',
-            name='Current Level',
-            marker_color='rgba(59, 130, 246, 0.6)'
-        ))
-        
-        fig.update_layout(
-            polar=dict(
-                radialaxis=dict(visible=True, range=[0, 100])
-            ),
-            title="🎯 Competency Radar",
-            height=400
-        )
-        
-        return fig
+        try:
+            categories = ['AI Governance', 'Risk Management', 'Regulatory Compliance', 
+                         'Ethics & Bias', 'Technical Implementation']
+            scores = [85, 92, 88, 75, 82]
+            
+            fig = go.Figure()
+            
+            fig.add_trace(go.Scatterpolar(
+                r=scores + [scores[0]],  # Close the polygon
+                theta=categories + [categories[0]],
+                fill='toself',
+                name='Current Level',
+                marker_color='rgba(59, 130, 246, 0.6)',
+                line_color='rgba(59, 130, 246, 0.8)'
+            ))
+            
+            fig.update_layout(
+                polar=dict(
+                    radialaxis=dict(
+                        visible=True, 
+                        range=[0, 100],
+                        ticksuffix='%',
+                        gridcolor='rgba(0,0,0,0.1)'
+                    ),
+                    angularaxis=dict(
+                        gridcolor='rgba(0,0,0,0.1)'
+                    )
+                ),
+                title="🎯 Competency Radar",
+                height=400,
+                template='plotly_white',
+                margin=dict(l=20, r=20, t=40, b=20)
+            )
+            
+            return fig
+        except Exception as e:
+            print(f"Error creating radar chart: {e}")
+            # Return empty figure if there's an error
+            return go.Figure().add_annotation(
+                text="Chart temporarily unavailable",
+                xref="paper", yref="paper",
+                x=0.5, y=0.5, showarrow=False
+            )
     
     def create_weekly_progress_chart(self):
         """Create weekly progress line chart"""
-        weeks = list(range(1, 13))
-        
-        fig = go.Figure()
-        
-        fig.add_trace(go.Scatter(
-            x=weeks,
-            y=self.progress_data['weekly_progress'],
-            mode='lines+markers',
-            name='Weekly Progress (%)',
-            line=dict(color='#10b981', width=3),
-            marker=dict(size=8)
-        ))
-        
-        fig.add_trace(go.Scatter(
-            x=weeks,
-            y=self.progress_data['quiz_scores'],
-            mode='lines+markers',
-            name='Quiz Scores (%)',
-            line=dict(color='#3b82f6', width=3),
-            marker=dict(size=8)
-        ))
-        
-        fig.update_layout(
-            title="📈 Weekly Progress & Quiz Performance",
-            xaxis_title="Week",
-            yaxis_title="Score (%)",
-            height=400,
-            hovermode='x unified'
-        )
-        
-        return fig
+        try:
+            weeks = list(range(1, 13))
+            
+            fig = go.Figure()
+            
+            fig.add_trace(go.Scatter(
+                x=weeks,
+                y=self.progress_data['weekly_progress'],
+                mode='lines+markers',
+                name='Weekly Progress (%)',
+                line=dict(color='#10b981', width=3),
+                marker=dict(size=8)
+            ))
+            
+            fig.add_trace(go.Scatter(
+                x=weeks,
+                y=self.progress_data['quiz_scores'],
+                mode='lines+markers',
+                name='Quiz Scores (%)',
+                line=dict(color='#3b82f6', width=3),
+                marker=dict(size=8)
+            ))
+            
+            fig.update_layout(
+                title="📈 Weekly Progress & Quiz Performance",
+                xaxis_title="Week",
+                yaxis_title="Score (%)",
+                height=400,
+                hovermode='x unified',
+                template='plotly_white',
+                margin=dict(l=20, r=20, t=40, b=20)
+            )
+            
+            return fig
+        except Exception as e:
+            print(f"Error creating weekly progress chart: {e}")
+            # Return empty figure if there's an error
+            return go.Figure().add_annotation(
+                text="Chart temporarily unavailable",
+                xref="paper", yref="paper",
+                x=0.5, y=0.5, showarrow=False
+            )
     
+    def create_study_hours_chart(self):
+        """Create study hours bar chart"""
+        try:
+            weeks = list(range(1, 13))
+            
+            fig = go.Figure()
+            
+            fig.add_trace(go.Bar(
+                x=weeks,
+                y=self.progress_data['study_hours'],
+                name='Study Hours',
+                marker_color='rgba(16, 185, 129, 0.8)',
+                text=self.progress_data['study_hours'],
+                textposition='auto',
+            ))
+            
+            fig.update_layout(
+                title="⏱️ Weekly Study Hours",
+                xaxis_title="Week",
+                yaxis_title="Hours",
+                height=300,
+                template='plotly_white',
+                margin=dict(l=20, r=20, t=40, b=20)
+            )
+            
+            return fig
+        except Exception as e:
+            print(f"Error creating study hours chart: {e}")
+            return go.Figure().add_annotation(
+                text="Chart temporarily unavailable",
+                xref="paper", yref="paper",
+                x=0.5, y=0.5, showarrow=False
+            )
+
     def create_interface(self):
         """Create the performance tracking interface"""
         
@@ -93,8 +158,11 @@ class PerformanceTracker:
         
         with gr.Row():
             with gr.Column():
-                # Radar chart
-                radar_chart = gr.Plot(label="🎯 Competency Assessment")
+                # Radar chart with initial value
+                radar_chart = gr.Plot(
+                    label="🎯 Competency Assessment",
+                    value=self.create_progress_radar()
+                )
                 
                 # Progress summary
                 progress_summary = gr.HTML("""
@@ -130,8 +198,11 @@ class PerformanceTracker:
                 """)
             
             with gr.Column():
-                # Weekly progress chart
-                progress_chart = gr.Plot(label="📈 Weekly Trends")
+                # Weekly progress chart with initial value
+                progress_chart = gr.Plot(
+                    label="📈 Weekly Trends",
+                    value=self.create_weekly_progress_chart()
+                )
         
         with gr.Row():
             with gr.Column():
@@ -172,8 +243,12 @@ class PerformanceTracker:
                 </div>
                 """)
         
-        # Initialize charts
-        radar_chart.value = self.create_progress_radar()
-        progress_chart.value = self.create_weekly_progress_chart()
+        # Add a refresh button to update charts
+        with gr.Row():
+            refresh_btn = gr.Button("🔄 Refresh Charts", variant="primary")
+            refresh_btn.click(
+                fn=lambda: (self.create_progress_radar(), self.create_weekly_progress_chart()),
+                outputs=[radar_chart, progress_chart]
+            )
         
-        return radar_chart, progress_chart 
+        return radar_chart, progress_chart
