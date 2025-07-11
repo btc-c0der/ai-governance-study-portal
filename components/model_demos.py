@@ -1,6 +1,7 @@
 """
 🤖 Model Demos Component
 Interactive ML model demonstrations for AI governance education.
+Enhanced with support for OpenAI, Mistral, and DeepSeek APIs.
 """
 
 import gradio as gr
@@ -11,12 +12,60 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 import plotly.graph_objects as go
 import plotly.express as px
-from typing import List, Tuple, Dict
+from typing import List, Tuple, Dict, Optional
+import os
+import json
+import asyncio
+import aiohttp
+import time
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()  # For local development
+# HF Spaces secrets are automatically available as os.environ
 
 class ModelDemos:
     def __init__(self):
+        self.is_spaces = os.getenv("SPACE_ID") is not None  # Detect HF Spaces environment
         self.legal_classifier = self.setup_legal_classifier()
         self.sample_documents = self.load_sample_documents()
+        self.api_clients = self.setup_api_clients()
+        self.rate_limiter = {}  # Simple rate limiting
+        
+    def setup_api_clients(self) -> Dict[str, Dict]:
+        """Setup API clients for different model providers"""
+        clients = {
+            'openai': {
+                'api_key': os.getenv('OPENAI_API_KEY'),
+                'model': os.getenv('OPENAI_MODEL', 'gpt-4o-mini'),
+                'base_url': 'https://api.openai.com/v1',
+                'enabled': bool(os.getenv('OPENAI_API_KEY'))
+            },
+            'mistral': {
+                'api_key': os.getenv('MISTRAL_API_KEY'),
+                'model': os.getenv('MISTRAL_MODEL', 'mistral-large-latest'),
+                'base_url': 'https://api.mistral.ai/v1',
+                'enabled': bool(os.getenv('MISTRAL_API_KEY'))
+            },
+            'deepseek': {
+                'api_key': os.getenv('DEEPSEEK_API_KEY'),
+                'model': os.getenv('DEEPSEEK_MODEL', 'deepseek-chat'),
+                'base_url': 'https://api.deepseek.com/v1',
+                'enabled': bool(os.getenv('DEEPSEEK_API_KEY'))
+            }
+        }
+        
+        # Log provider status (without exposing keys)
+        if self.is_spaces:
+            print("🔐 HF Spaces environment detected")
+        else:
+            print("💻 Local development environment")
+            
+        for provider, config in clients.items():
+            status = "✅ Enabled" if config['enabled'] else "❌ Disabled"
+            print(f"🤖 {provider.title()}: {status}")
+            
+        return clients
     
     def setup_legal_classifier(self):
         """Setup a simple legal document classifier for demonstration"""
@@ -214,6 +263,15 @@ class ModelDemos:
         gr.Markdown("## 🤖 AI Model Demonstrations")
         gr.Markdown("Interactive ML model demos for understanding AI governance and explainability.")
         
+        # Check provider status
+        provider_status = self.get_provider_status()
+        available_providers = self.get_available_providers()
+        
+        if available_providers:
+            gr.Markdown(f"✅ **Available AI Providers:** {', '.join([p.title() for p in available_providers])}")
+        else:
+            gr.Markdown("⚠️ **No AI providers configured.** Add API keys to .env file to enable AI analysis features.")
+        
         with gr.Tabs():
             # Legal Document Classifier Tab
             with gr.Tab("⚖️ Legal Document Classifier"):
@@ -254,6 +312,63 @@ class ModelDemos:
                 # Feature importance section
                 with gr.Row():
                     feature_importance_chart = gr.Plot(label="🔍 Feature Importance Analysis")
+            
+            # AI-Powered Governance Analysis Tab
+            with gr.Tab("🧠 AI-Powered Analysis"):
+                gr.Markdown("### Advanced AI Governance Analysis")
+                gr.Markdown("Get detailed analysis from state-of-the-art AI models.")
+                
+                with gr.Row():
+                    with gr.Column(scale=2):
+                        # Input section
+                        ai_analysis_text = gr.Textbox(
+                            label="📝 AI System Description",
+                            placeholder="Describe your AI system for analysis...",
+                            lines=6
+                        )
+                        
+                        # Provider selection
+                        if available_providers:
+                            provider_dropdown = gr.Dropdown(
+                                choices=available_providers,
+                                label="🤖 AI Model Provider",
+                                value=available_providers[0] if available_providers else None
+                            )
+                        else:
+                            provider_dropdown = gr.Dropdown(
+                                choices=[],
+                                label="🤖 AI Model Provider (None Available)",
+                                value=None,
+                                interactive=False
+                            )
+                        
+                        # Analysis type
+                        analysis_type = gr.Dropdown(
+                            choices=[
+                                ("🏛️ Governance & Compliance", "governance"),
+                                ("⚖️ Bias Detection", "bias"),
+                                ("🔍 Explainability Analysis", "explainability")
+                            ],
+                            label="📊 Analysis Type",
+                            value="governance"
+                        )
+                        
+                        ai_analyze_btn = gr.Button(
+                            "🧠 Analyze with AI", 
+                            variant="primary",
+                            interactive=bool(available_providers)
+                        )
+                        
+                    with gr.Column(scale=2):
+                        # Results section
+                        ai_analysis_result = gr.Textbox(
+                            label="🤖 AI Analysis Result",
+                            lines=15,
+                            interactive=False
+                        )
+                        
+                        # Provider status
+                        provider_status_md = gr.Markdown(self.create_provider_status_text())
             
             # Bias Detection Tab
             with gr.Tab("🎯 Bias Detection Demo"):
@@ -334,6 +449,15 @@ class ModelDemos:
             
             return prediction, confidence_fig, explanation, feature_fig
         
+        def on_ai_analyze(text, provider, analysis_type):
+            if not text.strip():
+                return "Please enter text to analyze"
+            
+            if not provider:
+                return "Please select an AI provider"
+            
+            return self.analyze_with_ai(text, provider, analysis_type)
+        
         def on_sample_select(sample):
             return sample if sample else ""
         
@@ -404,6 +528,14 @@ class ModelDemos:
             outputs=[classification_result, confidence_chart, explanation_output, feature_importance_chart]
         )
         
+        # AI Analysis handler
+        if available_providers:
+            ai_analyze_btn.click(
+                fn=on_ai_analyze,
+                inputs=[ai_analysis_text, provider_dropdown, analysis_type],
+                outputs=[ai_analysis_result]
+            )
+        
         sample_dropdown.change(
             fn=on_sample_select,
             inputs=[sample_dropdown],
@@ -416,4 +548,172 @@ class ModelDemos:
             outputs=[bias_visualization, mitigation_suggestions]
         )
         
-        return demo_text, classification_result, explanation_output 
+        return demo_text, classification_result, explanation_output
+    
+    def check_rate_limit(self, provider: str) -> bool:
+        """Simple rate limiting check"""
+        current_time = time.time()
+        
+        # Get rate limit and handle comments in env var
+        rate_limit_str = os.getenv('DEMO_RATE_LIMIT', '10')
+        try:
+            # Split on # to remove comments
+            rate_limit = int(rate_limit_str.split('#')[0].strip())
+        except ValueError:
+            rate_limit = 10  # Default fallback
+        
+        if provider not in self.rate_limiter:
+            self.rate_limiter[provider] = []
+        
+        # Clean old requests (older than 1 minute)
+        self.rate_limiter[provider] = [
+            req_time for req_time in self.rate_limiter[provider]
+            if current_time - req_time < 60
+        ]
+        
+        if len(self.rate_limiter[provider]) >= rate_limit:
+            return False
+        
+        self.rate_limiter[provider].append(current_time)
+        return True
+    
+    async def call_ai_model(self, provider: str, prompt: str, system_prompt: str = None) -> str:
+        """Make API call to AI model provider"""
+        if not self.api_clients[provider]['enabled']:
+            return f"❌ {provider.title()} API key not configured"
+        
+        if not self.check_rate_limit(provider):
+            return f"⚠️ Rate limit exceeded for {provider.title()}. Please try again in a moment."
+        
+        try:
+            client_config = self.api_clients[provider]
+            
+            headers = {
+                'Authorization': f'Bearer {client_config["api_key"]}',
+                'Content-Type': 'application/json'
+            }
+            
+            # Prepare messages
+            messages = []
+            if system_prompt:
+                messages.append({"role": "system", "content": system_prompt})
+            messages.append({"role": "user", "content": prompt})
+            
+            # Prepare request data
+            data = {
+                "model": client_config["model"],
+                "messages": messages,
+                "max_tokens": int(os.getenv('MAX_TOKENS', '2000').split('#')[0].strip()),
+                "temperature": float(os.getenv('TEMPERATURE', '0.7').split('#')[0].strip())
+            }
+            
+            # Make API call
+            async with aiohttp.ClientSession() as session:
+                timeout_seconds = int(os.getenv('API_TIMEOUT', '30').split('#')[0].strip())
+                async with session.post(
+                    f"{client_config['base_url']}/chat/completions",
+                    headers=headers,
+                    json=data,
+                    timeout=aiohttp.ClientTimeout(total=timeout_seconds)
+                ) as response:
+                    if response.status == 200:
+                        result = await response.json()
+                        return result['choices'][0]['message']['content']
+                    else:
+                        error_text = await response.text()
+                        return f"❌ API Error ({response.status}): {error_text}"
+        
+        except asyncio.TimeoutError:
+            return f"⏱️ Request timeout for {provider.title()} API"
+        except Exception as e:
+            return f"❌ Error calling {provider.title()} API: {str(e)}"
+    
+    def analyze_with_ai(self, text: str, provider: str, analysis_type: str) -> str:
+        """Analyze text with AI model"""
+        if not os.getenv('ENABLE_AI_DEMOS', 'true').lower() == 'true':
+            return "❌ AI demos are disabled in configuration"
+        
+        if analysis_type == "governance":
+            system_prompt = """You are an AI governance expert. Analyze the provided AI system description and provide:
+1. EU AI Act risk classification (Minimal, Limited, High, or Prohibited)
+2. Key compliance requirements
+3. Potential governance challenges
+4. Mitigation recommendations
+
+Be specific and reference relevant EU AI Act articles where applicable."""
+            
+            prompt = f"Please analyze this AI system description for governance implications:\n\n{text}"
+            
+        elif analysis_type == "bias":
+            system_prompt = """You are an AI bias detection expert. Analyze the provided text for potential bias issues and provide:
+1. Identified bias types (if any)
+2. Bias severity assessment
+3. Affected groups or demographics
+4. Mitigation strategies
+5. Fairness metrics to monitor
+
+Focus on practical, actionable insights."""
+            
+            prompt = f"Please analyze this text for potential bias issues:\n\n{text}"
+            
+        elif analysis_type == "explainability":
+            system_prompt = """You are an AI explainability expert. Analyze the provided AI system and provide:
+1. Explainability requirements based on use case
+2. Recommended explanation techniques
+3. Stakeholder-specific explanation needs
+4. Technical implementation suggestions
+
+Focus on practical explainability solutions."""
+            
+            prompt = f"Please analyze this AI system for explainability requirements:\n\n{text}"
+            
+        else:
+            return "❌ Unknown analysis type"
+        
+        # Run async function in sync context
+        try:
+            loop = asyncio.get_event_loop()
+        except RuntimeError:
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+        
+        return loop.run_until_complete(self.call_ai_model(provider, prompt, system_prompt))
+    
+    def get_available_providers(self) -> List[str]:
+        """Get list of available AI providers"""
+        return [provider for provider, config in self.api_clients.items() if config['enabled']]
+    
+    def get_provider_status(self) -> Dict[str, bool]:
+        """Get status of all providers"""
+        return {provider: config['enabled'] for provider, config in self.api_clients.items()}
+    
+    def create_provider_status_text(self) -> str:
+        """Create provider status text for display"""
+        status = self.get_provider_status()
+        text = "### 🔌 Provider Status\n\n"
+        
+        for provider, enabled in status.items():
+            icon = "✅" if enabled else "❌"
+            model = self.api_clients[provider]['model']
+            text += f"{icon} **{provider.title()}**: {model if enabled else 'Not configured'}\n"
+        
+        if not any(status.values()):
+            if self.is_spaces:
+                text += "\n⚠️ **Hugging Face Spaces Setup:**\n"
+                text += "1. Go to your Space **Settings** tab\n"
+                text += "2. Add **Repository secrets**:\n"
+                text += "   - `OPENAI_API_KEY`: Your OpenAI key\n"
+                text += "   - `MISTRAL_API_KEY`: Your Mistral key\n"
+                text += "   - `DEEPSEEK_API_KEY`: Your DeepSeek key\n"
+                text += "3. **Restart** the Space\n"
+                text += "\n🔐 **API keys are stored securely** as HF Spaces secrets\n"
+            else:
+                text += "\n⚠️ **Local Development Setup:**\n"
+                text += "1. Copy `.env.example` to `.env`\n"
+                text += "2. Add your API keys to `.env`\n"
+                text += "3. Restart the application\n"
+        
+        environment = "🔐 Hugging Face Spaces" if self.is_spaces else "💻 Local Development"
+        text += f"\n**Environment**: {environment}\n"
+        
+        return text

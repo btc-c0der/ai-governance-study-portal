@@ -35,7 +35,18 @@ markdown==3.5.2
 ### Step 2: Update App Launcher
 1. Edit `app_hf.py` and replace with the improved version from deploy_space/app_hf.py
 
-### Step 3: Force Rebuild
+### Step 3: Configure AI Model Providers (Optional)
+To enable advanced AI analysis features:
+1. Go to your Space **Settings** tab
+2. Scroll to **"Repository secrets"**
+3. Add these secrets:
+   - `OPENAI_API_KEY`: Your OpenAI API key
+   - `MISTRAL_API_KEY`: Your Mistral API key (optional)
+   - `DEEPSEEK_API_KEY`: Your DeepSeek API key (optional)
+   - `DEFAULT_MODEL_PROVIDER`: openai (or mistral/deepseek)
+   - `ENABLE_AI_DEMOS`: true
+
+### Step 4: Force Rebuild
 1. Make a small change to trigger rebuild (add a comment)
 2. Commit changes
 3. Wait for Space to rebuild (~2-3 minutes)
@@ -46,6 +57,15 @@ markdown==3.5.2
 - ✅ Import error handling
 - ✅ File component compatibility
 - ✅ Fixed python-multipart version conflict (>=0.0.9 required by Gradio 4.44.0)
+- ✅ Enhanced Model Demos with AI provider support
+- ✅ Secure environment variable handling for HF Spaces
+
+## 🤖 AI Model Features:
+- **OpenAI Integration**: GPT-4o-mini for advanced analysis
+- **Mistral Integration**: Mistral-large for governance insights
+- **DeepSeek Integration**: DeepSeek-chat for specialized analysis
+- **Secure API Keys**: Uses HF Spaces secrets (never exposed in code)
+- **Graceful Degradation**: Works without API keys, enhanced with them
 
 ## 🚨 Important Notes:
 - **python-multipart**: Changed from ==0.0.6 to >=0.0.9 to resolve Gradio dependency conflict

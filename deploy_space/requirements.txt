@@ -15,9 +15,13 @@ seaborn==0.13.0
 requests==2.32.3
 httpx==0.25.2
 pydantic==2.5.3
+aiohttp==3.10.5
 
 # Database & Storage
 tinydb==4.8.2
+
+# ML & AI
+scikit-learn==1.3.2
 
 # EU AI Act & Legal Data Processing
 beautifulsoup4==4.12.2
