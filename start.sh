@@ -104,4 +104,4 @@ echo "📍 Access at: http://localhost:7860"
 echo "⏹️  Press Ctrl+C to stop"
 echo "===================================="
 
-python3 app.py 
+python3 app_hf.py 

@@ -255,12 +255,46 @@ def create_main_interface():
                     
                     quick_login_message = gr.HTML()
                     
-                    # Quick register link
-                    gr.HTML("""
-                        <div style="text-align: center; margin-top: 0.5rem;">
-                            <small><a href="#" style="color: #2563eb;">New user? Register here</a></small>
-                        </div>
-                    """)
+                    # Quick register section
+                    with gr.Row():
+                        quick_register_btn = gr.Button("📝 Register", variant="secondary", size="sm", scale=1)
+                    
+                    # Registration form (initially hidden)
+                    with gr.Column(visible=False) as quick_reg_form:
+                        gr.HTML("""
+                            <div style="background: #f0f9ff; border: 2px solid #0ea5e9; border-radius: 6px; padding: 0.75rem; margin: 0.5rem 0;">
+                                <h5 style="margin: 0 0 0.25rem 0; color: #0369a1;">📝 Quick Registration</h5>
+                            </div>
+                        """)
+                        
+                        quick_reg_email = gr.Textbox(
+                            label="Email",
+                            placeholder="Enter email",
+                            container=False
+                        )
+                        quick_reg_password = gr.Textbox(
+                            label="Password",
+                            placeholder="Create password (8+ chars)",
+                            type="password",
+                            container=False
+                        )
+                        quick_reg_confirm = gr.Textbox(
+                            label="Confirm Password",
+                            placeholder="Confirm password",
+                            type="password",
+                            container=False
+                        )
+                        quick_reg_name = gr.Textbox(
+                            label="Full Name",
+                            placeholder="Enter full name",
+                            container=False
+                        )
+                        
+                        with gr.Row():
+                            quick_reg_submit_btn = gr.Button("Register", variant="primary", size="sm", scale=2)
+                            quick_reg_cancel_btn = gr.Button("Cancel", variant="secondary", size="sm", scale=1)
+                        
+                        quick_reg_message = gr.HTML()
         
         with gr.Tabs() as tabs:
             
@@ -539,6 +573,43 @@ def create_main_interface():
             """Close the authentication dropdown"""
             return gr.update(visible=False)
         
+        def toggle_registration_form():
+            """Toggle the registration form visibility"""
+            return gr.update(visible=True)
+        
+        def handle_quick_registration(email, password, confirm_password, name):
+            """Handle quick registration from header"""
+            if not email or not password or not confirm_password or not name:
+                return """<div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 0.5rem; color: #dc2626; font-size: 0.8rem;">
+                ❌ All fields are required</div>"""
+            
+            if password != confirm_password:
+                return """<div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 0.5rem; color: #dc2626; font-size: 0.8rem;">
+                ❌ Passwords do not match</div>"""
+            
+            if len(password) < 8:
+                return """<div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 0.5rem; color: #dc2626; font-size: 0.8rem;">
+                ❌ Password must be at least 8 characters</div>"""
+            
+            # Email validation
+            if "@" not in email or "." not in email:
+                return """<div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 0.5rem; color: #dc2626; font-size: 0.8rem;">
+                ❌ Please enter a valid email address</div>"""
+            
+            # Try to register the user
+            success, result = auth_manager.register_user(email, password, name, "")
+            
+            if success:
+                return """<div style="background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 0.5rem; color: #16a34a; font-size: 0.8rem;">
+                ✅ Registration successful! You can now login.</div>"""
+            else:
+                return f"""<div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 0.5rem; color: #dc2626; font-size: 0.8rem;">
+                ❌ {result}</div>"""
+        
+        def cancel_registration():
+            """Cancel registration and hide form"""
+            return gr.update(visible=False)
+        
         # Connect quick login handlers
         login_toggle_btn.click(
             fn=toggle_auth_dropdown,
@@ -556,6 +627,25 @@ def create_main_interface():
             fn=close_auth_dropdown,
             inputs=[],
             outputs=[auth_dropdown]
+        )
+        
+        # Registration button handlers
+        quick_register_btn.click(
+            fn=toggle_registration_form,
+            inputs=[],
+            outputs=[quick_reg_form]
+        )
+        
+        quick_reg_submit_btn.click(
+            fn=handle_quick_registration,
+            inputs=[quick_reg_email, quick_reg_password, quick_reg_confirm, quick_reg_name],
+            outputs=[quick_reg_message]
+        )
+        
+        quick_reg_cancel_btn.click(
+            fn=cancel_registration,
+            inputs=[],
+            outputs=[quick_reg_form]
         )
     
     print("=" * 60)

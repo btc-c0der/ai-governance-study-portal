@@ -11,10 +11,10 @@ app = create_main_interface()
 
 # Mount the app for Hugging Face Spaces
 app.launch(
-    share=False,  # No need for share link in Spaces
+    share=True,  # Enable share link for external access
     server_name="0.0.0.0",  # Listen on all interfaces
-    server_port=7860,  # Default Spaces port
-    show_api=True,  # Hide API docs for production
-    show_error=True,  # Hide detailed errors in production
+    server_port=7861,  # Use alternative port
+    show_api=True,  # Show API docs
+    show_error=True,  # Show detailed errors
     favicon_path="static/images/favicon.ico"  # Custom favicon
 ) 
