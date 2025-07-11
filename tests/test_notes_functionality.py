@@ -5,7 +5,7 @@ Test script to verify the enhanced notes functionality
 
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from components.curriculum import CurriculumManager
 from components.auth_manager import AuthManager

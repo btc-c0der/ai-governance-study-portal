@@ -6,7 +6,7 @@ Tests the new user registration functionality via the UI
 
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from components.curriculum import CurriculumManager
 from components.auth_manager import AuthManager

@@ -6,7 +6,8 @@ Tests both authenticated users and unauthenticated student notes functionality
 
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# Add the parent directory to the path so we can import from components
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from components.curriculum import CurriculumManager
 from components.auth_manager import AuthManager

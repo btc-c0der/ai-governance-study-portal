@@ -5,7 +5,7 @@ Simple test to verify the implemented features work correctly
 
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from components.performance_tracker import PerformanceTracker
 from components.curriculum import CurriculumManager
