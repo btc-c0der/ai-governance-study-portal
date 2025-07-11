@@ -101,6 +101,19 @@ class AuthManager:
     
     def create_user(self, email, password, role="student", profile_data=None):
         """Create new user using shared database manager"""
+        
+        # Validate email format
+        if not email or "@" not in email:
+            return False, "Invalid email format"
+        
+        email_parts = email.split("@")
+        if len(email_parts) != 2 or not email_parts[0] or not email_parts[1]:
+            return False, "Invalid email format"
+        
+        domain = email_parts[1]
+        if "." not in domain or domain.endswith(".") or domain.startswith("."):
+            return False, "Invalid email format"
+        
         if self.user_exists(email):
             return False, "User already exists"
         

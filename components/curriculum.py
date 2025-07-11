@@ -12,16 +12,31 @@ from pathlib import Path
 import pandas as pd
 import sqlite3
 from components.auth_manager import AuthManager
+from components.performance_tracker import PerformanceTracker
 from typing import Optional
 
 class CurriculumManager:
-    def __init__(self, auth_manager: Optional[AuthManager] = None):
+    def __init__(self, auth_manager: Optional[AuthManager] = None, performance_tracker: Optional[PerformanceTracker] = None):
         self.curriculum_data = self.load_curriculum()
         self.progress_data = self.load_progress()
         self.aigp_resources = self.load_aigp_resources()
         self.auth_manager = auth_manager or AuthManager()
+        self.performance_tracker = performance_tracker or PerformanceTracker(self.auth_manager)
         self.notes_db_path = "data/curriculum_notes.db"
         self.init_notes_database()
+        self.refresh_callbacks = []  # For cross-component updates
+
+    def add_refresh_callback(self, callback):
+        """Add a callback function to be called when progress is updated"""
+        self.refresh_callbacks.append(callback)
+    
+    def trigger_refresh_callbacks(self):
+        """Trigger all registered refresh callbacks"""
+        for callback in self.refresh_callbacks:
+            try:
+                callback()
+            except Exception as e:
+                print(f"Error in refresh callback: {e}")
     
     def init_notes_database(self):
         """Initialize the notes database (authentication handled by AuthManager)"""
@@ -46,6 +61,122 @@ class CurriculumManager:
         
         conn.commit()
         conn.close()
+    
+    def create_simple_note(self, student_name, week_number, title, content):
+        """Create a simple note without authentication"""
+        if not student_name or not title or not content:
+            return False, "Please fill in all fields"
+        
+        conn = sqlite3.connect(self.notes_db_path)
+        cursor = conn.cursor()
+        
+        try:
+            # Create student_notes table if it doesn't exist
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS student_notes (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    student_name TEXT NOT NULL,
+                    week_number INTEGER NOT NULL,
+                    title TEXT NOT NULL,
+                    content TEXT NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )
+            """)
+            
+            cursor.execute("""
+                INSERT INTO student_notes (student_name, week_number, title, content)
+                VALUES (?, ?, ?, ?)
+            """, (student_name.strip(), week_number, title.strip(), content.strip()))
+            
+            conn.commit()
+            note_id = cursor.lastrowid
+            conn.close()
+            
+            return True, f"Note saved successfully!"
+        
+        except Exception as e:
+            conn.close()
+            return False, f"Error saving note: {str(e)}"
+    
+    def get_student_notes(self, student_name, week_number=None):
+        """Get notes for a specific student"""
+        if not student_name:
+            return []
+        
+        conn = sqlite3.connect(self.notes_db_path)
+        cursor = conn.cursor()
+        
+        try:
+            if week_number:
+                cursor.execute("""
+                    SELECT id, week_number, title, content, created_at, updated_at
+                    FROM student_notes
+                    WHERE student_name = ? AND week_number = ?
+                    ORDER BY created_at DESC
+                """, (student_name.strip(), week_number))
+            else:
+                cursor.execute("""
+                    SELECT id, week_number, title, content, created_at, updated_at
+                    FROM student_notes
+                    WHERE student_name = ?
+                    ORDER BY week_number, created_at DESC
+                """, (student_name.strip(),))
+            
+            notes = cursor.fetchall()
+            conn.close()
+            
+            return [
+                {
+                    'id': note[0],
+                    'week_number': note[1],
+                    'title': note[2],
+                    'content': note[3],
+                    'created_at': note[4],
+                    'updated_at': note[5]
+                }
+                for note in notes
+            ]
+        
+        except Exception as e:
+            conn.close()
+            return []
+    
+    def get_simple_notes_html(self, student_name, week_number=None):
+        """Generate HTML display for student notes"""
+        notes = self.get_student_notes(student_name, week_number)
+        
+        if not notes:
+            week_text = f"Week {week_number}" if week_number else "all weeks"
+            return f"""
+            <div style="background: #1a1a1a; border-radius: 12px; padding: 2rem; color: #ffffff; text-align: center;">
+                <h3 style="color: #60a5fa; margin: 0 0 1rem 0;">📝 No Notes Yet for {week_text}</h3>
+                <p style="color: #d1d5db; margin: 0;">Create your first note using the form above!</p>
+            </div>
+            """
+        
+        week_text = f"Week {week_number}" if week_number else "All Weeks"
+        notes_html = f"""
+        <div style="background: #1a1a1a; border-radius: 12px; padding: 2rem; color: #ffffff;">
+            <h3 style="color: #60a5fa; margin: 0 0 1.5rem 0;">📝 {student_name}'s Notes for {week_text}</h3>
+        """
+        
+        for note in notes:
+            # Format dates
+            created_date = note['created_at'].split()[0] if note['created_at'] else 'Unknown'
+            
+            notes_html += f"""
+            <div style="background: #2a2a2a; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border-left: 4px solid #60a5fa;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <h4 style="color: #ffffff; margin: 0; font-size: 1.1rem;">📑 {note['title']}</h4>
+                    <span style="color: #9ca3af; font-size: 0.9rem;">Week {note['week_number']} • {created_date}</span>
+                </div>
+                <div style="color: #d1d5db; line-height: 1.6; white-space: pre-wrap;">{note['content']}</div>
+            </div>
+            """
+        
+        notes_html += "</div>"
+        return notes_html
     
     def get_user_notes(self, week_number=None):
         """Get notes for current user"""
@@ -110,6 +241,10 @@ class CurriculumManager:
         except Exception as e:
             conn.close()
             return False, f"Error creating note: {str(e)}"
+    
+    def create_advanced_note(self, week_number, title, content):
+        """Create an advanced note (alias for create_note for backward compatibility)"""
+        return self.create_note(week_number, title, content)
     
     def update_note(self, note_id, title, content):
         """Update an existing note"""
@@ -570,6 +705,14 @@ class CurriculumManager:
                     mark_complete_btn = gr.Button("✅ Mark Complete", variant="primary")
                     add_notes_btn = gr.Button("📝 Add Notes", variant="secondary")
                     view_resources_btn = gr.Button("📚 Resources", variant="secondary")
+                
+                # Completion status message
+                completion_status = gr.Textbox(
+                    label="Status", 
+                    interactive=False, 
+                    visible=False,
+                    value=""
+                )
         
         # Study notes section
         with gr.Row():
@@ -585,13 +728,82 @@ class CurriculumManager:
         
         # Authentication and Notes Management Area (initially hidden)
         with gr.Row():
+            notes_choice_area = gr.Column(visible=False)
+            with notes_choice_area:
+                gr.Markdown("## 📝 Choose Your Notes Experience")
+                gr.Markdown("Select how you'd like to manage your study notes:")
+                
+                with gr.Row():
+                    with gr.Column():
+                        gr.Markdown("### 🚀 Quick Notes (Recommended)")
+                        gr.Markdown("- No registration required")
+                        gr.Markdown("- Just enter your name")
+                        gr.Markdown("- Perfect for students")
+                        quick_notes_btn = gr.Button("📝 Use Quick Notes", variant="primary", size="lg")
+                    
+                    with gr.Column():
+                        gr.Markdown("### 🔐 Advanced Notes")
+                        gr.Markdown("- Full user accounts")
+                        gr.Markdown("- Secure authentication")
+                        gr.Markdown("- Advanced features")
+                        advanced_notes_btn = gr.Button("🔑 Use Advanced Notes", variant="secondary", size="lg")
+        
+        # Quick Notes Interface (initially hidden)
+        with gr.Row():
+            quick_notes_area = gr.Column(visible=False)
+            with quick_notes_area:
+                gr.Markdown("## 📝 Quick Study Notes")
+                gr.Markdown("Enter your name and start taking notes right away!")
+                
+                with gr.Row():
+                    with gr.Column(scale=1):
+                        student_name = gr.Textbox(
+                            label="👤 Student Name",
+                            placeholder="Enter your name...",
+                            info="This will be used to track your notes"
+                        )
+                    with gr.Column(scale=1):
+                        quick_notes_week = gr.Dropdown(
+                            choices=[(f"Week {i}", i) for i in range(1, 13)],
+                            label="📅 Select Week",
+                            value=1
+                        )
+                    with gr.Column(scale=1):
+                        back_to_choice_btn = gr.Button("↩️ Back to Choice", variant="secondary")
+                
+                with gr.Row():
+                    with gr.Column():
+                        quick_note_title = gr.Textbox(
+                            label="📑 Note Title",
+                            placeholder="Enter a title for your note..."
+                        )
+                        quick_note_content = gr.Textbox(
+                            label="📝 Note Content",
+                            lines=6,
+                            placeholder="Write your study notes here..."
+                        )
+                        
+                        with gr.Row():
+                            quick_save_btn = gr.Button("💾 Save Note", variant="primary")
+                            quick_clear_btn = gr.Button("🗑️ Clear", variant="secondary")
+                            quick_view_btn = gr.Button("👁️ View My Notes", variant="secondary")
+                
+                # Notes display area
+                quick_notes_display = gr.HTML(label="Your Notes")
+                
+                # Status message
+                quick_notes_status = gr.Markdown(visible=False)
+            
             auth_notes_area = gr.Column(visible=False)
             with auth_notes_area:
+                with gr.Row():
+                    back_to_choice_btn2 = gr.Button("↩️ Back to Choice", variant="secondary")
+                
                 # Authentication form
                 auth_section = gr.Column(visible=True)
                 with auth_section:
                     gr.Markdown("## 🔐 Authentication Required")
-                    gr.Markdown("Please login or register to access the notes feature")
+                    gr.Markdown("Please login or register to access the advanced notes feature")
                     
                     with gr.Tabs():
                         with gr.Tab("Login"):
@@ -617,12 +829,20 @@ class CurriculumManager:
                                 reg_password = gr.Textbox(
                                     label="🔑 Password",
                                     type="password",
-                                    placeholder="Create a secure password..."
+                                    placeholder="Create a secure password (8+ characters)..."
                                 )
                                 reg_confirm = gr.Textbox(
                                     label="🔑 Confirm Password",
                                     type="password",
                                     placeholder="Confirm your password..."
+                                )
+                                reg_name = gr.Textbox(
+                                    label="👤 Full Name",
+                                    placeholder="Enter your full name..."
+                                )
+                                reg_institution = gr.Textbox(
+                                    label="🏛️ Institution/Organization",
+                                    placeholder="Your university or organization (optional)..."
                                 )
                                 register_btn = gr.Button("📝 Register", variant="secondary")
                                 register_message = gr.Markdown(visible=False)
@@ -2037,18 +2257,33 @@ class CurriculumManager:
             else:
                 return gr.update(value=f"❌ {result}", visible=True), gr.update(visible=True), gr.update(visible=False)
         
-        def handle_registration(email, password, confirm_password):
+        def handle_registration(email, password, confirm_password, name, institution):
             """Handle user registration"""
-            if not email or not password or not confirm_password:
-                return gr.update(value="⚠️ Please fill in all fields", visible=True)
+            if not email or not password or not confirm_password or not name:
+                return gr.update(value="⚠️ Please fill in all required fields (email, password, name)", visible=True)
             
             if password != confirm_password:
                 return gr.update(value="❌ Passwords do not match", visible=True)
             
-            if len(password) < 6:
-                return gr.update(value="❌ Password must be at least 6 characters", visible=True)
+            if len(password) < 8:
+                return gr.update(value="❌ Password must be at least 8 characters", visible=True)
             
-            success, message = self.auth_manager.create_user(email, password)
+            # Validate email format (more strict validation)
+            email_parts = email.split("@")
+            if len(email_parts) != 2 or not email_parts[0] or not email_parts[1]:
+                return gr.update(value="❌ Please enter a valid email address", visible=True)
+            
+            domain = email_parts[1]
+            if "." not in domain or domain.endswith(".") or domain.startswith("."):
+                return gr.update(value="❌ Please enter a valid email address", visible=True)
+            
+            # Create profile data
+            profile_data = {
+                "name": name.strip(),
+                "institution": institution.strip() if institution else ""
+            }
+            
+            success, message = self.auth_manager.create_user(email, password, profile_data=profile_data)
             
             if success:
                 return gr.update(value=f"✅ User registered successfully. Please login now.", visible=True)
@@ -2135,7 +2370,7 @@ class CurriculumManager:
         
         register_btn.click(
             fn=handle_registration,
-            inputs=[reg_email, reg_password, reg_confirm],
+            inputs=[reg_email, reg_password, reg_confirm, reg_name, reg_institution],
             outputs=[register_message]
         )
         
@@ -2160,6 +2395,185 @@ class CurriculumManager:
             fn=load_notes_for_week,
             inputs=[notes_week_selector],
             outputs=[existing_notes]
+        )
+        
+        # Mark Complete button event
+        def handle_mark_complete(week_num):
+            """Handle marking a week as complete and refresh progress data"""
+            if not self.auth_manager.is_logged_in():
+                return "❌ Please log in to track progress"
+            
+            # Get the current week's main topic
+            week_data = self.curriculum_data.get(str(week_num), {})
+            topic_name = week_data.get('title', f'Week {week_num}')
+            
+            # Mark as complete with default values
+            success, message = self.performance_tracker.mark_topic_complete(
+                week_number=week_num,
+                topic_id=topic_name,
+                study_hours=2.0,  # Default study hours
+                quiz_score=85.0,  # Default score
+                notes=f"Completed {topic_name} curriculum"
+            )
+            
+            if success:
+                # Refresh the performance tracker data immediately
+                self.performance_tracker.refresh_progress_data()
+                
+                # Trigger refresh callbacks to update other components
+                self.trigger_refresh_callbacks()
+                
+                return f"✅ {topic_name} marked as complete! Progress data refreshed."
+            else:
+                return message
+        
+        mark_complete_btn.click(
+            fn=handle_mark_complete,
+            inputs=[week_selector],
+            outputs=[completion_status]
+        )
+        
+        # Show/hide completion status based on content
+        def show_completion_status(status_msg):
+            if status_msg.strip():
+                return gr.update(visible=True, value=status_msg)
+            else:
+                return gr.update(visible=False, value="")
+        
+        completion_status.change(
+            fn=show_completion_status,
+            inputs=[completion_status],
+            outputs=[completion_status]
+        )
+        
+        # Notes Interface Navigation Functions
+        def show_notes_choice():
+            """Show the notes choice interface"""
+            return gr.update(visible=True)
+        
+        def show_quick_notes():
+            """Show the quick notes interface"""
+            return (
+                gr.update(visible=False),  # notes_choice_area
+                gr.update(visible=True),   # quick_notes_area
+                gr.update(visible=False)   # auth_notes_area
+            )
+        
+        def show_advanced_notes():
+            """Show the advanced notes interface"""
+            return (
+                gr.update(visible=False),  # notes_choice_area
+                gr.update(visible=False),  # quick_notes_area
+                gr.update(visible=True)    # auth_notes_area
+            )
+        
+        def back_to_notes_choice():
+            """Return to the notes choice interface"""
+            return (
+                gr.update(visible=True),   # notes_choice_area
+                gr.update(visible=False),  # quick_notes_area
+                gr.update(visible=False)   # auth_notes_area
+            )
+        
+        def handle_quick_save_note(student_name, week_num, title, content):
+            """Handle saving a quick note"""
+            if not student_name or not title or not content:
+                return (
+                    gr.update(value="⚠️ Please fill in all fields (Student Name, Title, and Content)", visible=True),
+                    title,
+                    content,
+                    self.get_simple_notes_html(student_name, week_num) if student_name else ""
+                )
+            
+            success, message = self.create_simple_note(student_name, week_num, title, content)
+            
+            if success:
+                return (
+                    gr.update(value=f"✅ {message}", visible=True),
+                    "",  # Clear title
+                    "",  # Clear content
+                    self.get_simple_notes_html(student_name, week_num)
+                )
+            else:
+                return (
+                    gr.update(value=f"❌ {message}", visible=True),
+                    title,
+                    content,
+                    self.get_simple_notes_html(student_name, week_num) if student_name else ""
+                )
+        
+        def handle_quick_clear_note():
+            """Clear the quick note form"""
+            return "", "", gr.update(value="", visible=False)
+        
+        def handle_quick_view_notes(student_name, week_num):
+            """View notes for a student"""
+            if not student_name:
+                return gr.update(value="⚠️ Please enter your student name first", visible=True), ""
+            
+            notes_html = self.get_simple_notes_html(student_name, week_num)
+            return gr.update(value="", visible=False), notes_html
+        
+        def handle_quick_week_change(student_name, week_num):
+            """Update notes display when week changes"""
+            if student_name:
+                return self.get_simple_notes_html(student_name, week_num)
+            else:
+                return ""
+        
+        # Connect notes interface events
+        add_notes_btn.click(
+            fn=show_notes_choice,
+            outputs=[notes_choice_area]
+        )
+        
+        quick_notes_btn.click(
+            fn=show_quick_notes,
+            outputs=[notes_choice_area, quick_notes_area, auth_notes_area]
+        )
+        
+        advanced_notes_btn.click(
+            fn=show_advanced_notes,
+            outputs=[notes_choice_area, quick_notes_area, auth_notes_area]
+        )
+        
+        back_to_choice_btn.click(
+            fn=back_to_notes_choice,
+            outputs=[notes_choice_area, quick_notes_area, auth_notes_area]
+        )
+        
+        back_to_choice_btn2.click(
+            fn=back_to_notes_choice,
+            outputs=[notes_choice_area, quick_notes_area, auth_notes_area]
+        )
+        
+        quick_save_btn.click(
+            fn=handle_quick_save_note,
+            inputs=[student_name, quick_notes_week, quick_note_title, quick_note_content],
+            outputs=[quick_notes_status, quick_note_title, quick_note_content, quick_notes_display]
+        )
+        
+        quick_clear_btn.click(
+            fn=handle_quick_clear_note,
+            outputs=[quick_note_title, quick_note_content, quick_notes_status]
+        )
+        
+        quick_view_btn.click(
+            fn=handle_quick_view_notes,
+            inputs=[student_name, quick_notes_week],
+            outputs=[quick_notes_status, quick_notes_display]
+        )
+        
+        quick_notes_week.change(
+            fn=handle_quick_week_change,
+            inputs=[student_name, quick_notes_week],
+            outputs=[quick_notes_display]
+        )
+        
+        student_name.change(
+            fn=handle_quick_week_change,
+            inputs=[student_name, quick_notes_week],
+            outputs=[quick_notes_display]
         )
         
         # Initialize with first week

@@ -1,6 +1,29 @@
 #!/usr/bin/env python3
 """
-🧠⚖️ AI Governance Architect's Codex - Full Study Portal
+🧠⚖️ AI Governance Arc        print("📊 Initializing Performance Tracker...")
+        performance_tracker = PerformanceTracker(auth_manager)
+        components['performance_tracker'] = performance_tracker
+        print("✅ PerformanceTracker initialized successfully")
+        
+        print("📖 Initializing Curriculum Manager...")
+        curriculum_mgr = CurriculumManager(auth_manager, performance_tracker)
+        components['curriculum_mgr'] = curriculum_mgr
+        print("✅ CurriculumManager initialized successfully")
+        
+        print("⚖️ Initializing EU AI Act Explorer...")
+        ai_act_explorer = AIActExplorer()
+        components['ai_act_explorer'] = ai_act_explorer
+        print("✅ AIActExplorer initialized successfully")
+        
+        print("🤖 Initializing Model Demos...")
+        model_demos = ModelDemos()
+        components['model_demos'] = model_demos
+        print("✅ ModelDemos initialized successfully")
+        
+        print("🧠 Initializing AI Tutor...")
+        ai_tutor = AITutor()
+        components['ai_tutor'] = ai_tutor
+        print("✅ AITutor initialized successfully")Codex - Full Study Portal
 A next-gen AI Governance Study Platform combining curriculum tracking,
 EU AI Act exploration, ML demos, and AI tutoring.
 
@@ -13,7 +36,7 @@ import json
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 import sys
 from pathlib import Path
@@ -47,10 +70,25 @@ def create_main_interface():
         components['auth_manager'] = auth_manager
         print("✅ AuthManager initialized successfully")
         
+        print("� Initializing Performance Tracker...")
+        performance_tracker = PerformanceTracker(auth_manager)
+        components['performance_tracker'] = performance_tracker
+        print("✅ PerformanceTracker initialized successfully")
+        
         print("📖 Initializing Curriculum Manager...")
-        curriculum_mgr = CurriculumManager(auth_manager)
+        curriculum_mgr = CurriculumManager(auth_manager, performance_tracker)
         components['curriculum_mgr'] = curriculum_mgr
         print("✅ CurriculumManager initialized successfully")
+        
+        print("🧪 Initializing Quiz Engine...")
+        quiz_engine = QuizEngine(auth_manager)
+        components['quiz_engine'] = quiz_engine
+        print("✅ QuizEngine initialized successfully")
+        
+        print("🎯 Initializing ISTQB AI Tester...")
+        istqb_ai_tester = ISTQBAITester(auth_manager)
+        components['istqb_ai_tester'] = istqb_ai_tester
+        print("✅ ISTQBAITester initialized successfully")
         
         print("⚖️ Initializing EU AI Act Explorer...")
         ai_act_explorer = AIActExplorer()
@@ -67,24 +105,18 @@ def create_main_interface():
         components['ai_tutor'] = ai_tutor
         print("✅ AITutor initialized successfully")
         
-        print("📊 Initializing Performance Tracker...")
-        performance_tracker = PerformanceTracker()
-        components['performance_tracker'] = performance_tracker
-        print("✅ PerformanceTracker initialized successfully")
-        
-        print("🧪 Initializing Quiz Engine...")
-        quiz_engine = QuizEngine(auth_manager)
-        components['quiz_engine'] = quiz_engine
-        print("✅ QuizEngine initialized successfully")
-        
-        print("🎯 Initializing ISTQB AI Tester...")
-        istqb_ai_tester = ISTQBAITester(auth_manager)
-        components['istqb_ai_tester'] = istqb_ai_tester
-        print("✅ ISTQBAITester initialized successfully")
-        
         print("=" * 60)
         print(f"🎉 All {len(components)} components initialized successfully!")
         print("=" * 60)
+        
+        # Extract components for use
+        curriculum_mgr = components.get('curriculum_mgr')
+        ai_act_explorer = components.get('ai_act_explorer')
+        model_demos = components.get('model_demos')
+        ai_tutor = components.get('ai_tutor')
+        performance_tracker = components.get('performance_tracker')
+        quiz_engine = components.get('quiz_engine')
+        istqb_ai_tester = components.get('istqb_ai_tester')
         
     except Exception as e:
         print(f"❌ Error initializing components: {e}")
@@ -135,17 +167,100 @@ def create_main_interface():
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             margin: 1rem 0;
         }
+        .login-header {
+            position: relative;
+            overflow: visible;
+        }
+        .login-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .login-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        .auth-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            min-width: 300px;
+            max-width: 400px;
+        }
         """
     ) as app:
         
-        # Header
-        gr.HTML("""
-        <div class="codex-header">
-            <h1>🧠⚖️ AI Governance Architect's Codex</h1>
-            <p>Next-Gen AI/ML Study Portal • EU AI Act • AIGP Certification • Model Demos</p>
-            <p><small>✨ Powered by Gradio 4.x + Modern ML Stack ✨</small></p>
-        </div>
-        """)
+        # Header with Login Button
+        with gr.Row():
+            with gr.Column(scale=10):
+                gr.HTML("""
+                <div class="codex-header login-header">
+                    <h1>🧠⚖️ AI Governance Architect's Codex</h1>
+                    <p>Next-Gen AI/ML Study Portal • EU AI Act • AIGP Certification • Model Demos</p>
+                    <p><small>✨ Powered by Gradio 4.x + Modern ML Stack ✨</small></p>
+                </div>
+                """)
+            
+            with gr.Column(scale=2, min_width=200):
+                # Login Status and Button
+                login_status = gr.HTML(value="""
+                    <div style="text-align: center; padding: 0.5rem;">
+                        <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 8px; padding: 0.5rem; margin-bottom: 0.5rem;">
+                            <small style="color: #dc2626;">🔓 Not Logged In</small>
+                        </div>
+                    </div>
+                """)
+                
+                with gr.Row():
+                    login_toggle_btn = gr.Button("🔐 Login", variant="primary", size="sm", scale=1)
+                    auth_dropdown_visible = gr.State(value=False)
+                
+                # Quick auth dropdown (initially hidden)
+                with gr.Column(visible=False) as auth_dropdown:
+                    gr.HTML("""
+                        <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; padding: 1rem; margin: 0.5rem 0;">
+                            <h4 style="margin: 0 0 0.5rem 0; color: #1e40af;">🔐 Quick Login</h4>
+                        </div>
+                    """)
+                    
+                    quick_email = gr.Textbox(
+                        label="Email",
+                        placeholder="Enter email",
+                        container=False
+                    )
+                    quick_password = gr.Textbox(
+                        label="Password",
+                        placeholder="Enter password",
+                        type="password",
+                        container=False
+                    )
+                    
+                    with gr.Row():
+                        quick_login_btn = gr.Button("Login", variant="primary", size="sm", scale=2)
+                        quick_close_btn = gr.Button("×", variant="secondary", size="sm", scale=1)
+                    
+                    quick_login_message = gr.HTML()
+                    
+                    # Quick register link
+                    gr.HTML("""
+                        <div style="text-align: center; margin-top: 0.5rem;">
+                            <small><a href="#" style="color: #2563eb;">New user? Register here</a></small>
+                        </div>
+                    """)
         
         with gr.Tabs() as tabs:
             
@@ -230,6 +345,22 @@ def create_main_interface():
                 print("🏗️ Creating Sync & Export interface...")
                 create_sync_interface()
                 print("✅ Sync & Export interface created")
+            
+            # 🎓 AI Study Topics Tab
+            with gr.Tab("🎓 AI Study Topics", elem_id="study-topics-tab"):
+                print("🏗️ Creating AI Study Topics interface...")
+                create_ai_study_topics_interface()
+                print("✅ AI Study Topics interface created")
+            
+            # 🔐 Authentication Tab
+            with gr.Tab("🔐 Authentication", elem_id="auth-tab"):
+                print("🏗️ Creating Authentication interface...")
+                if auth_manager:
+                    auth_manager.create_auth_interface()
+                    print("✅ Authentication interface created")
+                else:
+                    create_placeholder_interface("Authentication", "🔐")
+                    print("⚠️ Authentication placeholder created")
         
         # Footer
         gr.HTML("""
@@ -347,6 +478,85 @@ def create_main_interface():
             </div>
         </div>
         """)
+    
+        # Quick Login Handlers
+        def toggle_auth_dropdown():
+            """Toggle the authentication dropdown visibility"""
+            return gr.update(visible=not auth_dropdown_visible.value)
+        
+        def handle_quick_login(email, password):
+            """Handle quick login from header"""
+            if not email or not password:
+                return [
+                    """<div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 0.5rem; color: #dc2626; font-size: 0.8rem;">
+                    ❌ Email and password required</div>""",
+                    """<div style="text-align: center; padding: 0.5rem;">
+                        <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 8px; padding: 0.5rem; margin-bottom: 0.5rem;">
+                            <small style="color: #dc2626;">🔓 Login Failed</small>
+                        </div>
+                    </div>""",
+                    gr.update(visible=False),
+                    "", ""
+                ]
+            
+            success, result = auth_manager.authenticate_user(email, password)
+            
+            if success:
+                user_info = result
+                login_msg = f"""<div style="background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 0.5rem; color: #16a34a; font-size: 0.8rem;">
+                ✅ Welcome, {user_info['email'].split('@')[0]}!</div>"""
+                
+                status_html = f"""
+                <div style="text-align: center; padding: 0.5rem;">
+                    <div style="background: #dcfce7; border: 1px solid #86efac; border-radius: 8px; padding: 0.5rem; margin-bottom: 0.5rem;">
+                        <small style="color: #16a34a;">✅ {user_info['email'].split('@')[0]}</small>
+                    </div>
+                </div>
+                """
+                
+                return [
+                    login_msg,
+                    status_html,
+                    gr.update(visible=False),  # Hide dropdown after successful login
+                    "", ""  # Clear form
+                ]
+            else:
+                error_msg = f"""<div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 0.5rem; color: #dc2626; font-size: 0.8rem;">
+                ❌ {result}</div>"""
+                
+                return [
+                    error_msg,
+                    """<div style="text-align: center; padding: 0.5rem;">
+                        <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 8px; padding: 0.5rem; margin-bottom: 0.5rem;">
+                            <small style="color: #dc2626;">🔓 Login Failed</small>
+                        </div>
+                    </div>""",
+                    gr.update(visible=True),  # Keep dropdown visible
+                    "", ""  # Clear form
+                ]
+        
+        def close_auth_dropdown():
+            """Close the authentication dropdown"""
+            return gr.update(visible=False)
+        
+        # Connect quick login handlers
+        login_toggle_btn.click(
+            fn=toggle_auth_dropdown,
+            inputs=[],
+            outputs=[auth_dropdown]
+        )
+        
+        quick_login_btn.click(
+            fn=handle_quick_login,
+            inputs=[quick_email, quick_password],
+            outputs=[quick_login_message, login_status, auth_dropdown, quick_email, quick_password]
+        )
+        
+        quick_close_btn.click(
+            fn=close_auth_dropdown,
+            inputs=[],
+            outputs=[auth_dropdown]
+        )
     
     print("=" * 60)
     print("🎯 Interface construction completed successfully!")
@@ -778,40 +988,1390 @@ def create_sync_interface():
         outputs=[status_output, download_area]
     )
 
-if __name__ == "__main__":
-    print("\n" + "=" * 80)
-    print("🎯 AI GOVERNANCE ARCHITECT'S CODEX - STARTUP SEQUENCE")
-    print("=" * 80)
-    print("📅 Startup time:", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-    print("🐍 Python version:", sys.version.split()[0])
-    print("📂 Working directory:", os.getcwd())
-    print("=" * 80)
+def create_ai_study_topics_interface():
+    """Create comprehensive AI Study Topics interface with detailed educational content"""
     
-    # Create the app
-    print("🏗️ Building main interface...")
-    app = create_main_interface()
-    print("✅ Main interface built successfully!")
+    # Header
+    gr.HTML("""
+    <div style="
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white; padding: 2rem; border-radius: 15px; margin: 1rem 0;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    ">
+        <h1 style="margin: 0; font-size: 2.2rem; text-align: center;">
+            🎓 AI Study Topics Comprehensive Guide
+        </h1>
+        <p style="margin: 0.5rem 0 0 0; text-align: center; font-size: 1.1rem; opacity: 0.9;">
+            Complete reference for AI concepts, technologies, and governance
+        </p>
+    </div>
+    """)
     
-    print("=" * 80)
-    print("🚀 Launching Gradio application...")
-    print("🌐 Server: 0.0.0.0:7860")
-    print("🔗 Share: Disabled")
-    print("🐛 Debug: Enabled")
-    print("⚠️ Show Errors: Enabled") 
+    # Topic Navigation
+    with gr.Row():
+        topic_selector = gr.Dropdown(
+            choices=[
+                "🔍 Overview",
+                "🎯 Fundamentals", 
+                "🤖 AI Models",
+                "⚡ Advanced AI",
+                "💻 Technologies",
+                "⚖️ Ethics & Governance"
+            ],
+            label="📚 Select Study Topic",
+            value="🔍 Overview"
+        )
     
-    # Check for favicon
-    favicon_exists = os.path.exists("static/images/favicon.ico")
-    print(f"🎯 Favicon: {'Found' if favicon_exists else 'Not found'}")
+    # Content Display Area
+    topic_content = gr.HTML(
+        label="📖 Topic Content",
+        value=get_overview_content()
+    )
     
-    print("=" * 80)
-    print("🎉 Ready to serve! Application launching...")
-    print("=" * 80 + "\n")
+    # Interactive Functions
+    def update_topic_content(selected_topic):
+        """Update content based on selected topic"""
+        if "Overview" in selected_topic:
+            return get_overview_content()
+        elif "Fundamentals" in selected_topic:
+            return get_fundamentals_content()
+        elif "AI Models" in selected_topic:
+            return get_models_content()
+        elif "Advanced AI" in selected_topic:
+            return get_advanced_ai_content()
+        elif "Technologies" in selected_topic:
+            return get_technologies_content()
+        elif "Ethics & Governance" in selected_topic:
+            return get_ethics_governance_content()
+        else:
+            return get_overview_content()
     
-    # Launch with custom settings
-    app.launch(
-        server_name="0.0.0.0",
-        server_port=7860,
-        debug=False,
-        show_error=True,
-        favicon_path="static/images/favicon.ico" if favicon_exists else None
-    ) 
+    # Event Handler
+    topic_selector.change(
+        fn=update_topic_content,
+        inputs=[topic_selector],
+        outputs=[topic_content]
+    )
+
+def get_overview_content():
+    """Generate overview content for AI Study Topics"""
+    return """
+    <div style="font-family: 'Inter', 'Lexend', sans-serif; line-height: 1.6; color: #1f2937;">
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid #3b82f6;">
+            <h2 style="color: #1e40af; margin-top: 0; font-size: 1.8rem;">📋 Study Topics Overview</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                
+                <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="margin-top: 0; color: #fff; font-size: 1.3rem;">🎯 Fundamentals</h3>
+                    <ul style="margin: 1rem 0; padding-left: 1.2rem;">
+                        <li>Probabilistic vs Deterministic Systems</li>
+                        <li>AI Types (ANI, AGI, ASI)</li>
+                        <li>Reinforcement Learning Basics</li>
+                        <li>Penalties & Rewards Systems</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="margin-top: 0; color: #fff; font-size: 1.3rem;">🤖 AI Models</h3>
+                    <ul style="margin: 1rem 0; padding-left: 1.2rem;">
+                        <li>Supervised & Unsupervised Learning</li>
+                        <li>Neural Networks & Deep Learning</li>
+                        <li>Transformer Models & LLMs</li>
+                        <li>Multimodal AI Systems</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="margin-top: 0; color: #fff; font-size: 1.3rem;">⚡ Advanced AI</h3>
+                    <ul style="margin: 1rem 0; padding-left: 1.2rem;">
+                        <li>Generative AI Technologies</li>
+                        <li>Agentic AI Systems</li>
+                        <li>Foundation Models</li>
+                        <li>Emergent Capabilities</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="margin-top: 0; color: #fff; font-size: 1.3rem;">💻 Technologies</h3>
+                    <ul style="margin: 1rem 0; padding-left: 1.2rem;">
+                        <li>Privacy-Enhancing Technologies</li>
+                        <li>Blockchain Integration</li>
+                        <li>AR/VR & Metaverse</li>
+                        <li>Edge Computing</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="margin-top: 0; color: #fff; font-size: 1.3rem;">⚖️ Ethics & Governance</h3>
+                    <ul style="margin: 1rem 0; padding-left: 1.2rem;">
+                        <li>Types of AI Bias</li>
+                        <li>Fairness & Accountability</li>
+                        <li>Transparency Requirements</li>
+                        <li>EU AI Act Compliance</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="margin-top: 0; color: #fff; font-size: 1.3rem;">🔍 Study Approach</h3>
+                    <ul style="margin: 1rem 0; padding-left: 1.2rem;">
+                        <li>Theoretical Foundations</li>
+                        <li>Practical Applications</li>
+                        <li>Regulatory Compliance</li>
+                        <li>Industry Best Practices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #fffbeb; border: 2px solid #f59e0b; border-radius: 12px; padding: 1.5rem; margin: 2rem 0;">
+            <h3 style="color: #92400e; margin-top: 0; font-size: 1.4rem;">📚 How to Use This Guide</h3>
+            <ol style="color: #78350f; font-size: 1.1rem;">
+                <li><strong>Select a Topic:</strong> Use the dropdown above to explore different areas</li>
+                <li><strong>Progressive Learning:</strong> Start with Fundamentals and advance through the topics</li>
+                <li><strong>Practical Application:</strong> Apply concepts using the Model Demos and Quiz sections</li>
+                <li><strong>Compliance Focus:</strong> Connect learning to EU AI Act requirements</li>
+            </ol>
+        </div>
+    </div>
+    """
+
+def get_fundamentals_content():
+    """Generate fundamentals content"""
+    return """
+    <div style="font-family: 'Inter', 'Lexend', sans-serif; line-height: 1.6; color: #1f2937;">
+        <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h2 style="margin-top: 0; font-size: 2rem;">🎯 AI Fundamentals</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Core concepts and foundational principles of artificial intelligence</p>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">🎲 Probabilistic vs Deterministic Systems</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0;">
+                <div style="background: #e0f2fe; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #0277bd;">
+                    <h4 style="color: #01579b; margin-top: 0;">🎯 Deterministic Systems</h4>
+                    <p><strong>Definition:</strong> Systems that produce the same output for the same input every time.</p>
+                    <p><strong>Characteristics:</strong></p>
+                    <ul>
+                        <li>Predictable outcomes</li>
+                        <li>Rule-based logic</li>
+                        <li>No randomness</li>
+                        <li>Traditional programming</li>
+                    </ul>
+                    <p><strong>Examples:</strong> Calculators, traditional algorithms, expert systems</p>
+                </div>
+                
+                <div style="background: #f3e5f5; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #7b1fa2;">
+                    <h4 style="color: #4a148c; margin-top: 0;">🎲 Probabilistic Systems</h4>
+                    <p><strong>Definition:</strong> Systems that incorporate uncertainty and produce outputs based on probabilities.</p>
+                    <p><strong>Characteristics:</strong></p>
+                    <ul>
+                        <li>Uncertainty handling</li>
+                        <li>Statistical inference</li>
+                        <li>Learning from data</li>
+                        <li>Adaptive behavior</li>
+                    </ul>
+                    <p><strong>Examples:</strong> Machine learning models, neural networks, recommendation systems</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">🧠 Types of Artificial Intelligence</h3>
+            
+            <div style="margin: 1.5rem 0;">
+                <div style="background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%); color: white; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🎯 ANI - Artificial Narrow Intelligence</h4>
+                    <p><strong>Current State:</strong> What we have today</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                        <div>
+                            <p><strong>Characteristics:</strong></p>
+                            <ul>
+                                <li>Task-specific intelligence</li>
+                                <li>Limited domain expertise</li>
+                                <li>Cannot transfer knowledge</li>
+                                <li>Requires training data</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p><strong>Examples:</strong></p>
+                            <ul>
+                                <li>ChatGPT, Claude, GPT-4</li>
+                                <li>Image recognition systems</li>
+                                <li>Recommendation algorithms</li>
+                                <li>Game-playing AI (Chess, Go)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🌟 AGI - Artificial General Intelligence</h4>
+                    <p><strong>Future Goal:</strong> Human-level intelligence across all domains</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                        <div>
+                            <p><strong>Characteristics:</strong></p>
+                            <ul>
+                                <li>Human-level cognitive abilities</li>
+                                <li>Cross-domain knowledge transfer</li>
+                                <li>Self-learning and adaptation</li>
+                                <li>Common sense reasoning</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p><strong>Timeline & Challenges:</strong></p>
+                            <ul>
+                                <li>Estimated: 2030s-2040s</li>
+                                <li>Consciousness questions</li>
+                                <li>Transfer learning</li>
+                                <li>Ethical considerations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🚀 ASI - Artificial Super Intelligence</h4>
+                    <p><strong>Theoretical Future:</strong> Intelligence far exceeding human capabilities</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                        <div>
+                            <p><strong>Characteristics:</strong></p>
+                            <ul>
+                                <li>Vastly superior to human intelligence</li>
+                                <li>Self-improvement capabilities</li>
+                                <li>Recursive enhancement</li>
+                                <li>Unprecedented problem-solving</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p><strong>Considerations:</strong></p>
+                            <ul>
+                                <li>Existential risk concerns</li>
+                                <li>Alignment problems</li>
+                                <li>Control mechanisms</li>
+                                <li>Societal transformation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">🎮 Reinforcement Learning & Penalties/Rewards</h3>
+            
+            <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 10px; border: 2px solid #4caf50; margin: 1rem 0;">
+                <h4 style="color: #2e7d32; margin-top: 0;">🧩 Core Concept</h4>
+                <p style="font-size: 1.1rem;"><strong>Reinforcement Learning (RL):</strong> An AI paradigm where agents learn to make decisions by interacting with an environment and receiving feedback through rewards and penalties.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0;">
+                <div style="background: #fff3cd; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ffc107;">
+                    <h4 style="color: #856404; margin-top: 0;">🏆 Rewards System</h4>
+                    <ul>
+                        <li><strong>Positive Reinforcement:</strong> Encourages desired behaviors</li>
+                        <li><strong>Immediate vs Delayed:</strong> Short-term vs long-term benefits</li>
+                        <li><strong>Sparse vs Dense:</strong> Frequency of reward signals</li>
+                        <li><strong>Intrinsic vs Extrinsic:</strong> Internal vs external motivation</li>
+                    </ul>
+                    <p><strong>Examples:</strong> Points in games, successful task completion, efficiency improvements</p>
+                </div>
+                
+                <div style="background: #f8d7da; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #dc3545;">
+                    <h4 style="color: #721c24; margin-top: 0;">⚠️ Penalties System</h4>
+                    <ul>
+                        <li><strong>Negative Reinforcement:</strong> Discourages unwanted behaviors</li>
+                        <li><strong>Punishment Types:</strong> Time penalties, score deductions</li>
+                        <li><strong>Exploration vs Exploitation:</strong> Balancing risk and safety</li>
+                        <li><strong>Safety Constraints:</strong> Hard limits on dangerous actions</li>
+                    </ul>
+                    <p><strong>Examples:</strong> Game over states, collision penalties, resource waste</p>
+                </div>
+            </div>
+            
+            <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                <h4 style="color: #0d47a1; margin-top: 0;">🔄 RL Learning Process</h4>
+                <ol style="font-size: 1.1rem;">
+                    <li><strong>Observation:</strong> Agent perceives the current state</li>
+                    <li><strong>Action:</strong> Agent chooses an action based on policy</li>
+                    <li><strong>Environment Response:</strong> Environment changes state</li>
+                    <li><strong>Reward/Penalty:</strong> Agent receives feedback</li>
+                    <li><strong>Learning:</strong> Agent updates its policy</li>
+                    <li><strong>Iteration:</strong> Process repeats continuously</li>
+                </ol>
+            </div>
+            
+            <div style="background: #fff; border: 2px solid #9c27b0; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                <h4 style="color: #7b1fa2; margin-top: 0;">🎯 Real-World Applications</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div>
+                        <p><strong>🤖 Robotics:</strong> Navigation, manipulation, human interaction</p>
+                    </div>
+                    <div>
+                        <p><strong>🎮 Gaming:</strong> NPC behavior, procedural content, balancing</p>
+                    </div>
+                    <div>
+                        <p><strong>🚗 Autonomous Vehicles:</strong> Driving decisions, safety protocols</p>
+                    </div>
+                    <div>
+                        <p><strong>💼 Business:</strong> Resource allocation, pricing strategies</p>
+                    </div>
+                    <div>
+                        <p><strong>🏥 Healthcare:</strong> Treatment optimization, drug discovery</p>
+                    </div>
+                    <div>
+                        <p><strong>💰 Finance:</strong> Trading algorithms, risk management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    """
+
+def get_models_content():
+    """Generate AI models content"""
+    return """
+    <div style="font-family: 'Inter', 'Lexend', sans-serif; line-height: 1.6; color: #1f2937;">
+        <div style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); color: white; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h2 style="margin-top: 0; font-size: 2rem;">🤖 AI Models & Learning Paradigms</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Comprehensive guide to different types of AI models and learning approaches</p>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">📊 Learning Paradigms</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                
+                <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">📋 Supervised Learning</h4>
+                    <p><strong>Definition:</strong> Learning with labeled training data</p>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Key Characteristics:</strong></p>
+                        <ul>
+                            <li>Input-output pairs provided</li>
+                            <li>Ground truth labels available</li>
+                            <li>Predictive accuracy measurable</li>
+                            <li>Goal: Generalize to unseen data</li>
+                        </ul>
+                        <p><strong>Common Algorithms:</strong></p>
+                        <ul>
+                            <li>Linear/Logistic Regression</li>
+                            <li>Decision Trees & Random Forests</li>
+                            <li>Support Vector Machines</li>
+                            <li>Neural Networks</li>
+                        </ul>
+                        <p><strong>Applications:</strong> Image classification, speech recognition, medical diagnosis, fraud detection</p>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🔄 Semi-Supervised Learning</h4>
+                    <p><strong>Definition:</strong> Learning with both labeled and unlabeled data</p>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Key Characteristics:</strong></p>
+                        <ul>
+                            <li>Limited labeled data</li>
+                            <li>Abundant unlabeled data</li>
+                            <li>Combines supervised & unsupervised</li>
+                            <li>Cost-effective approach</li>
+                        </ul>
+                        <p><strong>Techniques:</strong></p>
+                        <ul>
+                            <li>Self-training</li>
+                            <li>Co-training</li>
+                            <li>Graph-based methods</li>
+                            <li>Generative models</li>
+                        </ul>
+                        <p><strong>Applications:</strong> Web content classification, protein sequence analysis, speech analysis</p>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🔍 Unsupervised Learning</h4>
+                    <p><strong>Definition:</strong> Learning patterns from unlabeled data</p>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Key Characteristics:</strong></p>
+                        <ul>
+                            <li>No labeled examples</li>
+                            <li>Pattern discovery focus</li>
+                            <li>Exploratory data analysis</li>
+                            <li>Hidden structure revelation</li>
+                        </ul>
+                        <p><strong>Common Methods:</strong></p>
+                        <ul>
+                            <li>Clustering (K-means, DBSCAN)</li>
+                            <li>Dimensionality Reduction (PCA, t-SNE)</li>
+                            <li>Association Rules</li>
+                            <li>Autoencoders</li>
+                        </ul>
+                        <p><strong>Applications:</strong> Customer segmentation, anomaly detection, data compression, recommendation systems</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">🧠 Neural Networks & Deep Learning</h3>
+            
+            <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 10px; border: 2px solid #2196f3; margin: 1rem 0;">
+                <h4 style="color: #0d47a1; margin-top: 0;">🔗 Neural Network Fundamentals</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <p><strong>Basic Components:</strong></p>
+                        <ul>
+                            <li><strong>Neurons (Nodes):</strong> Processing units</li>
+                            <li><strong>Weights:</strong> Connection strengths</li>
+                            <li><strong>Biases:</strong> Threshold adjustments</li>
+                            <li><strong>Activation Functions:</strong> Non-linear transformations</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Network Architecture:</strong></p>
+                        <ul>
+                            <li><strong>Input Layer:</strong> Receives data</li>
+                            <li><strong>Hidden Layers:</strong> Process information</li>
+                            <li><strong>Output Layer:</strong> Produces results</li>
+                            <li><strong>Connections:</strong> Information flow paths</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #f3e5f5; padding: 1.5rem; border-radius: 10px; border: 2px solid #9c27b0; margin: 1rem 0;">
+                <h4 style="color: #4a148c; margin-top: 0;">🏗️ Deep Learning Architecture Types</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1rem 0;">
+                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #e91e63;">
+                        <h5 style="color: #c2185b; margin-top: 0;">📸 Convolutional Neural Networks (CNNs)</h5>
+                        <p><strong>Specialized for:</strong> Image and spatial data processing</p>
+                        <p><strong>Key Features:</strong> Convolution layers, pooling, feature maps</p>
+                        <p><strong>Applications:</strong> Computer vision, medical imaging</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #9c27b0;">
+                        <h5 style="color: #7b1fa2; margin-top: 0;">📝 Recurrent Neural Networks (RNNs)</h5>
+                        <p><strong>Specialized for:</strong> Sequential and time-series data</p>
+                        <p><strong>Key Features:</strong> Memory cells, temporal dependencies</p>
+                        <p><strong>Applications:</strong> NLP, speech recognition, time series</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #673ab7;">
+                        <h5 style="color: #512da8; margin-top: 0;">🎯 Long Short-Term Memory (LSTM)</h5>
+                        <p><strong>Specialized for:</strong> Long-range dependencies</p>
+                        <p><strong>Key Features:</strong> Forget gates, input gates, output gates</p>
+                        <p><strong>Applications:</strong> Language modeling, machine translation</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #3f51b5;">
+                        <h5 style="color: #303f9f; margin-top: 0;">🔄 Generative Adversarial Networks (GANs)</h5>
+                        <p><strong>Specialized for:</strong> Data generation</p>
+                        <p><strong>Key Features:</strong> Generator vs discriminator</p>
+                        <p><strong>Applications:</strong> Image synthesis, data augmentation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">🔤 Large Language Models (LLMs) & Transformers</h3>
+            
+            <div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                <h4 style="margin-top: 0; font-size: 1.4rem;">⚡ The Transformer Revolution</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0;">
+                    <div>
+                        <p><strong>Key Innovation:</strong> "Attention is All You Need" (2017)</p>
+                        <p><strong>Core Mechanism:</strong></p>
+                        <ul>
+                            <li>Self-attention mechanisms</li>
+                            <li>Parallel processing</li>
+                            <li>Positional encoding</li>
+                            <li>Multi-head attention</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Advantages over RNNs:</strong></p>
+                        <ul>
+                            <li>Faster training (parallelization)</li>
+                            <li>Better long-range dependencies</li>
+                            <li>More interpretable attention</li>
+                            <li>Scalability to larger models</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                <div style="background: #fff; border: 2px solid #10b981; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #059669; margin-top: 0;">🤖 Major LLM Families</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>GPT Series (OpenAI):</strong></p>
+                        <ul>
+                            <li>GPT-3, GPT-4, ChatGPT</li>
+                            <li>Autoregressive generation</li>
+                            <li>General-purpose capabilities</li>
+                        </ul>
+                        <p><strong>BERT & Variants (Google):</strong></p>
+                        <ul>
+                            <li>Bidirectional encoding</li>
+                            <li>Masked language modeling</li>
+                            <li>Understanding-focused</li>
+                        </ul>
+                        <p><strong>T5, PaLM, LaMDA:</strong></p>
+                        <ul>
+                            <li>Text-to-text frameworks</li>
+                            <li>Scaling laws exploration</li>
+                            <li>Specialized applications</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: #fff; border: 2px solid #f59e0b; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #d97706; margin-top: 0;">🧠 LLM Capabilities</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Core Abilities:</strong></p>
+                        <ul>
+                            <li>Text generation & completion</li>
+                            <li>Language understanding</li>
+                            <li>Question answering</li>
+                            <li>Summarization</li>
+                        </ul>
+                        <p><strong>Emergent Capabilities:</strong></p>
+                        <ul>
+                            <li>Few-shot learning</li>
+                            <li>Chain-of-thought reasoning</li>
+                            <li>Code generation</li>
+                            <li>Multimodal understanding</li>
+                        </ul>
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Chatbots & assistants</li>
+                            <li>Content creation</li>
+                            <li>Code assistance</li>
+                            <li>Education & tutoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">🌐 Multimodal AI Models</h3>
+            
+            <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 10px; border: 2px solid #4caf50; margin: 1rem 0;">
+                <h4 style="color: #2e7d32; margin-top: 0;">🎭 What are Multimodal Models?</h4>
+                <p style="font-size: 1.1rem;">AI systems that can process and understand multiple types of data simultaneously (text, images, audio, video) and generate responses across different modalities.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                <div style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0;">🖼️ Vision-Language Models</h4>
+                    <p><strong>Examples:</strong> GPT-4V, CLIP, DALL-E</p>
+                    <p><strong>Capabilities:</strong></p>
+                    <ul>
+                        <li>Image captioning</li>
+                        <li>Visual question answering</li>
+                        <li>Text-to-image generation</li>
+                        <li>Image-to-text search</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0;">🎵 Audio-Text Models</h4>
+                    <p><strong>Examples:</strong> Whisper, MusicLM, AudioGPT</p>
+                    <p><strong>Capabilities:</strong></p>
+                    <ul>
+                        <li>Speech-to-text transcription</li>
+                        <li>Text-to-speech synthesis</li>
+                        <li>Music generation</li>
+                        <li>Audio classification</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0;">🎬 Video Understanding</h4>
+                    <p><strong>Examples:</strong> VideoBERT, Video-ChatGPT</p>
+                    <p><strong>Capabilities:</strong></p>
+                    <ul>
+                        <li>Video captioning</li>
+                        <li>Action recognition</li>
+                        <li>Temporal reasoning</li>
+                        <li>Video-to-text summarization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: #fffbeb; border: 2px solid #f59e0b; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                <h4 style="color: #92400e; margin-top: 0;">🚀 Future Directions</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <p><strong>Technical Advances:</strong></p>
+                        <ul>
+                            <li>Unified multimodal architectures</li>
+                            <li>Cross-modal attention mechanisms</li>
+                            <li>Efficient training techniques</li>
+                            <li>Real-time processing capabilities</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Autonomous vehicles (vision + lidar)</li>
+                            <li>Healthcare diagnostics</li>
+                            <li>Interactive AI assistants</li>
+                            <li>Content creation platforms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    """
+
+def get_advanced_ai_content():
+    """Generate advanced AI content"""
+    return """
+    <div style="font-family: 'Inter', 'Lexend', sans-serif; line-height: 1.6; color: #1f2937;">
+        <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h2 style="margin-top: 0; font-size: 2rem;">⚡ Advanced AI Technologies</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Cutting-edge AI technologies shaping the future</p>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">🎨 Generative AI</h3>
+            
+            <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 10px; border: 2px solid #2196f3; margin: 1rem 0;">
+                <h4 style="color: #0d47a1; margin-top: 0;">🔬 What is Generative AI?</h4>
+                <p style="font-size: 1.1rem;">AI systems that can create new content, including text, images, audio, video, and code, by learning patterns from training data and generating novel outputs that resemble the training examples.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                
+                <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">📝 Text Generation</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Technologies:</strong></p>
+                        <ul>
+                            <li>Large Language Models (LLMs)</li>
+                            <li>GPT family (GPT-3, GPT-4, ChatGPT)</li>
+                            <li>Claude, PaLM, LaMDA</li>
+                            <li>Open-source: LLaMA, Alpaca</li>
+                        </ul>
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Content creation & copywriting</li>
+                            <li>Code generation & assistance</li>
+                            <li>Educational tutoring</li>
+                            <li>Creative writing & storytelling</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🖼️ Image Generation</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Technologies:</strong></p>
+                        <ul>
+                            <li>Diffusion Models (Stable Diffusion)</li>
+                            <li>DALL-E, DALL-E 2, DALL-E 3</li>
+                            <li>Midjourney, Adobe Firefly</li>
+                            <li>GANs (StyleGAN, CycleGAN)</li>
+                        </ul>
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Digital art & design</li>
+                            <li>Marketing & advertising</li>
+                            <li>Product visualization</li>
+                            <li>Concept art for games/films</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🎵 Audio & Video Generation</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Technologies:</strong></p>
+                        <ul>
+                            <li>MusicLM, AudioGPT</li>
+                            <li>ElevenLabs (voice synthesis)</li>
+                            <li>RunwayML (video generation)</li>
+                            <li>Meta's Make-A-Video</li>
+                        </ul>
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Music composition</li>
+                            <li>Voice dubbing & narration</li>
+                            <li>Video content creation</li>
+                            <li>Podcast & audiobook production</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                <h4 style="color: #856404; margin-top: 0;">⚖️ Ethical Considerations</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <p><strong>Key Concerns:</strong></p>
+                        <ul>
+                            <li>Copyright & intellectual property</li>
+                            <li>Deepfakes & misinformation</li>
+                            <li>Artist & creator displacement</li>
+                            <li>Bias in generated content</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Mitigation Strategies:</strong></p>
+                        <ul>
+                            <li>Content authentication systems</li>
+                            <li>Responsible AI guidelines</li>
+                            <li>Human-in-the-loop workflows</li>
+                            <li>Transparency in AI usage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">🤖 Agentic AI Systems</h3>
+            
+            <div style="background: #f3e5f5; padding: 1.5rem; border-radius: 10px; border: 2px solid #9c27b0; margin: 1rem 0;">
+                <h4 style="color: #4a148c; margin-top: 0;">🎯 What is Agentic AI?</h4>
+                <p style="font-size: 1.1rem;">AI systems that can autonomously plan, make decisions, and take actions to achieve specified goals, often operating with minimal human intervention over extended periods.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                
+                <div style="background: #fff; border: 2px solid #10b981; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #059669; margin-top: 0;">🧠 Core Capabilities</h4>
+                    <ul>
+                        <li><strong>Planning:</strong> Breaking down complex tasks</li>
+                        <li><strong>Reasoning:</strong> Logical decision-making</li>
+                        <li><strong>Memory:</strong> Retaining context & learning</li>
+                        <li><strong>Tool Use:</strong> Interacting with APIs & systems</li>
+                        <li><strong>Self-Reflection:</strong> Evaluating own performance</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #fff; border: 2px solid #3b82f6; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #1e40af; margin-top: 0;">🔧 Architecture Components</h4>
+                    <ul>
+                        <li><strong>LLM Core:</strong> Language understanding & generation</li>
+                        <li><strong>Planning Module:</strong> Task decomposition & sequencing</li>
+                        <li><strong>Memory Systems:</strong> Short-term & long-term storage</li>
+                        <li><strong>Tool Interface:</strong> External system integration</li>
+                        <li><strong>Reflection Loop:</strong> Performance evaluation</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #fff; border: 2px solid #f59e0b; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #d97706; margin-top: 0;">🌟 Example Frameworks</h4>
+                    <ul>
+                        <li><strong>AutoGPT:</strong> Autonomous task execution</li>
+                        <li><strong>LangChain Agents:</strong> Tool-using AI systems</li>
+                        <li><strong>ReAct:</strong> Reasoning + Acting paradigm</li>
+                        <li><strong>GPT-Engineer:</strong> Autonomous coding</li>
+                        <li><strong>MetaGPT:</strong> Multi-agent systems</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 10px; border: 2px solid #4caf50; margin: 1rem 0;">
+                <h4 style="color: #2e7d32; margin-top: 0;">🎯 Real-World Applications</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div>
+                        <p><strong>🏢 Business Automation:</strong> Process optimization, customer service, data analysis</p>
+                    </div>
+                    <div>
+                        <p><strong>💻 Software Development:</strong> Code generation, testing, debugging, deployment</p>
+                    </div>
+                    <div>
+                        <p><strong>🔬 Research Assistance:</strong> Literature review, hypothesis generation, experiment design</p>
+                    </div>
+                    <div>
+                        <p><strong>📊 Data Science:</strong> Automated analysis, insight generation, reporting</p>
+                    </div>
+                    <div>
+                        <p><strong>🎯 Personal Productivity:</strong> Task management, scheduling, information gathering</p>
+                    </div>
+                    <div>
+                        <p><strong>🤝 Multi-Agent Systems:</strong> Collaborative AI teams for complex projects</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #f8d7da; border: 2px solid #dc3545; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                <h4 style="color: #721c24; margin-top: 0;">⚠️ Challenges & Considerations</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <p><strong>Technical Challenges:</strong></p>
+                        <ul>
+                            <li>Reliability & consistency</li>
+                            <li>Error handling & recovery</li>
+                            <li>Cost management (API calls)</li>
+                            <li>Performance optimization</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>Safety & Control:</strong></p>
+                        <ul>
+                            <li>Alignment with human values</li>
+                            <li>Preventing harmful actions</li>
+                            <li>Transparency & explainability</li>
+                            <li>Human oversight mechanisms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    """
+
+def get_technologies_content():
+    """Generate technologies content"""
+    return """
+    <div style="font-family: 'Inter', 'Lexend', sans-serif; line-height: 1.6; color: #1f2937;">
+        <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h2 style="margin-top: 0; font-size: 2rem;">💻 Emerging Technologies</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Key technologies enabling and enhancing AI capabilities</p>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">🔒 Privacy-Enhancing Technologies (PET)</h3>
+            
+            <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 10px; border: 2px solid #2196f3; margin: 1rem 0;">
+                <h4 style="color: #0d47a1; margin-top: 0;">🛡️ Why PET Matters for AI</h4>
+                <p style="font-size: 1.1rem;">Privacy-Enhancing Technologies enable AI systems to process sensitive data while protecting individual privacy, ensuring compliance with regulations like GDPR and supporting trustworthy AI deployment.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                
+                <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🔐 Differential Privacy</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Concept:</strong> Adding mathematical noise to data to prevent individual identification</p>
+                        <p><strong>How it Works:</strong></p>
+                        <ul>
+                            <li>Controlled noise injection</li>
+                            <li>Privacy budget management</li>
+                            <li>Statistical utility preservation</li>
+                            <li>Formal privacy guarantees</li>
+                        </ul>
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Census data analysis</li>
+                            <li>Medical research</li>
+                            <li>Mobile analytics</li>
+                            <li>ML model training</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🔗 Federated Learning</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Concept:</strong> Training AI models across decentralized data without centralizing data</p>
+                        <p><strong>How it Works:</strong></p>
+                        <ul>
+                            <li>Local model training</li>
+                            <li>Parameter aggregation</li>
+                            <li>Distributed optimization</li>
+                            <li>Data never leaves devices</li>
+                        </ul>
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Mobile keyboard prediction</li>
+                            <li>Healthcare analytics</li>
+                            <li>Financial fraud detection</li>
+                            <li>Smart city systems</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🎭 Homomorphic Encryption</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Concept:</strong> Performing computations on encrypted data without decryption</p>
+                        <p><strong>How it Works:</strong></p>
+                        <ul>
+                            <li>Fully/partially homomorphic schemes</li>
+                            <li>Encrypted computation</li>
+                            <li>Result remains encrypted</li>
+                            <li>Zero knowledge proofs</li>
+                        </ul>
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Secure cloud computing</li>
+                            <li>Private ML inference</li>
+                            <li>Financial analytics</li>
+                            <li>Secure multiparty computation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                <h4 style="color: #856404; margin-top: 0;">🔧 Additional PET Technologies</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div>
+                        <p><strong>🎲 Synthetic Data:</strong> AI-generated datasets that preserve statistical properties while protecting privacy</p>
+                    </div>
+                    <div>
+                        <p><strong>🔍 Secure Multi-party Computation:</strong> Multiple parties compute functions over inputs while keeping inputs private</p>
+                    </div>
+                    <div>
+                        <p><strong>🚪 Trusted Execution Environments:</strong> Hardware-based secure computing environments</p>
+                    </div>
+                    <div>
+                        <p><strong>📊 Data Minimization:</strong> Collecting and processing only necessary data for AI tasks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">⛓️ Blockchain & AI Integration</h3>
+            
+            <div style="background: #f3e5f5; padding: 1.5rem; border-radius: 10px; border: 2px solid #9c27b0; margin: 1rem 0;">
+                <h4 style="color: #4a148c; margin-top: 0;">🤝 Synergies Between Blockchain and AI</h4>
+                <p style="font-size: 1.1rem;">Blockchain technology can enhance AI systems through improved data integrity, decentralized governance, and transparent AI decision-making processes.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                
+                <div style="background: #fff; border: 2px solid #10b981; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #059669; margin-top: 0;">📊 Data Integrity & Provenance</h4>
+                    <ul>
+                        <li><strong>Immutable Records:</strong> Tamper-proof data history</li>
+                        <li><strong>Data Lineage:</strong> Track data sources and transformations</li>
+                        <li><strong>Quality Assurance:</strong> Verifiable data quality metrics</li>
+                        <li><strong>Audit Trails:</strong> Complete data usage history</li>
+                    </ul>
+                    <p><strong>Use Cases:</strong> Training data verification, model accountability, compliance reporting</p>
+                </div>
+                
+                <div style="background: #fff; border: 2px solid #3b82f6; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #1e40af; margin-top: 0;">🤖 Decentralized AI</h4>
+                    <ul>
+                        <li><strong>Distributed Computing:</strong> Blockchain-coordinated AI processing</li>
+                        <li><strong>Token Incentives:</strong> Reward contributors to AI networks</li>
+                        <li><strong>Governance:</strong> Democratic AI system management</li>
+                        <li><strong>Resource Sharing:</strong> Monetize idle computing power</li>
+                    </ul>
+                    <p><strong>Use Cases:</strong> Decentralized model training, AI marketplaces, community-driven AI</p>
+                </div>
+                
+                <div style="background: #fff; border: 2px solid #f59e0b; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #d97706; margin-top: 0;">🔐 Smart Contracts for AI</h4>
+                    <ul>
+                        <li><strong>Automated Execution:</strong> Self-executing AI agreements</li>
+                        <li><strong>Payment Systems:</strong> Automatic compensation for AI services</li>
+                        <li><strong>Access Control:</strong> Permission-based AI model usage</li>
+                        <li><strong>SLA Enforcement:</strong> Automated service level agreements</li>
+                    </ul>
+                    <p><strong>Use Cases:</strong> AI model licensing, automated compliance, service guarantees</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">🥽 AR/VR & Metaverse Technologies</h3>
+            
+            <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 10px; border: 2px solid #4caf50; margin: 1rem 0;">
+                <h4 style="color: #2e7d32; margin-top: 0;">🌐 The Convergence of AI and Immersive Technologies</h4>
+                <p style="font-size: 1.1rem;">AI enhances AR/VR experiences while immersive technologies provide new interfaces for AI interaction and training environments for AI systems.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                
+                <div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🔍 Augmented Reality (AR)</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>AI Applications:</strong></p>
+                        <ul>
+                            <li>Real-time object recognition</li>
+                            <li>Spatial understanding & mapping</li>
+                            <li>Context-aware information overlay</li>
+                            <li>Hand/gesture tracking</li>
+                        </ul>
+                        <p><strong>Use Cases:</strong></p>
+                        <ul>
+                            <li>Smart navigation & directions</li>
+                            <li>Industrial maintenance assistance</li>
+                            <li>Educational visualizations</li>
+                            <li>Social media filters & effects</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🥽 Virtual Reality (VR)</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>AI Applications:</strong></p>
+                        <ul>
+                            <li>Procedural environment generation</li>
+                            <li>Realistic NPC behavior</li>
+                            <li>Adaptive difficulty systems</li>
+                            <li>Motion prediction & optimization</li>
+                        </ul>
+                        <p><strong>Use Cases:</strong></p>
+                        <ul>
+                            <li>AI training simulations</li>
+                            <li>Therapeutic applications</li>
+                            <li>Immersive education</li>
+                            <li>Virtual collaboration spaces</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🌌 Metaverse Platforms</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>AI Integration:</strong></p>
+                        <ul>
+                            <li>Intelligent virtual avatars</li>
+                            <li>Dynamic world generation</li>
+                            <li>Natural language interaction</li>
+                            <li>Personalized experiences</li>
+                        </ul>
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Virtual workspaces</li>
+                            <li>Digital twin environments</li>
+                            <li>Social interaction platforms</li>
+                            <li>Virtual commerce & economy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #fffbeb; border: 2px solid #f59e0b; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                <h4 style="color: #92400e; margin-top: 0;">🚀 Emerging Trends</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <p><strong>Technical Advances:</strong></p>
+                        <ul>
+                            <li>Brain-computer interfaces</li>
+                            <li>Haptic feedback systems</li>
+                            <li>Real-time rendering optimization</li>
+                            <li>Cross-platform compatibility</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>AI Governance in Virtual Worlds:</strong></p>
+                        <ul>
+                            <li>Virtual AI rights & ethics</li>
+                            <li>Content moderation at scale</li>
+                            <li>Identity verification in virtual spaces</li>
+                            <li>Economic policy for AI agents</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    """
+
+def get_ethics_governance_content():
+    """Generate ethics and governance content"""
+    return """
+    <div style="font-family: 'Inter', 'Lexend', sans-serif; line-height: 1.6; color: #1f2937;">
+        <div style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h2 style="margin-top: 0; font-size: 2rem;">⚖️ Ethics & Governance</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Responsible AI development, ethical considerations, and governance frameworks</p>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">⚖️ Types of AI Bias</h3>
+            
+            <div style="background: #f8d7da; padding: 1.5rem; border-radius: 10px; border: 2px solid #dc3545; margin: 1rem 0;">
+                <h4 style="color: #721c24; margin-top: 0;">🚨 Understanding AI Bias</h4>
+                <p style="font-size: 1.1rem;">AI bias occurs when AI systems produce results that are systematically prejudiced due to erroneous assumptions in the machine learning process, leading to unfair treatment of individuals or groups.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                
+                <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">📊 Data Bias</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Definition:</strong> Bias present in training data that affects model outcomes</p>
+                        <p><strong>Types:</strong></p>
+                        <ul>
+                            <li><strong>Historical Bias:</strong> Past discrimination reflected in data</li>
+                            <li><strong>Representation Bias:</strong> Underrepresentation of certain groups</li>
+                            <li><strong>Measurement Bias:</strong> Inaccurate or inconsistent data collection</li>
+                            <li><strong>Aggregation Bias:</strong> Inappropriate grouping of diverse populations</li>
+                        </ul>
+                        <p><strong>Example:</strong> Hiring algorithms trained on historically biased hiring decisions</p>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🔧 Algorithmic Bias</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Definition:</strong> Bias introduced by algorithm design and implementation choices</p>
+                        <p><strong>Types:</strong></p>
+                        <ul>
+                            <li><strong>Selection Bias:</strong> Non-representative feature selection</li>
+                            <li><strong>Confirmation Bias:</strong> Algorithm design confirms existing beliefs</li>
+                            <li><strong>Overfitting:</strong> Model performs poorly on diverse populations</li>
+                            <li><strong>Evaluation Bias:</strong> Inappropriate metrics or test sets</li>
+                        </ul>
+                        <p><strong>Example:</strong> Facial recognition systems that work poorly for certain demographics</p>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0; font-size: 1.3rem;">🎭 Cognitive Bias</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Definition:</strong> Human cognitive biases that influence AI system design and deployment</p>
+                        <p><strong>Types:</strong></p>
+                        <ul>
+                            <li><strong>Automation Bias:</strong> Over-reliance on automated systems</li>
+                            <li><strong>Anchoring Bias:</strong> Over-dependence on first information received</li>
+                            <li><strong>Confirmation Bias:</strong> Seeking information that confirms preconceptions</li>
+                            <li><strong>Availability Bias:</strong> Overweighting easily recalled information</li>
+                        </ul>
+                        <p><strong>Example:</strong> Doctors over-trusting AI diagnostic recommendations</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 10px; border: 2px solid #4caf50; margin: 1rem 0;">
+                <h4 style="color: #2e7d32; margin-top: 0;">🛠️ Bias Mitigation Strategies</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div>
+                        <p><strong>📊 Data Level:</strong></p>
+                        <ul>
+                            <li>Diverse data collection</li>
+                            <li>Data auditing & cleaning</li>
+                            <li>Synthetic data generation</li>
+                            <li>Balanced sampling</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>🔧 Algorithm Level:</strong></p>
+                        <ul>
+                            <li>Fairness constraints</li>
+                            <li>Adversarial debiasing</li>
+                            <li>Multi-objective optimization</li>
+                            <li>Regularization techniques</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>📈 Evaluation Level:</strong></p>
+                        <ul>
+                            <li>Fairness metrics</li>
+                            <li>Intersectional analysis</li>
+                            <li>Continuous monitoring</li>
+                            <li>A/B testing for bias</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>🏢 Organizational Level:</strong></p>
+                        <ul>
+                            <li>Diverse teams</li>
+                            <li>Ethics committees</li>
+                            <li>Bias training programs</li>
+                            <li>External audits</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">🎯 Key Challenges & Concerns</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                
+                <div style="background: #fff; border: 2px solid #ef4444; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #dc2626; margin-top: 0;">🔍 Transparency & Explainability</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Challenges:</strong></p>
+                        <ul>
+                            <li>Black box AI systems</li>
+                            <li>Complex neural networks</li>
+                            <li>Trade-off with performance</li>
+                            <li>Technical vs. lay explanations</li>
+                        </ul>
+                        <p><strong>Solutions:</strong></p>
+                        <ul>
+                            <li>Explainable AI (XAI) techniques</li>
+                            <li>Model interpretability methods</li>
+                            <li>Visualization tools</li>
+                            <li>Simplified explanations</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: #fff; border: 2px solid #f59e0b; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #d97706; margin-top: 0;">👥 Accountability & Responsibility</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Questions:</strong></p>
+                        <ul>
+                            <li>Who is responsible for AI decisions?</li>
+                            <li>How to ensure algorithmic accountability?</li>
+                            <li>What about autonomous AI systems?</li>
+                            <li>How to handle AI errors?</li>
+                        </ul>
+                        <p><strong>Approaches:</strong></p>
+                        <ul>
+                            <li>Clear governance structures</li>
+                            <li>Human oversight requirements</li>
+                            <li>Audit trails and logging</li>
+                            <li>Legal frameworks</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: #fff; border: 2px solid #8b5cf6; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #7c3aed; margin-top: 0;">🔒 Privacy & Security</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Concerns:</strong></p>
+                        <ul>
+                            <li>Data privacy violations</li>
+                            <li>Adversarial attacks</li>
+                            <li>Model extraction/inversion</li>
+                            <li>Surveillance implications</li>
+                        </ul>
+                        <p><strong>Protections:</strong></p>
+                        <ul>
+                            <li>Privacy-preserving techniques</li>
+                            <li>Robust security measures</li>
+                            <li>Data minimization</li>
+                            <li>Regular security audits</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: #fff; border: 2px solid #10b981; border-radius: 10px; padding: 1.5rem;">
+                    <h4 style="color: #059669; margin-top: 0;">🌍 Societal Impact</h4>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Impacts:</strong></p>
+                        <ul>
+                            <li>Job displacement & automation</li>
+                            <li>Economic inequality</li>
+                            <li>Democratic processes</li>
+                            <li>Human autonomy</li>
+                        </ul>
+                        <p><strong>Considerations:</strong></p>
+                        <ul>
+                            <li>Inclusive development</li>
+                            <li>Retraining programs</li>
+                            <li>Democratic participation</li>
+                            <li>Human-centered design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin: 1rem 0;">
+            <h3 style="color: #1e40af; font-size: 1.6rem; margin-bottom: 1.5rem;">📋 EU AI Act & Global Governance</h3>
+            
+            <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 10px; border: 2px solid #2196f3; margin: 1rem 0;">
+                <h4 style="color: #0d47a1; margin-top: 0;">🏛️ EU AI Act Overview</h4>
+                <p style="font-size: 1.1rem;">The EU AI Act is the world's first comprehensive AI regulation, establishing a risk-based approach to AI governance with specific requirements for high-risk AI systems.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                
+                <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0;">🚫 Prohibited AI Practices</h4>
+                    <ul>
+                        <li>Cognitive behavioral manipulation</li>
+                        <li>Social scoring systems</li>
+                        <li>Real-time biometric identification</li>
+                        <li>Emotion recognition in specific contexts</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0;">⚠️ High-Risk AI Systems</h4>
+                    <ul>
+                        <li>Employment & HR decisions</li>
+                        <li>Essential services access</li>
+                        <li>Law enforcement applications</li>
+                        <li>Education & training</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-top: 0;">📋 Compliance Requirements</h4>
+                    <ul>
+                        <li>Risk management systems</li>
+                        <li>Data governance measures</li>
+                        <li>Technical documentation</li>
+                        <li>Human oversight mechanisms</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: #fffbeb; border: 2px solid #f59e0b; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                <h4 style="color: #92400e; margin-top: 0;">🌍 Global AI Governance Landscape</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <p><strong>Regional Approaches:</strong></p>
+                        <ul>
+                            <li><strong>EU:</strong> Comprehensive regulation (AI Act)</li>
+                            <li><strong>US:</strong> Sectoral approach & executive orders</li>
+                            <li><strong>UK:</strong> Principles-based regulation</li>
+                            <li><strong>China:</strong> National AI governance framework</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>International Coordination:</strong></p>
+                        <ul>
+                            <li>OECD AI Principles</li>
+                            <li>Global Partnership on AI (GPAI)</li>
+                            <li>UNESCO AI Ethics Recommendation</li>
+                            <li>UN AI governance initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 10px; border: 2px solid #4caf50; margin: 1rem 0;">
+                <h4 style="color: #2e7d32; margin-top: 0;">🎯 Best Practices for AI Governance</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div>
+                        <p><strong>🏢 Organizational:</strong></p>
+                        <ul>
+                            <li>AI ethics committees</li>
+                            <li>Clear governance structures</li>
+                            <li>Regular training programs</li>
+                            <li>Stakeholder engagement</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>🔧 Technical:</strong></p>
+                        <ul>
+                            <li>Robust testing procedures</li>
+                            <li>Continuous monitoring</li>
+                            <li>Documentation standards</li>
+                            <li>Incident response plans</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>⚖️ Legal:</strong></p>
+                        <ul>
+                            <li>Compliance frameworks</li>
+                            <li>Regular legal reviews</li>
+                            <li>Privacy impact assessments</li>
+                            <li>Contractual safeguards</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>👥 Social:</strong></p>
+                        <ul>
+                            <li>Public engagement</li>
+                            <li>Transparent communication</li>
+                            <li>Impact assessments</li>
+                            <li>Feedback mechanisms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    """
+
+# ...existing code...
