@@ -40,6 +40,7 @@ from datetime import datetime, timedelta
 import os
 import sys
 from pathlib import Path
+import sqlite3
 
 # Import our custom modules
 try:
@@ -1125,7 +1126,7 @@ def get_overview_content():
         </div>
         
         <div style="background: #fffbeb; border: 2px solid #f59e0b; border-radius: 12px; padding: 1.5rem; margin: 2rem 0;">
-            <h3 style="color: #92400e; margin-top: 0; font-size: 1.4rem;">📚 How to Use This Guide</h3>
+            <h3 style="color: #92400e; margin-bottom: 1rem; font-size: 1.4rem;">📚 How to Use This Guide</h3>
             <ol style="color: #78350f; font-size: 1.1rem;">
                 <li><strong>Select a Topic:</strong> Use the dropdown above to explore different areas</li>
                 <li><strong>Progressive Learning:</strong> Start with Fundamentals and advance through the topics</li>
@@ -1459,7 +1460,6 @@ def get_models_content():
                         <p><strong>Key Features:</strong> Forget gates, input gates, output gates</p>
                         <p><strong>Applications:</strong> Language modeling, machine translation</p>
                     </div>
-                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #3f51b5;">
                         <h5 style="color: #303f9f; margin-top: 0;">🔄 Generative Adversarial Networks (GANs)</h5>
                         <p><strong>Specialized for:</strong> Data generation</p>
                         <p><strong>Key Features:</strong> Generator vs discriminator</p>
