@@ -1,0 +1,380 @@
+{
+  "metadata": {
+    "title": "Regulation (EU) 2024/1689 - Artificial Intelligence Act",
+    "official_title": "Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024 laying down harmonised rules on artificial intelligence",
+    "publication_date": "2024-07-12",
+    "entry_into_force": "2024-08-01",
+    "source": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+    "celex_number": "32024R1689",
+    "total_articles": 113,
+    "total_annexes": 13,
+    "scope": "Harmonised rules on artificial intelligence systems placed on the market, put into service, or used in the Union"
+  },
+  "key_definitions": {
+    "article_3": {
+      "title": "Definitions",
+      "key_terms": {
+        "ai_system": "A machine-based system that is designed to operate with varying levels of autonomy and that may exhibit adaptiveness after deployment, and that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments.",
+        "provider": "A natural or legal person, public authority, agency or other body that develops an AI system or a general-purpose AI model or that has an AI system or a general-purpose AI model developed and places it on the market or puts the AI system into service under its own name or trademark, whether for payment or free of charge.",
+        "deployer": "A natural or legal person, public authority, agency or other body using an AI system under its authority except where the AI system is used in the course of a personal non-professional activity.",
+        "high_risk_ai_system": "An AI system that is listed in Annex III or is an AI system referred to in Article 6(2).",
+        "general_purpose_ai_model": "An AI model, including where such an AI model is trained with a large amount of data using self-supervision at scale, that displays significant generality and is capable of competently performing a wide range of distinct tasks regardless of the way the model is placed on the market.",
+        "systemic_risk": "A risk that is specific to the high-impact capabilities of general-purpose AI models, having a significant impact on the Union market due to their reach, or due to actual or reasonably foreseeable negative effects on public health, safety, public security, fundamental rights, or society as a whole."
+      }
+    }
+  },
+  "prohibited_practices": {
+    "article_5": {
+      "title": "Prohibited AI practices",
+      "content": "The following artificial intelligence practices shall be prohibited:",
+      "prohibited_systems": [
+        {
+          "id": "5.1.a",
+          "description": "Placing on the market, putting into service or using an AI system that deploys subliminal techniques beyond a person's consciousness or purposefully manipulative or deceptive techniques",
+          "purpose": "To materially distort a person's behaviour in a manner that causes or is reasonably likely to cause that person or another person significant harm",
+          "risk_level": "Unacceptable"
+        },
+        {
+          "id": "5.1.b", 
+          "description": "Placing on the market, putting into service or using an AI system that exploits any of the vulnerabilities of a specific group of persons due to their age, disability or a specific social or economic situation",
+          "purpose": "To materially distort the behaviour of a person pertaining to that group in a manner that causes or is reasonably likely to cause that person or another person significant harm",
+          "risk_level": "Unacceptable"
+        },
+        {
+          "id": "5.1.c",
+          "description": "Placing on the market, putting into service or using AI systems for the evaluation or classification of natural persons or groups of persons over a certain period of time based on their social behaviour or known, inferred or predicted personal or personality characteristics",
+          "purpose": "With the social score leading to either or both of the following: (i) detrimental or unfavourable treatment of certain natural persons or groups of persons in social contexts that are unrelated to the contexts in which the data was originally generated or collected; (ii) detrimental or unfavourable treatment of certain natural persons or groups of persons that is unjustified or disproportionate to their social behaviour or its gravity",
+          "risk_level": "Unacceptable"
+        },
+        {
+          "id": "5.1.d",
+          "description": "Placing on the market, putting into service or using AI systems for making risk assessments of natural persons in order to assess or predict the risk of a natural person committing a criminal offence",
+          "exception": "Solely based on the profiling of a natural person or on assessing their personality traits and characteristics",
+          "risk_level": "Unacceptable"
+        }
+      ]
+    }
+  },
+  "high_risk_systems": {
+    "article_6": {
+      "title": "Classification rules for high-risk AI systems",
+      "content": "Irrespective of whether the AI system is placed on the market or put into service independently from the products referred to in points (a) and (b), an AI system shall be considered high-risk where both of the following conditions are fulfilled:",
+      "conditions": [
+        "The AI system is intended to be used as a safety component of a product, or the AI system is itself a product, covered by the Union harmonisation legislation listed in Annex I",
+        "The product whose safety component is the AI system, or the AI system itself as a product, is subject to a third-party conformity assessment with a view to the placing on the market or putting into service of that product pursuant to the Union harmonisation legislation listed in Annex I"
+      ]
+    },
+    "annex_iii": {
+      "title": "High-risk AI systems referred to in Article 6(2)",
+      "categories": [
+        {
+          "id": 1,
+          "area": "Biometric identification and categorisation of natural persons",
+          "systems": [
+            "AI systems intended to be used for the 'real-time' and 'post' remote biometric identification of natural persons"
+          ]
+        },
+        {
+          "id": 2,
+          "area": "Management and operation of critical infrastructure",
+          "systems": [
+            "AI systems intended to be used as safety components in the management and operation of road traffic and the supply of water, gas, heating and electricity"
+          ]
+        },
+        {
+          "id": 3,
+          "area": "Education and vocational training",
+          "systems": [
+            "AI systems intended to be used for the purpose of determining access or assigning natural persons to educational and vocational training institutions",
+            "AI systems intended to be used for the purpose of assessing students in educational and vocational training institutions and for assessing participants in tests commonly required for admission to educational institutions"
+          ]
+        },
+        {
+          "id": 4,
+          "area": "Employment, workers management and access to self-employment",
+          "systems": [
+            "AI systems intended to be used for recruitment or selection of natural persons, notably for advertising vacancies, screening or filtering applications, evaluating candidates in the course of interviews or tests",
+            "AI systems intended to be used to make decisions on promotion and termination of work-related contractual relationships, for task allocation and for monitoring and evaluating performance and behaviour of persons in such relationships"
+          ]
+        },
+        {
+          "id": 5,
+          "area": "Access to and enjoyment of essential private services and public services and benefits",
+          "systems": [
+            "AI systems intended to be used by public authorities or on behalf of public authorities to evaluate the eligibility of natural persons for public assistance benefits and services, as well as to grant, reduce, revoke, or reclaim such benefits and services",
+            "AI systems intended to be used to evaluate the creditworthiness of natural persons or establish their credit score, with the exception of AI systems put into service by small scale providers for their own use",
+            "AI systems intended to be used for risk assessment and pricing in relation to natural persons in the case of life and health insurance"
+          ]
+        },
+        {
+          "id": 6,
+          "area": "Law enforcement",
+          "systems": [
+            "AI systems intended to be used by law enforcement authorities for making individual risk assessments of natural persons in order to assess the risk of a natural person for offending or reoffending or the risk for potential victims of criminal offences",
+            "AI systems intended to be used by law enforcement authorities as polygraphs and similar tools or to detect the emotional state of a natural person",
+            "AI systems intended to be used by law enforcement authorities to detect deep fakes as referred to in Article 52(3)",
+            "AI systems intended to be used by law enforcement authorities for evaluation of the reliability of evidence in the course of investigation or prosecution of criminal offences",
+            "AI systems intended to be used by law enforcement authorities for predicting the occurrence or reoccurrence of an actual or potential criminal offence based on profiling of natural persons, or assessing personality traits and characteristics or past criminal behaviour of natural persons or groups",
+            "AI systems intended to be used by law enforcement authorities for profiling of natural persons as referred to in Article 3(4) of Directive (EU) 2016/680 in the course of detection, investigation or prosecution of criminal offences"
+          ]
+        },
+        {
+          "id": 7,
+          "area": "Migration, asylum and border control management",
+          "systems": [
+            "AI systems intended to be used by competent public authorities as polygraphs and similar tools or to detect the emotional state of a natural person",
+            "AI systems intended to be used by competent public authorities to assess a risk, including a security risk, a risk of irregular migration, or a health risk, posed by a natural person who intends to enter or has entered into the territory of a Member State",
+            "AI systems intended to be used by competent public authorities for the verification of the authenticity of travel documents and supporting documentation of natural persons and detect non-authentic documents by checking their security features"
+          ]
+        },
+        {
+          "id": 8,
+          "area": "Administration of justice and democratic processes",
+          "systems": [
+            "AI systems intended to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution",
+            "AI systems intended to be used to influence the outcome of an election or referendum or the voting behaviour of natural persons in the exercise of their vote in elections or referenda"
+          ]
+        }
+      ]
+    }
+  },
+  "obligations_providers": {
+    "article_16": {
+      "title": "Obligations of providers of high-risk AI systems",
+      "obligations": [
+        {
+          "id": "16.a",
+          "requirement": "Quality management system",
+          "description": "Ensure that the high-risk AI system is subject to a quality management system in accordance with Article 17"
+        },
+        {
+          "id": "16.b", 
+          "requirement": "Technical documentation",
+          "description": "Draw up the technical documentation referred to in Article 18"
+        },
+        {
+          "id": "16.c",
+          "requirement": "Automatic logging",
+          "description": "When under their control, ensure that the high-risk AI system is subject to automatic logging in accordance with Article 19"
+        },
+        {
+          "id": "16.d",
+          "requirement": "Transparency and provision of information",
+          "description": "Ensure that the high-risk AI system meets the transparency and provision of information requirements set out in Article 20"
+        },
+        {
+          "id": "16.e",
+          "requirement": "Human oversight",
+          "description": "Design and develop the high-risk AI system in such a way as to ensure that it can be effectively overseen by natural persons, in accordance with Article 21"
+        },
+        {
+          "id": "16.f",
+          "requirement": "Accuracy, robustness and cybersecurity",
+          "description": "Design and develop the high-risk AI system in such a way to ensure that it achieves, in the light of its intended purpose, an appropriate level of accuracy, robustness and cybersecurity, and performs consistently in those respects throughout its lifecycle"
+        }
+      ]
+    }
+  },
+  "technical_documentation": {
+    "article_18": {
+      "title": "Technical documentation",
+      "content": "The technical documentation referred to in Article 16, point (b), shall be drawn up before the high-risk AI system is placed on the market or put into service and shall be kept up-to date. The technical documentation shall be drafted in such a way as to demonstrate that the high-risk AI system complies with the requirements set out in this Chapter and shall include, at a minimum, the elements set out in Annex IV."
+    },
+    "annex_iv": {
+      "title": "Technical documentation referred to in Article 18(1)",
+      "content": "The technical documentation referred to in Article 18(1) shall contain at least the following information:",
+      "sections": [
+        {
+          "id": 1,
+          "title": "General description of the AI system",
+          "requirements": [
+            "Its intended purpose, the persons, groups of persons or entities for which the system is intended to be used",
+            "The level of accuracy, including its metrics, expected for the specific AI system on the basis of which it has been designed and developed",
+            "The reasonably foreseeable unintended outcomes and sources of risks to health and safety, fundamental rights and discrimination in view of the intended purpose of the AI system",
+            "Any known or foreseeable circumstances, related to the use of the AI system in accordance with its intended purpose or under conditions of reasonably foreseeable misuse, which may lead to risks to the health and safety of persons, fundamental rights or discrimination",
+            "The human oversight measures needed for the AI system, including the technical measures implemented to facilitate the interpretation of the outputs of AI systems by the deployers"
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Data and data governance",
+          "requirements": [
+            "Description of the training, validation and testing data sets used, including information about the data provenance, the scope and main characteristics of the data, how the data was obtained and selected, the labelling procedures (e.g. for supervised learning), data cleaning methodologies (e.g. outliers detection)",
+            "Assessment of the availability, quantity and suitability of the data sets that have been used for training, validation and testing",
+            "Information about the data governance and management practices used for the development of the AI system, in particular the procedures employed for data analysis, data pre-processing steps and the formulation of assumptions, notably with respect to the information used by and the information inferred by the system",
+            "Assessment of the measures put in place to examine the data for the presence of any bias and the conclusions drawn from such examination, also taking into account the intended purpose of the AI system"
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Monitoring, functioning and control of the AI system",
+          "requirements": [
+            "Description of the capabilities and limitations of the AI system and the circumstances which may have an impact on that performance, including the degree of accuracy for specific persons or groups of persons on which the system is intended to be used and the overall expected level of accuracy in relation to its intended purpose",
+            "Description of the foreseeable unintended outcomes, assumptions and limitations of use and the circumstances which may have an impact on the performance of the AI system",
+            "Specification of the input data, or any other relevant information in terms of the data sets used for training, the computational resources used (e.g. physical resources, energy), the expected lifetime of the system and any necessary maintenance and care measures, including their frequency",
+            "Description of the evaluation procedures, including information about applied evaluation criteria, evaluation protocols and benchmarks",
+            "Information about the measures put in place to prevent and mitigate reasonably foreseeable risks, issues and limitations"
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Risk management system",
+          "requirements": [
+            "Description of the risk management system in accordance with Article 23",
+            "Information about the residual risk associated with the AI system"
+          ]
+        },
+        {
+          "id": 5,
+          "title": "Changes made to the system through its lifecycle",
+          "requirements": [
+            "Description of any change made to the system through its lifecycle"
+          ]
+        },
+        {
+          "id": 6,
+          "title": "Quality management system and processes",
+          "requirements": [
+            "Description of the quality management system put in place in accordance with Article 17",
+            "Information about the objectives of the AI system and how the achievement of those objectives is measured and monitored",
+            "Information about the organizational, financial and technical processes, procedures and instructions set up for the development, deployment and maintenance of the AI system"
+          ]
+        }
+      ]
+    }
+  },
+  "general_purpose_models": {
+    "article_51": {
+      "title": "Classification of general-purpose AI models as general-purpose AI models with systemic risk",
+      "threshold": "A general-purpose AI model shall be considered to have systemic risk and shall be subject to the obligations set out in Article 55 if the cumulative amount of compute used for its training, measured in floating point operations, is greater than 10^25.",
+      "criteria": "For the purpose of determining that a general-purpose AI model has capabilities or an impact equivalent to those set out in point (a), the Commission shall take into account the criteria set out in Annex XIII."
+    },
+    "article_53": {
+      "title": "Obligations for providers of general-purpose AI models",
+      "obligations": [
+        "Draw up and keep up to date the technical documentation of the model, including its training and testing process and the results of its evaluation, which shall contain at a minimum the information set out in Annex XI to enable downstream providers to comply with their obligations under this Regulation",
+        "Draw up, keep up to date and make available information and documentation to providers of AI systems that integrate the general-purpose AI model in their AI system. This shall contain at a minimum the information set out in Annex XII",
+        "Put in place a policy to respect Union copyright law in particular to identify and respect, including through state of the art technologies, the reservations of rights expressed pursuant to Article 4(3) of Directive (EU) 2019/790",
+        "Draw up and make publicly available a sufficiently detailed summary about the content used for training of the general-purpose AI model"
+      ]
+    },
+    "annex_xi": {
+      "title": "Technical documentation for general-purpose AI models referred to in Article 53(1), point (a)",
+      "sections": [
+        {
+          "id": 1,
+          "requirement": "Model description and development process",
+          "details": [
+            "A general description of the model, including its architecture, the number of parameters, modality, capabilities and limitations, the techniques used to achieve specific capabilities, including those aimed at optimizing the model performance",
+            "A description of acceptable use policies and any safeguards implemented, including an explanation of conducted red-teaming and measures to overcoming its possible limitations",
+            "Information on the data used for training, testing and validation, where applicable, including the type and provenance of data and curation methodologies"
+          ]
+        },
+        {
+          "id": 2,
+          "requirement": "Testing and evaluation procedures",
+          "details": [
+            "Where applicable, a detailed description of the measures put in place for the purpose of conducting internal and/or external adversarial testing (e.g. red teaming), model adaptations, including alignment and fine-tuning"
+          ]
+        },
+        {
+          "id": 3,
+          "requirement": "System architecture",
+          "details": [
+            "Where applicable, a detailed description of the system architecture explaining how software components build or feed into each other and integrate into the overall processing"
+          ]
+        }
+      ]
+    }
+  },
+  "transparency_obligations": {
+    "article_52": {
+      "title": "Transparency obligations for certain AI systems",
+      "requirements": [
+        {
+          "type": "AI systems interacting with humans",
+          "obligation": "Providers shall ensure that AI systems intended to interact directly with natural persons are designed and developed in such a way that natural persons are informed that they are interacting with an AI system, unless this is obvious from the circumstances and the context of use."
+        },
+        {
+          "type": "Emotion recognition and biometric categorisation",
+          "obligation": "Deployers of an AI system that generates or manipulates image, audio or video content shall inform natural persons exposed to the operation of the system that the content has been artificially generated or manipulated."
+        },
+        {
+          "type": "Deep fakes",
+          "obligation": "Deployers of an AI system that generates or manipulates image, audio or video content that appreciably resembles existing persons, objects, places or other entities or events and would falsely appear to a person to be authentic or truthful ('deep fake'), shall disclose that the content has been artificially generated or manipulated."
+        }
+      ]
+    }
+  },
+  "governance_structure": {
+    "ai_office": {
+      "article_64": {
+        "title": "European Artificial Intelligence Office",
+        "establishment": "A European Artificial Intelligence Office ('AI Office') is established within the Commission",
+        "functions": [
+          "Supporting the implementation and enforcement of this Regulation in relation to general-purpose AI models",
+          "Supporting the Commission in fostering and monitoring the development of standards",
+          "Monitoring the implementation and enforcement of this Regulation as regards general-purpose AI models and general-purpose AI systems"
+        ]
+      }
+    },
+    "ai_board": {
+      "article_65": {
+        "title": "European Artificial Intelligence Board",
+        "composition": "The European Artificial Intelligence Board ('AI Board') shall be composed of one representative per Member State",
+        "tasks": [
+          "Advise and assist the Commission and the Member States in order to facilitate the consistent and effective application of this Regulation",
+          "Coordinate and contribute to guidance and analysis by the Commission and Member States on emerging issues across the internal market",
+          "Assist the AI Office in activities related to general-purpose AI models"
+        ]
+      }
+    }
+  },
+  "penalties": {
+    "article_99": {
+      "title": "Penalties",
+      "administrative_fines": [
+        {
+          "violation": "Non-compliance with prohibited AI practices (Article 5)",
+          "fine": "Up to EUR 35,000,000 or, if the offender is an undertaking, up to 7% of its total worldwide annual turnover for the preceding financial year, whichever is higher"
+        },
+        {
+          "violation": "Non-compliance with obligations for general-purpose AI models (Articles 51 to 55)",
+          "fine": "Up to EUR 15,000,000 or, if the offender is an undertaking, up to 3% of its total worldwide annual turnover for the preceding financial year, whichever is higher"
+        },
+        {
+          "violation": "Non-compliance with other obligations under this Regulation",
+          "fine": "Up to EUR 15,000,000 or, if the offender is an undertaking, up to 3% of its total worldwide annual turnover for the preceding financial year, whichever is higher"
+        },
+        {
+          "violation": "Supply of incorrect, incomplete or misleading information",
+          "fine": "Up to EUR 7,500,000 or, if the offender is an undertaking, up to 1.5% of its total worldwide annual turnover for the preceding financial year, whichever is higher"
+        }
+      ]
+    }
+  },
+  "implementation_timeline": {
+    "key_dates": [
+      {
+        "date": "2024-08-01",
+        "milestone": "Regulation enters into force"
+      },
+      {
+        "date": "2025-02-02", 
+        "milestone": "Prohibited AI practices (Article 5) become applicable"
+      },
+      {
+        "date": "2025-08-02",
+        "milestone": "General-purpose AI model obligations (Chapter V) become applicable"
+      },
+      {
+        "date": "2026-08-02",
+        "milestone": "High-risk AI system obligations become fully applicable"
+      },
+      {
+        "date": "2027-08-02",
+        "milestone": "All remaining obligations become applicable"
+      }
+    ]
+  }
+} 

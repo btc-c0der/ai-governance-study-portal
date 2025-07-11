@@ -1,8 +1,8 @@
 ---
 title: ai-governance
-app_file: app.py
+app_file: app_hf.py
 sdk: gradio
-sdk_version: 5.35.0
+sdk_version: 4.44.0
 ---
 # 🧠⚖️ AI Governance Architect's Codex
 

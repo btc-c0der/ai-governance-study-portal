@@ -1,0 +1,865 @@
+{
+  "quiz_metadata": {
+    "title": "AIGP Certification Mock Exam Question Bank",
+    "version": "1.2",
+    "total_questions": 45,
+    "domains": [
+      "AI Governance Fundamentals",
+      "EU AI Act & Regulatory Compliance", 
+      "Risk Management & Assessment",
+      "Data Governance & Quality",
+      "Ethics & Bias Mitigation",
+      "Technical Implementation",
+      "International Standards & Frameworks",
+      "Organizational Governance"
+    ],
+    "difficulty_levels": ["Easy", "Medium", "Hard"],
+    "question_types": ["Multiple Choice", "Scenario-Based", "Best Practice"]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "domain": "AI Governance Fundamentals",
+      "category": "Definitions",
+      "difficulty": "Easy",
+      "type": "Multiple Choice",
+      "question": "According to the EU AI Act, what is the definition of an 'AI system'?",
+      "options": [
+        "Any software that can make decisions autonomously",
+        "Machine-based system designed to operate with varying levels of autonomy that may exhibit adaptiveness after deployment",
+        "Computer programs that use machine learning algorithms",
+        "Systems that can process large amounts of data quickly"
+      ],
+      "correct": 1,
+      "explanation": "Article 3(1) of the EU AI Act defines AI system as a machine-based system designed to operate with varying levels of autonomy and that may exhibit adaptiveness after deployment, and that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs.",
+      "legal_reference": "EU AI Act Article 3(1)",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 2,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Prohibited Practices",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "Which of the following AI practices is explicitly prohibited under Article 5 of the EU AI Act?",
+      "options": [
+        "AI systems that require human oversight for critical decisions",
+        "AI systems that use subliminal techniques beyond consciousness to materially distort behavior",
+        "High-risk AI systems without proper documentation",
+        "AI systems that process personal data without consent"
+      ],
+      "correct": 1,
+      "explanation": "Article 5(1)(a) prohibits AI systems using subliminal techniques beyond a person's consciousness to materially distort behavior in a manner that causes or is reasonably likely to cause significant harm.",
+      "legal_reference": "EU AI Act Article 5(1)(a)",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 3,
+      "domain": "Risk Management & Assessment",
+      "category": "Risk Categories",
+      "difficulty": "Easy",
+      "type": "Multiple Choice",
+      "question": "What are the four risk categories established by the EU AI Act?",
+      "options": [
+        "Low, Medium, High, Critical",
+        "Minimal, Limited, High, Unacceptable",
+        "Basic, Standard, Advanced, Expert",
+        "Green, Yellow, Orange, Red"
+      ],
+      "correct": 1,
+      "explanation": "The EU AI Act establishes four risk categories: Minimal risk, Limited risk, High risk, and Unacceptable risk (prohibited). This risk-based approach is fundamental to the regulation.",
+      "legal_reference": "EU AI Act General Approach",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 4,
+      "domain": "Technical Implementation",
+      "category": "Documentation",
+      "difficulty": "Hard",
+      "type": "Scenario-Based",
+      "question": "A company is developing a high-risk AI system for credit scoring. According to Annex IV, which documentation is NOT required?",
+      "options": [
+        "Detailed description of the system's intended purpose and scope",
+        "Information about training, validation, and testing datasets",
+        "Marketing materials and customer testimonials",
+        "Risk management system documentation and measures"
+      ],
+      "correct": 2,
+      "explanation": "Annex IV specifies technical documentation requirements including system description, datasets information, and risk management documentation. Marketing materials are not part of the technical documentation requirements.",
+      "legal_reference": "EU AI Act Annex IV",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 5,
+      "domain": "Data Governance & Quality",
+      "category": "Training Data",
+      "difficulty": "Medium",
+      "type": "Best Practice",
+      "question": "For high-risk AI systems, training datasets must be:",
+      "options": [
+        "As large as possible to improve accuracy",
+        "Representative, relevant, and free of errors and duplicates",
+        "Collected from public sources only",
+        "Updated annually regardless of system performance"
+      ],
+      "correct": 1,
+      "explanation": "Article 10 requires training datasets to be relevant, representative, free of errors and complete. They must have appropriate statistical properties considering the intended purpose.",
+      "legal_reference": "EU AI Act Article 10",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 6,
+      "domain": "Ethics & Bias Mitigation",
+      "category": "Fairness",
+      "difficulty": "Medium",
+      "type": "Scenario-Based",
+      "question": "An AI hiring system shows lower selection rates for candidates from certain demographic groups. What is the primary concern from an AI governance perspective?",
+      "options": [
+        "The system is not processing applications fast enough",
+        "The system may exhibit bias and discrimination",
+        "The system requires more training data",
+        "The system needs better user interface design"
+      ],
+      "correct": 1,
+      "explanation": "Differential selection rates across demographic groups may indicate bias and potential discrimination, which is a core concern for AI governance and ethics. This requires bias testing and mitigation measures.",
+      "legal_reference": "EU AI Act Article 10, GDPR Article 22",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 7,
+      "domain": "AI Governance Fundamentals",
+      "category": "Stakeholders",
+      "difficulty": "Easy",
+      "type": "Multiple Choice",
+      "question": "Who is considered a 'provider' under the EU AI Act?",
+      "options": [
+        "Anyone who uses an AI system for professional purposes",
+        "A natural or legal person that develops an AI system or has it developed with a view to placing it on the market",
+        "Organizations that only deploy AI systems developed by others",
+        "End users of AI systems regardless of purpose"
+      ],
+      "correct": 1,
+      "explanation": "Article 3(2) defines a provider as a natural or legal person, public authority, agency or other body that develops an AI system or that has an AI system developed with a view to placing it on the market or putting it into service under its own name or trademark.",
+      "legal_reference": "EU AI Act Article 3(2)",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 8,
+      "domain": "International Standards & Frameworks",
+      "category": "Standards",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "Which international standard provides guidance on AI risk management?",
+      "options": [
+        "ISO 27001",
+        "ISO/IEC 23053",
+        "ISO 9001",
+        "ISO 14001"
+      ],
+      "correct": 1,
+      "explanation": "ISO/IEC 23053:2022 provides guidance on AI risk management, complementing other standards and regulatory frameworks like the EU AI Act.",
+      "legal_reference": "ISO/IEC 23053:2022",
+      "domain_weight": 0.10
+    },
+    {
+      "id": 9,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "High-Risk Systems",
+      "difficulty": "Hard",
+      "type": "Scenario-Based",
+      "question": "A medical device manufacturer wants to integrate AI for diagnostic image analysis. Before market placement, they must:",
+      "options": [
+        "Only obtain CE marking under Medical Device Regulation",
+        "Complete conformity assessment procedures under both Medical Device Regulation and AI Act",
+        "Register with national authorities only",
+        "Conduct internal testing without external assessment"
+      ],
+      "correct": 1,
+      "explanation": "AI systems used as safety components in medical devices are high-risk under Annex III(5). They require conformity assessment under both the Medical Device Regulation and the AI Act, creating dual compliance obligations.",
+      "legal_reference": "EU AI Act Article 16, Annex III(5)",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 10,
+      "domain": "Risk Management & Assessment",
+      "category": "Continuous Monitoring",
+      "difficulty": "Medium",
+      "type": "Best Practice",
+      "question": "Risk management for high-risk AI systems should be:",
+      "options": [
+        "Conducted once during development phase",
+        "Performed annually as part of compliance audits",
+        "A continuous, iterative process throughout the system lifecycle",
+        "Only required when incidents occur"
+      ],
+      "correct": 2,
+      "explanation": "Article 9 emphasizes that risk management must be a continuous, iterative process throughout the AI system lifecycle, not a one-time activity.",
+      "legal_reference": "EU AI Act Article 9",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 11,
+      "domain": "Organizational Governance",
+      "category": "Governance Structure",
+      "difficulty": "Medium",
+      "type": "Best Practice",
+      "question": "What is a key component of an effective AI governance framework?",
+      "options": [
+        "Centralizing all AI decisions with technical teams",
+        "Establishing clear roles, responsibilities, and accountability mechanisms",
+        "Minimizing documentation to speed up development",
+        "Focusing solely on technical performance metrics"
+      ],
+      "correct": 1,
+      "explanation": "Effective AI governance requires clear roles, responsibilities, and accountability mechanisms across the organization, ensuring proper oversight and decision-making processes.",
+      "legal_reference": "Best Practice Guidelines",
+      "domain_weight": 0.10
+    },
+    {
+      "id": 12,
+      "domain": "Technical Implementation",
+      "category": "Human Oversight",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "Human oversight for high-risk AI systems must ensure that humans:",
+      "options": [
+        "Are present at all times during system operation",
+        "Can effectively oversee the AI system's operation and intervene when necessary",
+        "Manually verify every decision made by the AI system",
+        "Are legally liable for all AI system outputs"
+      ],
+      "correct": 1,
+      "explanation": "Article 14 requires human oversight to be effective, meaning humans must be able to understand the AI system's capabilities and limitations, monitor its operation, and intervene when necessary.",
+      "legal_reference": "EU AI Act Article 14",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 13,
+      "domain": "Data Governance & Quality",
+      "category": "Data Protection",
+      "difficulty": "Hard",
+      "type": "Scenario-Based",
+      "question": "An AI system processes personal data for predictive analytics. Under GDPR, individuals have the right to:",
+      "options": [
+        "Demand the AI system be shut down if they disagree with results",
+        "Obtain meaningful information about the logic involved and request human intervention",
+        "Require the AI system to be retrained without their data",
+        "Access the source code of the AI algorithms"
+      ],
+      "correct": 1,
+      "explanation": "GDPR Article 22 gives individuals rights regarding automated decision-making, including the right to obtain meaningful information about the logic involved and to request human intervention and review.",
+      "legal_reference": "GDPR Article 22",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 14,
+      "domain": "Ethics & Bias Mitigation",
+      "category": "Testing",
+      "difficulty": "Medium",
+      "type": "Best Practice",
+      "question": "When should bias testing be conducted for AI systems?",
+      "options": [
+        "Only after deployment when issues are reported",
+        "Once during development and then annually",
+        "Throughout the development lifecycle and continuously during operation",
+        "Only when required by specific regulations"
+      ],
+      "correct": 2,
+      "explanation": "Bias testing should be conducted throughout the development lifecycle and continuously during operation to identify and mitigate potential discriminatory impacts.",
+      "legal_reference": "Best Practice Guidelines",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 15,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Penalties",
+      "difficulty": "Easy",
+      "type": "Multiple Choice",
+      "question": "What is the maximum administrative fine for deploying prohibited AI practices under the EU AI Act?",
+      "options": [
+        "€10 million or 2% of annual turnover",
+        "€20 million or 4% of annual turnover", 
+        "€35 million or 7% of annual turnover",
+        "€50 million or 10% of annual turnover"
+      ],
+      "correct": 2,
+      "explanation": "Article 71 sets the maximum fine for prohibited AI practices at €35 million or 7% of the total worldwide annual turnover of the preceding financial year, whichever is higher.",
+      "legal_reference": "EU AI Act Article 71",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 16,
+      "domain": "International Standards & Frameworks",
+      "category": "Global Frameworks",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "The NIST AI Risk Management Framework (AI RMF) primarily focuses on:",
+      "options": [
+        "Legal compliance requirements",
+        "Technical implementation details",
+        "Voluntary risk management guidance",
+        "Industry-specific regulations"
+      ],
+      "correct": 2,
+      "explanation": "The NIST AI RMF provides voluntary guidance for managing AI risks, helping organizations understand and manage AI-related risks without being legally binding.",
+      "legal_reference": "NIST AI RMF 1.0",
+      "domain_weight": 0.10
+    },
+    {
+      "id": 17,
+      "domain": "AI Governance Fundamentals", 
+      "category": "Principles",
+      "difficulty": "Easy",
+      "type": "Multiple Choice",
+      "question": "Which principle is NOT typically considered a core AI ethics principle?",
+      "options": [
+        "Transparency and explainability",
+        "Fairness and non-discrimination",
+        "Maximum automation",
+        "Human autonomy and oversight"
+      ],
+      "correct": 2,
+      "explanation": "Maximum automation is not a core AI ethics principle. Key principles include transparency, fairness, human autonomy, accountability, and beneficence.",
+      "legal_reference": "Ethical AI Guidelines",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 18,
+      "domain": "Technical Implementation",
+      "category": "Quality Management",
+      "difficulty": "Hard",
+      "type": "Scenario-Based",
+      "question": "A company's AI quality management system must include all EXCEPT:",
+      "options": [
+        "Strategy for regulatory compliance and risk management",
+        "Resource management including competences and training",
+        "Competitive intelligence on other AI companies",
+        "Examination and validation procedures for AI systems"
+      ],
+      "correct": 2,
+      "explanation": "Article 17 requires quality management systems to include compliance strategy, resources, and validation procedures. Competitive intelligence is not a requirement.",
+      "legal_reference": "EU AI Act Article 17",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 19,
+      "domain": "Risk Management & Assessment",
+      "category": "Risk Identification",
+      "difficulty": "Medium",
+      "type": "Best Practice",
+      "question": "Which factor is MOST important when identifying AI risks?",
+      "options": [
+        "Cost of implementation",
+        "Speed of processing",
+        "Potential impact on individuals and society",
+        "Technical complexity"
+      ],
+      "correct": 2,
+      "explanation": "When identifying AI risks, the potential impact on individuals and society is the most important factor, as it determines the severity of consequences from AI system failures or misuse.",
+      "legal_reference": "Risk Management Best Practices",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 20,
+      "domain": "Data Governance & Quality",
+      "category": "Dataset Requirements",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "For high-risk AI systems, validation datasets must be:",
+      "options": [
+        "Identical to training datasets",
+        "Separate from training datasets and representative of the intended use",
+        "Larger than training datasets",
+        "Collected after system deployment"
+      ],
+      "correct": 1,
+      "explanation": "Article 10 requires validation datasets to be distinct from training datasets while being relevant and representative of the AI system's intended purpose and users.",
+      "legal_reference": "EU AI Act Article 10",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 21,
+      "domain": "Ethics & Bias Mitigation",
+      "category": "Algorithmic Fairness",
+      "difficulty": "Hard",
+      "type": "Scenario-Based", 
+      "question": "An AI recruitment system achieves 90% accuracy but shows significant bias against protected groups. The best approach is to:",
+      "options": [
+        "Deploy the system since accuracy is high",
+        "Adjust the decision threshold to improve fairness metrics",
+        "Conduct bias mitigation including dataset review and model adjustment",
+        "Add a disclaimer about potential bias"
+      ],
+      "correct": 2,
+      "explanation": "High accuracy doesn't justify bias. Comprehensive bias mitigation should include reviewing training data, adjusting algorithms, and implementing fairness constraints.",
+      "legal_reference": "AI Ethics Best Practices",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 22,
+      "domain": "Organizational Governance",
+      "category": "Board Oversight",
+      "difficulty": "Medium",
+      "type": "Best Practice",
+      "question": "Board-level AI governance should include oversight of:",
+      "options": [
+        "Technical implementation details only",
+        "Strategic AI direction, risk appetite, and compliance",
+        "Day-to-day operational decisions", 
+        "Individual algorithm parameters"
+      ],
+      "correct": 1,
+      "explanation": "Board oversight should focus on strategic direction, risk appetite, policy setting, and compliance rather than technical details or operational decisions.",
+      "legal_reference": "Corporate Governance Best Practices",
+      "domain_weight": 0.10
+    },
+    {
+      "id": 23,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Implementation Timeline",
+      "difficulty": "Easy",
+      "type": "Multiple Choice",
+      "question": "When do the prohibitions on AI practices under Article 5 take effect?",
+      "options": [
+        "August 1, 2024",
+        "February 2, 2025", 
+        "August 2, 2026",
+        "January 1, 2027"
+      ],
+      "correct": 1,
+      "explanation": "The prohibitions under Article 5 apply from February 2, 2025, six months after the regulation entered into force on August 1, 2024.",
+      "legal_reference": "EU AI Act Article 85",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 24,
+      "domain": "Technical Implementation",
+      "category": "Transparency",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "AI systems intended to interact with natural persons must:",
+      "options": [
+        "Achieve minimum accuracy thresholds",
+        "Clearly and unambiguously inform users they are interacting with an AI system",
+        "Provide technical documentation to users",
+        "Obtain explicit consent before each interaction"
+      ],
+      "correct": 1,
+      "explanation": "Article 52(1) requires AI systems intended to interact with natural persons to inform users clearly and unambiguously that they are interacting with an AI system.",
+      "legal_reference": "EU AI Act Article 52(1)",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 25,
+      "domain": "International Standards & Frameworks",
+      "category": "IEEE Standards",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "IEEE 2857 primarily addresses:",
+      "options": [
+        "AI system performance metrics",
+        "Privacy engineering for AI systems",
+        "AI algorithm transparency",
+        "AI system security requirements"
+      ],
+      "correct": 1,
+      "explanation": "IEEE 2857 focuses on privacy engineering methods for AI systems, providing guidance on incorporating privacy by design principles into AI development.",
+      "legal_reference": "IEEE 2857",
+      "domain_weight": 0.10
+    },
+    {
+      "id": 26,
+      "domain": "Data Governance & Quality",
+      "category": "Data Lineage",
+      "difficulty": "Hard",
+      "type": "Scenario-Based",
+      "question": "A multinational company uses AI for hiring across different countries. Which data governance challenge is MOST critical?",
+      "options": [
+        "Storage costs optimization",
+        "Cross-border data transfer compliance and local bias laws",
+        "Database performance optimization",
+        "User interface consistency"
+      ],
+      "correct": 1,
+      "explanation": "Cross-border operations must comply with different privacy laws (GDPR, etc.) and local anti-discrimination regulations, making compliance coordination the most critical challenge.",
+      "legal_reference": "GDPR Article 44-49, Local Employment Laws",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 27,
+      "domain": "AI Governance Fundamentals",
+      "category": "Accountability",
+      "difficulty": "Medium",
+      "type": "Best Practice",
+      "question": "In AI governance, accountability primarily means:",
+      "options": [
+        "Having insurance for AI system failures",
+        "Clear assignment of responsibility for AI system decisions and outcomes",
+        "Automatic logging of all AI system activities",
+        "Regular financial audits of AI development costs"
+      ],
+      "correct": 1,
+      "explanation": "Accountability in AI governance refers to clear assignment and acceptance of responsibility for AI system decisions, outcomes, and their consequences across the organization.",
+      "legal_reference": "AI Ethics Principles",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 28,
+      "domain": "Technical Implementation", 
+      "category": "Model Validation",
+      "difficulty": "Hard",
+      "type": "Scenario-Based",
+      "question": "An AI model shows high accuracy on test data but poor performance after deployment. This indicates:",
+      "options": [
+        "The model is working correctly", 
+        "Potential overfitting or data distribution shift",
+        "The deployment environment is faulty",
+        "User training is insufficient"
+      ],
+      "correct": 1,
+      "explanation": "High test accuracy but poor deployment performance typically indicates overfitting to training data or distribution shift between training and real-world data.",
+      "legal_reference": "ML Best Practices",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 29,
+      "domain": "Ethics & Bias Mitigation",
+      "category": "Explainability",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "Which approach provides the BEST explainability for high-stakes AI decisions?",
+      "options": [
+        "Feature importance rankings only",
+        "Global model interpretability methods",
+        "Local interpretable model-agnostic explanations (LIME/SHAP) with global insights",
+        "Simple decision trees for all models"
+      ],
+      "correct": 2,
+      "explanation": "Combining local explanations (LIME/SHAP) for individual decisions with global model insights provides the most comprehensive explainability for high-stakes decisions.",
+      "legal_reference": "EU AI Act Article 13, GDPR Article 22",
+      "domain_weight": 0.15
+    },
+    {
+      "id": 30,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Conformity Assessment",
+      "difficulty": "Hard",
+      "type": "Scenario-Based",
+      "question": "A company develops an AI system for credit scoring that is considered high-risk. They must complete conformity assessment:",
+      "options": [
+        "Only once before initial market placement",
+        "Annually regardless of system changes",
+        "Before market placement and after any substantial modifications",
+        "Only when requested by regulatory authorities"
+      ],
+      "correct": 2,
+      "explanation": "Article 16 requires conformity assessment before market placement and after any substantial modifications that could affect compliance with requirements.",
+      "legal_reference": "EU AI Act Article 16",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 31,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "General Principles",
+      "difficulty": "Easy",
+      "type": "Multiple Choice",
+      "question": "What is the primary goal of the EU AI Act?",
+      "options": [
+        "To ban all AI applications within the EU",
+        "To stimulate competition in AI development globally",
+        "To ensure AI systems used in the EU are safe and respect fundamental rights",
+        "To mandate the use of open-source AI in all EU countries"
+      ],
+      "correct": 2,
+      "explanation": "The EU AI Act aims to create a legal framework that ensures AI systems placed on the EU market are safe, transparent, and aligned with EU values and fundamental rights.",
+      "legal_reference": "EU AI Act Recital 1",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 32,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Prohibited Practices",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "Which AI systems are classified as 'unacceptable risk' under the EU AI Act?",
+      "options": [
+        "AI chatbots",
+        "AI used in biometric categorization based on sensitive attributes",
+        "Spam detection systems",
+        "AI used in predictive text suggestions"
+      ],
+      "correct": 1,
+      "explanation": "Unacceptable risk AI systems include those that violate fundamental rights, such as real-time biometric surveillance or categorization based on race, religion, political opinion, or other sensitive attributes.",
+      "legal_reference": "EU AI Act Article 5",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 33,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "High-Risk Systems",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "Under the EU AI Act, which category would a facial recognition system used by law enforcement likely fall under?",
+      "options": [
+        "Low-risk",
+        "Minimal risk",
+        "High-risk",
+        "Unacceptable risk"
+      ],
+      "correct": 2,
+      "explanation": "AI used in law enforcement, especially facial recognition, is classified as high-risk due to potential impacts on privacy and fundamental rights. Such systems are listed in Annex III of the EU AI Act.",
+      "legal_reference": "EU AI Act Annex III",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 34,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "High-Risk Systems",
+      "difficulty": "Medium",
+      "type": "Multiple Choice",
+      "question": "Which of the following is a requirement for providers of high-risk AI systems under the EU AI Act?",
+      "options": [
+        "They must host their data in the EU",
+        "They must submit their code to public repositories",
+        "They must implement risk management and ensure human oversight",
+        "They must open source the entire AI system"
+      ],
+      "correct": 2,
+      "explanation": "High-risk systems must follow strict obligations, including implementing comprehensive risk management systems, ensuring appropriate human oversight, maintaining documentation, and ensuring traceability and transparency.",
+      "legal_reference": "EU AI Act Articles 9-15",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 35,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Penalties",
+      "difficulty": "Easy",
+      "type": "Multiple Choice",
+      "question": "What is the penalty for non-compliance with the EU AI Act?",
+      "options": [
+        "No penalty, only a warning",
+        "A fine of up to €10 million or 2% of annual turnover",
+        "A fine of up to €30 million or 6% of annual turnover",
+        "Temporary product ban only"
+      ],
+      "correct": 2,
+      "explanation": "The EU AI Act imposes significant penalties to ensure compliance. The highest fines are up to €30 million or 6% of total worldwide annual turnover for breaches involving prohibited practices, whichever is higher.",
+      "legal_reference": "EU AI Act Article 71",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 36,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Technical Documentation",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "Under the EU AI Act, what documentation must be included in the technical file for a high-risk AI system?",
+      "options": [
+        "Only the data used to train the model",
+        "Risk assessment summary and end-user license agreement",
+        "Detailed system design, data governance practices, risk management measures, and post-market monitoring plan",
+        "Source code and business model"
+      ],
+      "correct": 2,
+      "explanation": "The technical documentation must enable authorities to assess compliance and includes comprehensive system design, risk management measures, data governance practices, and post-market monitoring plans as specified in Annex IV.",
+      "legal_reference": "EU AI Act Annex IV",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 37,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Governance Structure",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "Which governance body is established by the EU AI Act to facilitate consistent enforcement across Member States?",
+      "options": [
+        "The AI Transparency Council",
+        "The European Data Protection Board (EDPB)",
+        "The European Artificial Intelligence Board (EAIB)",
+        "The AI Safety Oversight Network"
+      ],
+      "correct": 2,
+      "explanation": "The European Artificial Intelligence Board (EAIB) is established under Article 56 to ensure coordination and consistency in applying the EU AI Act across Member States.",
+      "legal_reference": "EU AI Act Article 56",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 38,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Deployer Obligations",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "What is the main obligation of deployers (users) of high-risk AI systems under the EU AI Act?",
+      "options": [
+        "To publish AI models online",
+        "To monitor the system and ensure human oversight in actual use",
+        "To re-train the system periodically",
+        "To register all AI uses with the European Commission"
+      ],
+      "correct": 1,
+      "explanation": "Deployers must ensure the system is used safely and consistently with its intended design, including implementing appropriate human oversight measures and monitoring system performance in real-world use.",
+      "legal_reference": "EU AI Act Article 26",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 39,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "General Purpose AI",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "How does the EU AI Act define 'general-purpose AI systems' (GPAI), and what obligations apply?",
+      "options": [
+        "GPAIs are exempt from regulation",
+        "They refer only to open-source models and require no oversight",
+        "They are AI systems usable across multiple contexts and must meet transparency and traceability requirements",
+        "They include only entertainment-related AI and are low-risk"
+      ],
+      "correct": 2,
+      "explanation": "General-purpose AI systems, including foundation models, are defined as AI systems that can be used for multiple purposes across different contexts and must meet specific transparency, documentation, and traceability requirements due to their wide applicability.",
+      "legal_reference": "EU AI Act Article 3(63), Articles 51-55",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 40,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Conformity Assessment",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "Which conformity assessment procedure must be followed for most high-risk AI systems under the EU AI Act?",
+      "options": [
+        "Internal control based on self-declaration",
+        "Assessment by a notified body (third-party conformity assessment)",
+        "Peer review by open-source community",
+        "GDPR data protection impact assessment"
+      ],
+      "correct": 1,
+      "explanation": "Most high-risk AI systems require third-party conformity assessment by a notified body to ensure compliance with the requirements set out in Annex IV, providing independent verification of compliance.",
+      "legal_reference": "EU AI Act Article 43, Annex VII",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 41,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "CE Marking",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "What role does the CE marking play under the EU AI Act?",
+      "options": [
+        "It denotes AI systems created in Central Europe",
+        "It confirms that the AI system meets copyright standards",
+        "It indicates conformity with EU AI Act requirements and allows the system to be placed on the EU market",
+        "It's a voluntary label with no legal impact"
+      ],
+      "correct": 2,
+      "explanation": "CE marking is a mandatory conformity marking that indicates the AI system complies with all applicable EU regulations, including the AI Act requirements, and is required before placing the system on the EU market.",
+      "legal_reference": "EU AI Act Article 49",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 42,
+      "domain": "Risk Management & Assessment",
+      "category": "Risk-Based Approach",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "What is the implication of the AI Act's risk-based approach for AI system categorization?",
+      "options": [
+        "All AI systems are treated equally to avoid discrimination",
+        "It allows companies to self-categorize risk levels without guidance",
+        "It tailors obligations based on potential harm to health, safety, or fundamental rights",
+        "It bans systems not developed in Europe"
+      ],
+      "correct": 2,
+      "explanation": "The risk-based approach ensures proportionate regulation by tailoring obligations based on the level of risk the AI system poses to health, safety, or fundamental rights, with stricter requirements for higher-risk systems.",
+      "legal_reference": "EU AI Act Recital 15",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 43,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Sector Integration",
+      "difficulty": "Hard",
+      "type": "Scenario-Based",
+      "question": "How does the EU AI Act interact with sector-specific regulations like the MDR (Medical Device Regulation)?",
+      "options": [
+        "The AI Act supersedes all other sectoral laws",
+        "It is entirely independent from other regulatory frameworks",
+        "It complements existing laws, and AI components of medical devices must meet both MDR and AI Act requirements",
+        "It nullifies the MDR when AI is involved"
+      ],
+      "correct": 2,
+      "explanation": "The AI Act complements and integrates with existing EU legislation. AI systems used as safety components in medical devices must comply with both the Medical Device Regulation and the AI Act requirements, ensuring comprehensive oversight.",
+      "legal_reference": "EU AI Act Article 2(7), Recital 12",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 44,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Post-Market Monitoring",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "Under the AI Act, when is a post-market monitoring plan required?",
+      "options": [
+        "Only for biometric-based AI systems",
+        "For all AI systems that are not high-risk",
+        "For all high-risk AI systems to ensure ongoing compliance and risk detection",
+        "Never, post-market monitoring is not addressed"
+      ],
+      "correct": 2,
+      "explanation": "Providers of high-risk AI systems must implement a post-market monitoring system to continuously track performance, detect unforeseen risks, and ensure ongoing compliance throughout the system's lifecycle.",
+      "legal_reference": "EU AI Act Article 72",
+      "domain_weight": 0.20
+    },
+    {
+      "id": 45,
+      "domain": "EU AI Act & Regulatory Compliance",
+      "category": "Transparency",
+      "difficulty": "Hard",
+      "type": "Multiple Choice",
+      "question": "What transparency obligation applies to AI systems that interact with humans under the EU AI Act?",
+      "options": [
+        "They must disclose their training parameters",
+        "They must inform humans that they are interacting with an AI system",
+        "They must hide their AI nature to maintain realism",
+        "They are exempt from disclosure requirements"
+      ],
+      "correct": 1,
+      "explanation": "AI systems intended to interact with natural persons must clearly and unambiguously inform users that they are interacting with an AI system, unless this is obvious from the point of view of a person who is reasonably well-informed.",
+      "legal_reference": "EU AI Act Article 52(1)",
+      "domain_weight": 0.20
+    }
+  ],
+  "exam_simulation_settings": {
+    "standard_exam": {
+      "total_questions": 100,
+      "time_limit_minutes": 120,
+      "passing_score": 70,
+      "domain_distribution": {
+        "AI Governance Fundamentals": 20,
+        "EU AI Act & Regulatory Compliance": 25,
+        "Risk Management & Assessment": 20,
+        "Data Governance & Quality": 10,
+        "Ethics & Bias Mitigation": 10,
+        "Technical Implementation": 10,
+        "International Standards & Frameworks": 5,
+        "Organizational Governance": 5
+      }
+    },
+    "practice_modes": {
+      "quick_practice": {
+        "questions": 10,
+        "time_limit_minutes": 15,
+        "domain_focus": "mixed"
+      },
+      "domain_focus": {
+        "questions": 20,
+        "time_limit_minutes": 30,
+        "domain_focus": "specific"
+      },
+      "exam_simulation": {
+        "questions": 50,
+        "time_limit_minutes": 60,
+        "domain_focus": "proportional"
+      }
+    }
+  }
+} 

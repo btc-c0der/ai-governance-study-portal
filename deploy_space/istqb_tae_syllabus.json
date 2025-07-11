@@ -1,0 +1,241 @@
+{
+  "syllabus_metadata": {
+    "title": "ISTQB Certified Tester Advanced Level - Test Automation Engineer",
+    "version": "2016",
+    "release_date": "21 Oct 2016",
+    "total_hours": 21.5,
+    "total_minutes": 1290,
+    "chapters": 8,
+    "target_audience": "Test professionals working with test automation",
+    "prerequisites": "CTFL Foundation Level certification",
+    "exam_format": {
+      "questions": 45,
+      "duration_minutes": 180,
+      "passing_score": 65,
+      "question_types": [
+        "Multiple choice"
+      ]
+    }
+  },
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Introduction to Test Automation",
+      "duration_minutes": 120,
+      "duration_hours": 2.0,
+      "k_level": "K1-K2",
+      "learning_objectives": [
+        "ALTA-E-1.1.1 (K2) Explain the objectives, advantages, disadvantages and limitations of test automation",
+        "ALTA-E-1.2.1 (K2) Identify technical success factors of a test automation project"
+      ],
+      "key_topics": [
+        "Purpose of Test Automation",
+        "Advantages and disadvantages of test automation",
+        "Limitations of test automation",
+        "Success factors in test automation",
+        "Technical success factors"
+      ],
+      "keywords": [
+        "test automation",
+        "automated test execution",
+        "test tool",
+        "system under test (SUT)"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Preparing for Test Automation",
+      "duration_minutes": 165,
+      "duration_hours": 2.75,
+      "k_level": "K2-K4",
+      "learning_objectives": [
+        "ALTA-E-2.1.1 (K4) Analyze a system under test to determine the appropriate automation solution",
+        "ALTA-E-2.2.1 (K4) Analyze test automation tools for a given project and report technical findings",
+        "ALTA-E-2.3.1 (K2) Understand design for testability and automation methods"
+      ],
+      "key_topics": [
+        "SUT Factors Influencing Test Automation",
+        "Tool Evaluation and Selection",
+        "Design for Testability and Automation",
+        "Testability requirements"
+      ],
+      "keywords": [
+        "testability",
+        "driver",
+        "level of intrusion",
+        "stub",
+        "test execution tool",
+        "test hook"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "The Generic Test Automation Architecture",
+      "duration_minutes": 270,
+      "duration_hours": 4.5,
+      "k_level": "K2-K4",
+      "learning_objectives": [
+        "ALTA-E-3.1.1 (K2) Explain the structure of the gTAA",
+        "ALTA-E-3.2.1 (K4) Design the appropriate TAA for a given project",
+        "ALTA-E-3.2.2 (K2) Explain the role that layers play within a TAA"
+      ],
+      "key_topics": [
+        "Generic Test Automation Architecture (gTAA)",
+        "Test Generation Layer",
+        "Test Definition Layer",
+        "Test Execution Layer",
+        "Test Adaptation Layer",
+        "Automation approaches (capture/playback, data-driven, keyword-driven)"
+      ],
+      "keywords": [
+        "capture/playback",
+        "data-driven testing",
+        "keyword-driven testing",
+        "model-based testing"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Deployment Risks and Contingencies",
+      "duration_minutes": 150,
+      "duration_hours": 2.5,
+      "k_level": "K2-K4",
+      "learning_objectives": [
+        "ALTA-E-4.1.1 (K3) Apply guidelines for effective test tool pilot and deployment",
+        "ALTA-E-4.2.1 (K4) Analyze deployment risks and identify technical issues",
+        "ALTA-E-4.3.1 (K2) Understand factors affecting TAS maintainability"
+      ],
+      "key_topics": [
+        "Test Automation Approach Selection",
+        "Pilot Project Planning",
+        "Risk Assessment and Mitigation",
+        "Test Automation Maintenance"
+      ],
+      "keywords": [
+        "risk",
+        "risk mitigation",
+        "risk assessment",
+        "product risk"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Test Automation Reporting and Metrics",
+      "duration_minutes": 165,
+      "duration_hours": 2.75,
+      "k_level": "K2-K4",
+      "learning_objectives": [
+        "ALTA-E-5.1.1 (K2) Classify metrics for monitoring test automation strategy",
+        "ALTA-E-5.2.1 (K3) Implement metrics collection methods",
+        "ALTA-E-5.3.1 (K4) Analyze test logging of TAS and SUT data"
+      ],
+      "key_topics": [
+        "TAS Metrics Selection",
+        "Metrics Implementation",
+        "Test Logging and Reporting",
+        "Automation effectiveness measurement"
+      ],
+      "keywords": [
+        "automation code defect density",
+        "coverage",
+        "traceability matrix",
+        "metrics"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Transitioning Manual Testing to Automated Environment",
+      "duration_minutes": 120,
+      "duration_hours": 2.0,
+      "k_level": "K2-K3",
+      "learning_objectives": [
+        "ALTA-E-6.1.1 (K3) Apply criteria for determining test automation suitability",
+        "ALTA-E-6.2.1 (K2) Explain factors for implementing automated regression testing",
+        "ALTA-E-6.3.1 (K2) Explain automation within new feature testing"
+      ],
+      "key_topics": [
+        "Automation Criteria",
+        "Manual to Automated Transition",
+        "Regression Testing Automation",
+        "New Feature Testing Automation"
+      ],
+      "keywords": [
+        "confirmation testing",
+        "regression testing"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Verifying the TAS",
+      "duration_minutes": 120,
+      "duration_hours": 2.0,
+      "k_level": "K3",
+      "learning_objectives": [
+        "ALTA-E-7.1.1 (K3) Verify automated test environment correctness",
+        "ALTA-E-7.2.1 (K3) Verify correct behavior of automated test scripts"
+      ],
+      "key_topics": [
+        "Test Environment Verification",
+        "Test Suite Verification",
+        "Tool Setup Validation"
+      ],
+      "keywords": [
+        "verification"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Continuous Improvement",
+      "duration_minutes": 150,
+      "duration_hours": 2.5,
+      "k_level": "K4",
+      "learning_objectives": [
+        "ALTA-E-8.1.1 (K4) Analyze deployed automation solutions for improvement",
+        "ALTA-E-8.2.1 (K4) Analyze testware for consolidation and updates"
+      ],
+      "key_topics": [
+        "Automation Improvement Options",
+        "Adapting to SUT Changes",
+        "Testware Consolidation",
+        "Maintenance Strategies"
+      ],
+      "keywords": [
+        "maintenance"
+      ]
+    }
+  ],
+  "study_resources": [
+    {
+      "type": "Official",
+      "title": "ISTQB TAE Syllabus 2016",
+      "url": "https://www.istqb.org/certifications/advanced-level",
+      "description": "Official ISTQB Test Automation Engineer syllabus"
+    },
+    {
+      "type": "Book",
+      "title": "Test Automation in the Real World",
+      "url": "https://pragprog.com/titles/gwtesting/",
+      "description": "Practical automation strategies and patterns"
+    },
+    {
+      "type": "Tool",
+      "title": "Selenium WebDriver",
+      "url": "https://selenium.dev/",
+      "description": "Popular web automation framework"
+    }
+  ],
+  "practical_exercises": [
+    {
+      "chapter": 2,
+      "title": "Tool Evaluation Workshop",
+      "description": "Evaluate automation tools for a project scenario",
+      "duration_minutes": 45
+    },
+    {
+      "chapter": 3,
+      "title": "TAA Design Exercise",
+      "description": "Design test automation architecture",
+      "duration_minutes": 60
+    }
+  ]
+}
