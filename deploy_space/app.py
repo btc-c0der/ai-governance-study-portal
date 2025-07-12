@@ -1,6 +1,29 @@
 #!/usr/bin/env python3
 """
-🧠⚖️ AI Governance Architect's Codex - Full Study Portal
+🧠⚖️ AI Governance Arc        print("📊 Initializing Performance Tracker...")
+        performance_tracker = PerformanceTracker(auth_manager)
+        components['performance_tracker'] = performance_tracker
+        print("✅ PerformanceTracker initialized successfully")
+        
+        print("📖 Initializing Curriculum Manager...")
+        curriculum_mgr = CurriculumManager(auth_manager, performance_tracker)
+        components['curriculum_mgr'] = curriculum_mgr
+        print("✅ CurriculumManager initialized successfully")
+        
+        print("⚖️ Initializing EU AI Act Explorer...")
+        ai_act_explorer = AIActExplorer()
+        components['ai_act_explorer'] = ai_act_explorer
+        print("✅ AIActExplorer initialized successfully")
+        
+        print("🤖 Initializing Model Demos...")
+        model_demos = ModelDemos()
+        components['model_demos'] = model_demos
+        print("✅ ModelDemos initialized successfully")
+        
+        print("🧠 Initializing AI Tutor...")
+        ai_tutor = AITutor()
+        components['ai_tutor'] = ai_tutor
+        print("✅ AITutor initialized successfully")Codex - Full Study Portal
 A next-gen AI Governance Study Platform combining curriculum tracking,
 EU AI Act exploration, ML demos, and AI tutoring.
 
@@ -18,72 +41,13 @@ import os
 import sys
 from pathlib import Path
 
-# Import our custom modules with better error handling
-components_available = {}
-
+# Import our custom modules
 try:
     from components.curriculum import CurriculumManager
-    components_available['curriculum'] = True
-except ImportError as e:
-    print(f"Warning: Could not import CurriculumManager: {e}")
-    CurriculumManager = None
-    components_available['curriculum'] = False
-
-try:
     from components.ai_act_explorer import AIActExplorer
-    components_available['ai_act'] = True
-except ImportError as e:
-    print(f"Warning: Could not import AIActExplorer: {e}")
-    AIActExplorer = None
-    components_available['ai_act'] = False
-
-try:
     from components.model_demos import ModelDemos
-    components_available['models'] = True
-except ImportError as e:
-    print(f"Warning: Could not import ModelDemos: {e}")
-    ModelDemos = None
-    components_available['models'] = False
-
-try:
     from components.ai_tutor import AITutor
-    components_available['tutor'] = True
-except ImportError as e:
-    print(f"Warning: Could not import AITutor: {e}")
-    AITutor = None
-    components_available['tutor'] = False
-
-try:
     from components.performance_tracker import PerformanceTracker
-    components_available['performance'] = True
-except ImportError as e:
-    print(f"Warning: Could not import PerformanceTracker: {e}")
-    PerformanceTracker = None
-    components_available['performance'] = False
-
-try:
-    from components.quiz_engine import QuizEngine
-    components_available['quiz'] = True
-except ImportError as e:
-    print(f"Warning: Could not import QuizEngine: {e}")
-    QuizEngine = None
-    components_available['quiz'] = False
-
-try:
-    from components.auth_manager import AuthManager
-    components_available['auth'] = True
-except ImportError as e:
-    print(f"Warning: Could not import AuthManager: {e}")
-    AuthManager = None
-    components_available['auth'] = False
-
-try:
-    from components.istqb_ai_tester import ISTQBAITester
-    components_available['istqb'] = True
-except ImportError as e:
-    print(f"Warning: Could not import ISTQBAITester: {e}")
-    ISTQBAITester = None
-    components_available['istqb'] = False
     from components.quiz_engine import QuizEngine
     from components.auth_manager import AuthManager
     from components.istqb_ai_tester import ISTQBAITester
@@ -121,10 +85,10 @@ def create_main_interface():
         components['quiz_engine'] = quiz_engine
         print("✅ QuizEngine initialized successfully")
         
-        print("🎯 Initializing ISTQB AI Tester...")
+        print("🎯 Initializing ISTQB AI Tester (CT-AI)...")
         istqb_ai_tester = ISTQBAITester(auth_manager)
         components['istqb_ai_tester'] = istqb_ai_tester
-        print("✅ ISTQBAITester initialized successfully")
+        print("✅ ISTQBAITester (CT-AI) initialized successfully")
         
         print("⚖️ Initializing EU AI Act Explorer...")
         ai_act_explorer = AIActExplorer()

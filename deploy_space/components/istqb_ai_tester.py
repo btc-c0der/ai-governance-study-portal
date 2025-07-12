@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-🎯 ISTQB Test Automation Engineer Component
-Advanced study portal for ISTQB Test Automation Engineer certification with comprehensive syllabus coverage
+🎯 ISTQB Certified Tester - AI Testing Component
+Advanced study portal for ISTQB Certified Tester - AI Testing (CT-AI) certification with comprehensive syllabus coverage
 """
 
 import gradio as gr
@@ -13,19 +13,19 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 class ISTQBAITester:
-    """ISTQB Test Automation Engineer study component with comprehensive syllabus and resources"""
+    """ISTQB Certified Tester - AI Testing study component with comprehensive syllabus and resources"""
     
     def __init__(self, auth_manager=None):
-        """Initialize the ISTQB Test Automation Engineer component"""
+        """Initialize the ISTQB Certified Tester - AI Testing component"""
         self.auth_manager = auth_manager
         self.data_dir = Path("data")
         self.data_dir.mkdir(exist_ok=True)
         
-        # Load ISTQB TAE syllabus
+        # Load ISTQB CT-AI syllabus
         self.syllabus_data = self.load_syllabus_data()
         self.progress_data = self.load_progress_data()
         
-        print("✅ ISTQB Test Automation Engineer component initialized")
+        print("✅ ISTQB Certified Tester - AI Testing component initialized")
     
     def load_syllabus_data(self):
         """Load ISTQB TAE syllabus data from JSON file"""
@@ -43,10 +43,10 @@ class ISTQBAITester:
         """Create fallback syllabus data if file not found"""
         return {
             "syllabus_metadata": {
-                "title": "ISTQB Test Automation Engineer",
-                "version": "2016",
-                "total_hours": 21.5,
-                "chapters": 8
+                "title": "ISTQB Certified Tester - AI Testing (CT-AI)",
+                "version": "2023",
+                "total_hours": 16.0,
+                "chapters": 4
             },
             "chapters": []
         }
@@ -60,7 +60,7 @@ class ISTQBAITester:
         return {}
     
     def create_interface(self):
-        """Create the ISTQB Test Automation Engineer interface"""
+        """Create the ISTQB Certified Tester - AI Testing interface"""
         
         # Enhanced dark theme CSS for proper contrast
         dark_theme_css = """
@@ -225,7 +225,7 @@ class ISTQBAITester:
         
         gr.HTML("""
         <div class="istqb-header">
-            🎯 ISTQB Test Automation Engineer Study Portal
+            🎯 ISTQB Certified Tester - AI Testing Study Portal
         </div>
         """)
         
@@ -267,7 +267,7 @@ class ISTQBAITester:
             <div class="istqb-stats">
                 <h3 style="color: #60a5fa !important; margin-bottom: 15px;">📋 Certification Overview</h3>
                 <div class="istqb-text">
-                    <p><strong>Title:</strong> {metadata.get('title', 'ISTQB Test Automation Engineer')}</p>
+                    <p><strong>Title:</strong> {metadata.get('title', 'ISTQB Certified Tester - AI Testing')}</p>
                     <p><strong>Version:</strong> {metadata.get('version', '2016')}</p>
                     <p><strong>Total Study Hours:</strong> {metadata.get('total_hours', 21.5)} hours</p>
                     <p><strong>Chapters:</strong> {metadata.get('chapters', 8)} comprehensive modules</p>

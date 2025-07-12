@@ -85,10 +85,10 @@ def create_main_interface():
         components['quiz_engine'] = quiz_engine
         print("✅ QuizEngine initialized successfully")
         
-        print("🎯 Initializing ISTQB AI Tester...")
+        print("🎯 Initializing ISTQB AI Tester (CT-AI)...")
         istqb_ai_tester = ISTQBAITester(auth_manager)
         components['istqb_ai_tester'] = istqb_ai_tester
-        print("✅ ISTQBAITester initialized successfully")
+        print("✅ ISTQBAITester (CT-AI) initialized successfully")
         
         print("⚖️ Initializing EU AI Act Explorer...")
         ai_act_explorer = AIActExplorer()

@@ -516,4 +516,4 @@ class AITutor:
         aigp_btn.click(lambda: quick_aigp(), outputs=[msg_input])
         risk_btn.click(lambda: quick_risk(), outputs=[msg_input])
         
-        return chatbot, msg_input 
+        return chatbot, msg_input

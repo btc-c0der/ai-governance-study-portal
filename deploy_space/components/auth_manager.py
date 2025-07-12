@@ -101,6 +101,19 @@ class AuthManager:
     
     def create_user(self, email, password, role="student", profile_data=None):
         """Create new user using shared database manager"""
+        
+        # Validate email format
+        if not email or "@" not in email:
+            return False, "Invalid email format"
+        
+        email_parts = email.split("@")
+        if len(email_parts) != 2 or not email_parts[0] or not email_parts[1]:
+            return False, "Invalid email format"
+        
+        domain = email_parts[1]
+        if "." not in domain or domain.endswith(".") or domain.startswith("."):
+            return False, "Invalid email format"
+        
         if self.user_exists(email):
             return False, "User already exists"
         
@@ -339,6 +352,39 @@ class AuthManager:
         
         return True, "Password changed successfully"
     
+    def register_user(self, email, password, name, institution=""):
+        """Register a new user with validation"""
+        
+        # Input validation
+        if not email or not password or not name:
+            return False, "Email, password, and name are required"
+        
+        # Email validation
+        if "@" not in email or "." not in email:
+            return False, "Please enter a valid email address"
+        
+        # Password validation
+        if len(password) < 8:
+            return False, "Password must be at least 8 characters long"
+        
+        # Name validation
+        if len(name.strip()) < 2:
+            return False, "Please enter a valid name"
+        
+        # Check if user already exists
+        if self.user_exists(email):
+            return False, "User with this email already exists"
+        
+        # Create profile data
+        profile_data = {
+            "name": name.strip(),
+            "institution": institution.strip() if institution else "",
+            "registration_date": datetime.now().isoformat()
+        }
+        
+        # Create the user
+        return self.create_user(email, password, role="student", profile_data=profile_data)
+    
     def create_sidebar_auth(self):
         """Create a compact sidebar authentication widget"""
         
@@ -552,11 +598,11 @@ class AuthManager:
                     html += "</div>"
                     return html
                 else:
-                    return "<div style='background: #2a1a1a; padding: 0.8rem; border-radius: 8px; color: #ef4444; font-size: 0.8rem;'>No users found</div>"
+                    return "<div style='background: #2a2a2a; padding: 0.8rem; border-radius: 8px; color: #ef4444; font-size: 0.8rem;'>No users found</div>"
             
             def update_user_role(user_id, role):
                 if not user_id:
-                    return """<div style="background: #2a1a1a; border: 1px solid #dc2626; border-radius: 8px; padding: 0.8rem; color: #ef4444; font-size: 0.8rem;">
+                    return """<div style="background: #2a1a2a; border: 1px solid #dc2626; border-radius: 8px; padding: 0.8rem; color: #ef4444; font-size: 0.8rem;">
                     ❌ Please enter user ID</div>"""
                 
                 success, message = self.update_user_role(int(user_id), role)
@@ -565,12 +611,12 @@ class AuthManager:
                     return f"""<div style="background: #1a2e1a; border: 1px solid #22c55e; border-radius: 8px; padding: 0.8rem; color: #22c55e; font-size: 0.8rem;">
                     ✅ {message}</div>"""
                 else:
-                    return f"""<div style="background: #2a1a1a; border: 1px solid #dc2626; border-radius: 8px; padding: 0.8rem; color: #ef4444; font-size: 0.8rem;">
+                    return f"""<div style="background: #2a2a2a; border: 1px solid #dc2626; border-radius: 8px; padding: 0.8rem; color: #ef4444; font-size: 0.8rem;">
                     ❌ {message}</div>"""
             
             def deactivate_user_account(user_id):
                 if not user_id:
-                    return """<div style="background: #2a1a1a; border: 1px solid #dc2626; border-radius: 8px; padding: 0.8rem; color: #ef4444; font-size: 0.8rem;">
+                    return """<div style="background: #2a2a2a; border: 1px solid #dc2626; border-radius: 8px; padding: 0.8rem; color: #ef4444; font-size: 0.8rem;">
                     ❌ Please enter user ID</div>"""
                 
                 success, message = self.deactivate_user(int(user_id))
@@ -579,7 +625,7 @@ class AuthManager:
                     return f"""<div style="background: #1a2e1a; border: 1px solid #22c55e; border-radius: 8px; padding: 0.8rem; color: #22c55e; font-size: 0.8rem;">
                     ✅ {message}</div>"""
                 else:
-                    return f"""<div style="background: #2a1a1a; border: 1px solid #dc2626; border-radius: 8px; padding: 0.8rem; color: #ef4444; font-size: 0.8rem;">
+                    return f"""<div style="background: #2a2a2a; border: 1px solid #dc2626; border-radius: 8px; padding: 0.8rem; color: #ef4444; font-size: 0.8rem;">
                     ❌ {message}</div>"""
             
             # Connect sidebar events
@@ -968,4 +1014,4 @@ class AuthManager:
             )
         
         # Return the interface and state variables for external access
-        return auth_interface, login_state, user_role, user_email 
+        return auth_interface, login_state, user_role, user_email
