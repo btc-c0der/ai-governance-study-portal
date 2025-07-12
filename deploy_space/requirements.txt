@@ -1,6 +1,6 @@
 # 🧠⚖️ AI Governance Architect's Codex Dependencies
-# Core Framework
-gradio>=4.15.0
+# Core Framework - Latest Gradio
+gradio>=5.36.0
 fastapi>=0.104.0
 uvicorn>=0.24.0
 
