@@ -1,17 +1,18 @@
 {
   "syllabus_metadata": {
     "title": "ISTQB Certified Tester - AI Testing (CT-AI)",
-    "version": "2023",
-    "release_date": "04 Apr 2023",
+    "version": "1.0",
+    "release_date": "2022",
     "total_hours": 16.0,
     "total_minutes": 960,
-    "chapters": 4,
-    "target_audience": "Test professionals working with AI systems and AI-based applications",
+    "chapters": 5,
+    "target_audience": "Testers, test analysts, data analysts, test engineers, test consultants, test managers, user acceptance testers, software developers, project managers, quality managers, business analysts",
     "prerequisites": "CTFL Foundation Level certification",
     "exam_format": {
       "questions": 40,
-      "duration_minutes": 90,
-      "passing_score": 65,
+      "duration_minutes": 60,
+      "passing_score": 31,
+      "total_points": 47,
       "question_types": [
         "Multiple choice"
       ]
@@ -20,120 +21,195 @@
   "chapters": [
     {
       "id": 1,
-      "title": "AI and Testing - Introduction",
-      "duration_minutes": 240,
-      "duration_hours": 4.0,
+      "title": "Introduction to AI",
+      "duration_minutes": 200,
+      "duration_hours": 3.33,
       "k_level": "K1-K2",
       "learning_objectives": [
-        "CT-AI-1.1.1 (K2) Explain artificial intelligence and its relevance to testing",
-        "CT-AI-1.2.1 (K2) Distinguish between AI systems and conventional software systems",
-        "CT-AI-1.3.1 (K2) Explain machine learning and its application in testing"
+        "CT-AI-1.1.1 (K1) Define AI and AI Effect",
+        "CT-AI-1.2.1 (K2) Distinguish between Narrow, General and Super AI",
+        "CT-AI-1.3.1 (K2) Explain the difference between AI-Based and Conventional Systems",
+        "CT-AI-1.4.1 (K2) Understand AI Technologies and Development Frameworks",
+        "CT-AI-1.5.1 (K2) Explain Hardware for AI-Based Systems and AI as a Service"
       ],
       "key_topics": [
-        "AI Fundamentals",
-        "Machine Learning basics",
-        "AI vs Traditional Software",
-        "AI in Testing landscape",
-        "AI System characteristics"
+        "Definition of AI and AI Effect",
+        "Narrow, General and Super AI",
+        "AI-Based vs Conventional Systems",
+        "AI Technologies and Development Frameworks",
+        "Hardware for AI-Based Systems",
+        "AI as a Service (AIaaS)",
+        "Pre-Trained Models",
+        "Standards, Regulations and AI"
       ],
       "keywords": [
         "artificial intelligence",
-        "machine learning",
-        "deep learning",
-        "neural networks",
-        "algorithm",
-        "training data",
-        "model"
+        "AI effect",
+        "narrow AI",
+        "general AI",
+        "super AI",
+        "AI-based systems",
+        "AIaaS",
+        "pre-trained models"
       ]
     },
     {
       "id": 2,
-      "title": "Testing AI Systems",
-      "duration_minutes": 360,
-      "duration_hours": 6.0,
-      "k_level": "K2-K4",
+      "title": "Quality Characteristics for AI-Based Systems",
+      "duration_minutes": 180,
+      "duration_hours": 3.0,
+      "k_level": "K2-K3",
       "learning_objectives": [
-        "CT-AI-2.1.1 (K4) Analyze AI system testing challenges and approaches",
-        "CT-AI-2.2.1 (K3) Apply testing techniques for AI systems",
-        "CT-AI-2.3.1 (K2) Explain AI system test data requirements"
+        "CT-AI-2.1.1 (K2) Explain quality characteristics specific to AI-based systems",
+        "CT-AI-2.2.1 (K3) Analyze flexibility, adaptability, and autonomy in AI systems",
+        "CT-AI-2.3.1 (K2) Understand bias, ethics, and transparency in AI",
+        "CT-AI-2.4.1 (K2) Explain safety considerations for AI systems"
       ],
       "key_topics": [
-        "AI System Testing Challenges",
-        "Testing AI Models",
-        "Data Quality for AI Testing",
-        "AI System Validation",
-        "Performance Testing of AI Systems",
-        "Bias and Fairness Testing"
+        "Flexibility and Adaptability",
+        "Autonomy in AI Systems",
+        "Evolution of AI Systems",
+        "Bias in AI Systems",
+        "Ethics and AI",
+        "Side Effects and Reward Hacking",
+        "Transparency, Interpretability and Explainability",
+        "Safety and AI"
       ],
       "keywords": [
-        "model validation",
-        "bias testing",
-        "fairness testing",
-        "adversarial testing",
-        "data drift",
-        "model drift",
-        "explainability"
+        "flexibility",
+        "adaptability",
+        "autonomy",
+        "bias",
+        "ethics",
+        "transparency",
+        "interpretability",
+        "explainability",
+        "safety"
       ]
     },
     {
       "id": 3,
-      "title": "AI-Driven Testing",
+      "title": "Machine Learning and Testing",
       "duration_minutes": 240,
       "duration_hours": 4.0,
-      "k_level": "K2-K3",
+      "k_level": "K2-K4",
       "learning_objectives": [
-        "CT-AI-3.1.1 (K3) Apply AI techniques for test automation",
-        "CT-AI-3.2.1 (K2) Explain AI-driven test case generation",
-        "CT-AI-3.3.1 (K2) Understand AI-based test oracle generation"
+        "CT-AI-3.1.1 (K2) Explain different forms of Machine Learning",
+        "CT-AI-3.2.1 (K3) Apply ML workflow concepts",
+        "CT-AI-3.3.1 (K2) Understand ML data preparation and quality",
+        "CT-AI-3.4.1 (K3) Analyze ML functional performance metrics",
+        "CT-AI-3.5.1 (K2) Explain neural networks and coverage measures"
       ],
       "key_topics": [
-        "AI for Test Case Generation",
-        "AI-Based Test Oracles",
-        "Self-healing Test Automation",
-        "AI-Driven Test Execution",
-        "Intelligent Test Reporting"
+        "Forms of Machine Learning",
+        "ML Workflow",
+        "ML Algorithm Selection",
+        "Overfitting and Underfitting",
+        "Data Preparation and Quality",
+        "Training, Validation and Test Datasets",
+        "ML Functional Performance Metrics",
+        "Confusion Matrix",
+        "Neural Networks and Coverage Measures"
       ],
       "keywords": [
-        "test case generation",
-        "test oracle",
-        "self-healing tests",
-        "intelligent automation",
-        "anomaly detection"
+        "machine learning",
+        "supervised learning",
+        "unsupervised learning",
+        "reinforcement learning",
+        "overfitting",
+        "underfitting",
+        "confusion matrix",
+        "neural networks",
+        "coverage measures"
       ]
     },
     {
       "id": 4,
-      "title": "AI Testing in Practice",
-      "duration_minutes": 120,
-      "duration_hours": 2.0,
-      "k_level": "K3-K4",
+      "title": "Testing AI-Based Systems",
+      "duration_minutes": 240,
+      "duration_hours": 4.0,
+      "k_level": "K2-K4",
       "learning_objectives": [
-        "CT-AI-4.1.1 (K4) Evaluate AI testing tools and frameworks",
-        "CT-AI-4.2.1 (K3) Implement AI testing in practice",
-        "CT-AI-4.3.1 (K2) Understand ethical considerations in AI testing"
+        "CT-AI-4.1.1 (K2) Explain testing challenges for AI-based systems",
+        "CT-AI-4.2.1 (K3) Apply testing methods for AI-specific quality characteristics",
+        "CT-AI-4.3.1 (K4) Analyze test approaches for different AI system types",
+        "CT-AI-4.4.1 (K3) Design tests for bias, transparency, and explainability",
+        "CT-AI-4.5.1 (K2) Understand test oracles and acceptance criteria for AI"
       ],
       "key_topics": [
-        "AI Testing Tools",
-        "Testing Frameworks for AI",
-        "Ethical AI Testing",
-        "AI Testing Best Practices",
-        "Continuous Testing for AI Systems"
+        "Specification of AI-Based Systems",
+        "Test Levels for AI-Based Systems",
+        "Test Data for AI-Based Systems",
+        "Testing for Automation Bias",
+        "Testing for Concept Drift",
+        "Testing Self-Learning Systems",
+        "Testing for Algorithmic and Sample Bias",
+        "Testing Probabilistic Systems",
+        "Adversarial Testing and Data Poisoning",
+        "Test Oracles for AI Systems"
       ],
       "keywords": [
-        "AI testing tools",
-        "ethical AI",
-        "responsible AI",
-        "continuous testing",
-        "monitoring"
+        "automation bias",
+        "concept drift",
+        "self-learning systems",
+        "algorithmic bias",
+        "sample bias",
+        "probabilistic systems",
+        "adversarial testing",
+        "data poisoning",
+        "test oracles"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Using AI for Testing",
+      "duration_minutes": 100,
+      "duration_hours": 1.67,
+      "k_level": "K2-K3",
+      "learning_objectives": [
+        "CT-AI-5.1.1 (K2) Explain AI technologies for testing",
+        "CT-AI-5.2.1 (K3) Apply AI for test case generation and optimization",
+        "CT-AI-5.3.1 (K2) Understand AI for defect analysis and prediction",
+        "CT-AI-5.4.1 (K3) Use AI for testing user interfaces"
+      ],
+      "key_topics": [
+        "AI Technologies for Testing",
+        "AI for Defect Report Analysis",
+        "AI for Test Case Generation",
+        "AI for Regression Test Suite Optimization",
+        "AI for Defect Prediction",
+        "AI for Testing User Interfaces",
+        "Test Environment Considerations"
+      ],
+      "keywords": [
+        "AI-driven testing",
+        "test case generation",
+        "defect prediction",
+        "regression testing",
+        "UI testing",
+        "test optimization",
+        "intelligent testing"
       ]
     }
   ],
   "study_resources": [
     {
       "type": "Official",
-      "title": "ISTQB CT-AI Syllabus 2023",
+      "title": "ISTQB CT-AI Syllabus v1.0",
       "url": "https://www.istqb.org/certifications/certified-tester-ai-testing-ct-ai/",
-      "description": "Official ISTQB Certified Tester - AI Testing syllabus"
+      "description": "Official ISTQB Certified Tester - AI Testing syllabus v1.0"
+    },
+    {
+      "type": "Official",
+      "title": "ISTQB CT-AI Sample Exam Questions v1.1",
+      "url": "https://www.istqb.org/certifications/certified-tester-ai-testing-ct-ai/",
+      "description": "Official sample exam questions for CT-AI certification"
+    },
+    {
+      "type": "Official",
+      "title": "ISTQB CT-AI Sample Exam Answers v1.2",
+      "url": "https://www.istqb.org/certifications/certified-tester-ai-testing-ct-ai/",
+      "description": "Official sample exam answers for CT-AI certification"
     },
     {
       "type": "Book",
@@ -142,48 +218,104 @@
       "description": "Comprehensive guide to AI system testing"
     },
     {
-      "type": "Tool",
+      "type": "Framework",
       "title": "TensorFlow Testing",
       "url": "https://www.tensorflow.org/guide/test",
       "description": "Testing framework for TensorFlow models"
     },
     {
-      "type": "Tool",
+      "type": "Framework",
       "title": "PyTorch Testing",
       "url": "https://pytorch.org/docs/stable/testing.html",
       "description": "Testing utilities for PyTorch models"
     },
     {
-      "type": "Framework",
+      "type": "Tool",
       "title": "MLTest Framework",
       "url": "https://github.com/Tencent/MLTest",
       "description": "Machine learning testing framework"
+    },
+    {
+      "type": "Tool",
+      "title": "Adversarial Robustness Toolbox (ART)",
+      "url": "https://github.com/Trusted-AI/adversarial-robustness-toolbox",
+      "description": "Python library for adversarial machine learning"
+    },
+    {
+      "type": "Tool",
+      "title": "Fairness Indicators",
+      "url": "https://www.tensorflow.org/responsible_ai/fairness_indicators/guide",
+      "description": "Tools for evaluating fairness in ML models"
     }
   ],
   "practical_exercises": [
     {
       "chapter": 1,
-      "title": "AI System Analysis Workshop",
-      "description": "Analyze different AI systems and identify testing challenges",
-      "duration_minutes": 45
+      "title": "AI System Classification Workshop",
+      "description": "Classify different systems as AI-based or conventional and identify AI technologies used",
+      "duration_minutes": 60
     },
     {
       "chapter": 2,
-      "title": "Bias Testing Lab",
-      "description": "Implement bias testing for a machine learning model",
+      "title": "Quality Characteristics Analysis",
+      "description": "Analyze AI systems for flexibility, bias, and transparency characteristics",
       "duration_minutes": 90
     },
     {
       "chapter": 3,
-      "title": "AI-Driven Test Generation",
-      "description": "Use AI tools to generate test cases automatically",
-      "duration_minutes": 60
+      "title": "ML Model Testing Lab",
+      "description": "Test a machine learning model using performance metrics and coverage measures",
+      "duration_minutes": 120
     },
     {
       "chapter": 4,
-      "title": "AI Testing Tool Evaluation",
-      "description": "Compare and evaluate different AI testing tools",
+      "title": "AI System Testing Strategy",
+      "description": "Develop a comprehensive testing strategy for an AI-based system",
+      "duration_minutes": 90
+    },
+    {
+      "chapter": 4,
+      "title": "Bias and Fairness Testing Exercise",
+      "description": "Implement bias testing and fairness evaluation for an ML model",
       "duration_minutes": 75
+    },
+    {
+      "chapter": 5,
+      "title": "AI-Driven Test Generation",
+      "description": "Use AI tools to generate test cases and optimize regression suites",
+      "duration_minutes": 60
+    }
+  ],
+  "testing_techniques": [
+    {
+      "name": "Adversarial Testing",
+      "description": "Testing AI systems with adversarial inputs to identify vulnerabilities",
+      "applicable_chapters": [4]
+    },
+    {
+      "name": "Pairwise Testing",
+      "description": "Combinatorial testing technique for AI system parameters",
+      "applicable_chapters": [4]
+    },
+    {
+      "name": "A/B Testing",
+      "description": "Comparing two versions of AI systems to determine performance",
+      "applicable_chapters": [4]
+    },
+    {
+      "name": "Back-to-Back Testing",
+      "description": "Comparing outputs of different AI implementations",
+      "applicable_chapters": [4]
+    },
+    {
+      "name": "Metamorphic Testing",
+      "description": "Testing AI systems using metamorphic relations",
+      "applicable_chapters": [4]
+    },
+    {
+      "name": "Experience-Based Testing",
+      "description": "Leveraging tester experience for AI system testing",
+      "applicable_chapters": [4]
     }
   ]
 }

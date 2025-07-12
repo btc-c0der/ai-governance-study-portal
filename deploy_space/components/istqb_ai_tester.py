@@ -44,9 +44,9 @@ class ISTQBAITester:
         return {
             "syllabus_metadata": {
                 "title": "ISTQB Certified Tester - AI Testing (CT-AI)",
-                "version": "2023",
+                "version": "1.0",
                 "total_hours": 16.0,
-                "chapters": 4
+                "chapters": 5
             },
             "chapters": []
         }
