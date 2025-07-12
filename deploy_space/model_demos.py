@@ -26,11 +26,11 @@ load_dotenv()  # For local development
 
 class ModelDemos:
     def __init__(self):
+        self.is_spaces = os.getenv("SPACE_ID") is not None  # Detect HF Spaces environment
         self.legal_classifier = self.setup_legal_classifier()
         self.sample_documents = self.load_sample_documents()
         self.api_clients = self.setup_api_clients()
         self.rate_limiter = {}  # Simple rate limiting
-        self.is_spaces = os.getenv("SPACE_ID") is not None  # Detect HF Spaces environment
         
     def setup_api_clients(self) -> Dict[str, Dict]:
         """Setup API clients for different model providers"""
@@ -553,7 +553,14 @@ class ModelDemos:
     def check_rate_limit(self, provider: str) -> bool:
         """Simple rate limiting check"""
         current_time = time.time()
-        rate_limit = int(os.getenv('DEMO_RATE_LIMIT', '10'))
+        
+        # Get rate limit and handle comments in env var
+        rate_limit_str = os.getenv('DEMO_RATE_LIMIT', '10')
+        try:
+            # Split on # to remove comments
+            rate_limit = int(rate_limit_str.split('#')[0].strip())
+        except ValueError:
+            rate_limit = 10  # Default fallback
         
         if provider not in self.rate_limiter:
             self.rate_limiter[provider] = []
@@ -596,17 +603,18 @@ class ModelDemos:
             data = {
                 "model": client_config["model"],
                 "messages": messages,
-                "max_tokens": int(os.getenv('MAX_TOKENS', '2000')),
-                "temperature": float(os.getenv('TEMPERATURE', '0.7'))
+                "max_tokens": int(os.getenv('MAX_TOKENS', '2000').split('#')[0].strip()),
+                "temperature": float(os.getenv('TEMPERATURE', '0.7').split('#')[0].strip())
             }
             
             # Make API call
             async with aiohttp.ClientSession() as session:
+                timeout_seconds = int(os.getenv('API_TIMEOUT', '30').split('#')[0].strip())
                 async with session.post(
                     f"{client_config['base_url']}/chat/completions",
                     headers=headers,
                     json=data,
-                    timeout=aiohttp.ClientTimeout(total=int(os.getenv('API_TIMEOUT', '30')))
+                    timeout=aiohttp.ClientTimeout(total=timeout_seconds)
                 ) as response:
                     if response.status == 200:
                         result = await response.json()
